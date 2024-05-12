@@ -1,0 +1,30 @@
+{
+    "name": "bsf-admin-ui",
+    "version": "1.0.2",
+    "description": "Library of components for the BSF project",
+    "main": "lib/index.js",
+    "types": "lib/index.d.ts",
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1",
+      "build": "tsc",
+      "start": "tsc-watch --onSuccess \"node lib/index.js\""
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/rahulvarma722/bsf-components-test.git"
+    },
+    "keywords": [
+      "bsf",
+      "components",
+      "library"
+    ],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+      "typescript": "^5.4.5"
+    },
+    "devDependencies": {
+      "tsc-watch": "^6.2.0"
+    }
+  }
+  
