@@ -1,1 +1,1 @@
-export * from './settings/index';
+export * from './components/index';
