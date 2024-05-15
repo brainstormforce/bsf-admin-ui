@@ -1,14 +1,22 @@
 {
     "compilerOptions": {
-        "target": "es5",
-        "module": "commonjs",
-        "declaration": true,
-        "outDir": "./lib",
         "rootDir": "./src",
-        "strict": true,
+        "target": "ESNext",
+        "module": "ESNext",
+        "moduleResolution": "Node",
+        "jsx": "react",
         "esModuleInterop": true,
-        "forceConsistentCasingInFileNames": true
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "resolveJsonModule": true,
+        "declaration": true,
+        "outDir": "dist",
+        "baseUrl": "./",
+        "paths": {
+            "bsf-admin-ui/*": ["src/*"]
+        }
     },
-    "include": ["src"],
+    "include": ["src/**/*.ts", "src/**/*.tsx"],
     "exclude": ["node_modules"]
 }

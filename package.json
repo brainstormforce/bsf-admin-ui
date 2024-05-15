@@ -2,16 +2,17 @@
   "name": "bsf-admin-ui",
   "version": "1.0.0",
   "description": "Library of components for the BSF project",
-  "main": "lib/index.js",
-  "types": "lib/index.d.ts",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "tsc",
-    "start": "tsc-watch --onSuccess \"node lib/index.js\""
+    "build": "npx rollup -c",
+    "start": "rollup -c -w"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rahulvarma722/bsf-components-test.git"
+    "url": "git+https://github.com/rahulvarma722/bsf-admin-ui.git"
   },
   "volta": {
 		"node": "18.15.0"
@@ -24,9 +25,51 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "typescript": "^5.4.5"
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-typescript": "^11.1.6",
+    "@types/react": "^18.2.58",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "rollup": "^4.12.0",
+    "tslib": "^2.6.2"
   },
   "devDependencies": {
-    "tsc-watch": "^6.2.0"
+    "tsc-watch": "^6.2.0",
+    "tailwindcss": "^3.4.3"
+  },
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./index.js": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./components": {
+      "types": "./dist/components.d.ts",
+      "default": "./dist/components.js"
+    },
+    "./components.js": {
+      "types": "./dist/components.d.ts",
+      "default": "./dist/components.js"
+    },
+    "./settings": {
+      "types": "./dist/settings.d.ts",
+      "default": "./dist/settings.js"
+    },
+    "./settings.js": {
+      "types": "./dist/settings.d.ts",
+      "default": "./dist/settings.js"
+    },
+    "./fields": {
+      "types": "./dist/fields.d.ts",
+      "default": "./dist/fields.js"
+    },
+    "./fields.js": {
+      "types": "./dist/fields.d.ts",
+      "default": "./dist/fields.js"
+    }
   }
 }

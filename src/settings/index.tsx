@@ -1,4 +1,4 @@
-export class log {
+class log {
     static success(message: string) {
         console.log(`%c ${message}`, 'color: green');
     }
@@ -11,12 +11,15 @@ export class log {
 }
 
 // Create and export new function which perform addition of two numbers and return the result.
-export function add(a: number, b: number): string {
+function add(a: number, b: number): string {
     // return a + b;
     return `addition ${a} + ${b} = ${a + b}`;
 }
 
 // Create and export new function which perform subtraction of two numbers and return the result.
-export function subtract(a: number, b: number): string {
+function subtract(a: number, b: number): string {
     return `Result of the t ${a} - ${b} = ${a - b}`;
 }
+
+export { log, add, subtract };
+export { default as Nav } from './navigation/Nav';

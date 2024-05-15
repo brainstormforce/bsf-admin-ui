@@ -1,22 +1,22 @@
-export class log {
-    static success(message: string) {
+class log {
+    static success(message) {
         console.log(`%c ${message}`, 'color: green');
     }
-    static error(message: string) {
+    static error(message) {
         console.log(`%c ${message}`, 'color: red');
     }
-    static warning(message: string) {
+    static warning(message) {
         console.log(`%c ${message}`, 'color: orange');
     }
 }
-
 // Create and export new function which perform addition of two numbers and return the result.
-export function add(a: number, b: number): string {
+function add(a, b) {
     // return a + b;
     return `addition ${a} + ${b} = ${a + b}`;
 }
-
 // Create and export new function which perform subtraction of two numbers and return the result.
-export function subtract(a: number, b: number): string {
+function subtract(a, b) {
     return `Result of the t ${a} - ${b} = ${a - b}`;
 }
+
+export { add, log, subtract };
