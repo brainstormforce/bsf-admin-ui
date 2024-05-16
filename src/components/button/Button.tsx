@@ -35,12 +35,6 @@ const cls2 = css`
       >
         {children}
       </button>
-      <button
-        onClick={onClick}
-        className={cx(cls1, cls2)}
-      >
-        {children}
-      </button>
     </>
   );
 };

@@ -20,7 +20,6 @@ const Button = ({ children, onClick }) => {
   background: blue;
 `;
     return (React.createElement(React.Fragment, null,
-        React.createElement("button", { onClick: onClick, className: cx(cls1, cls2) }, children),
         React.createElement("button", { onClick: onClick, className: cx(cls1, cls2) }, children)));
 };
 
