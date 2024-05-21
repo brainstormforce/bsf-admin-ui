@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useEffect } from 'react';
+import { injectGlobal, css, cx } from '@emotion/css';
 
 // Define the AdminNavbar component
 const Nav = ({ children }) => {
@@ -7,6 +8,313 @@ const Nav = ({ children }) => {
         React.createElement("div", null, "Second Nested Div"),
         children,
         " "));
+};
+
+function getPrefix() {
+    return 'bsf-admin-ui-';
+}
+
+const GridContainer = (props) => {
+    const { containerType = "grid", gap = 10, numberOfColumn, padding = 10, justifyContent, alignItems, alignContent, justifyItems, className, style, children, } = props;
+    useEffect(() => {
+        injectGlobal `
+    #wpcontent {
+          padding: 0;
+      }
+    `;
+    }, []);
+    // If additional style is not blank and should be object then assign it to additionalStyle variable else assign empty object.
+    const additionalStyle = style && typeof style === "object" ? style : {};
+    let styleObject = {
+        display: containerType,
+        gap: gap,
+        padding: padding,
+        justifyContent: justifyContent,
+        alignItems: alignItems,
+        alignContent: alignContent,
+        justifyItems: justifyItems,
+        ...additionalStyle,
+    };
+    // Add grid items css if gridItemSettings is passed in props.
+    if (props?.gridItemSettings) {
+        props.gridItemSettings.forEach((item, index) => {
+            const gridItemStyle = {
+                gridColumn: item.columnSpan ? `span ${item.columnSpan}` : "auto",
+                ...item.style,
+            };
+            const objectKey = `& > :nth-child(${index + 1})`;
+            styleObject = { ...styleObject, [objectKey]: gridItemStyle };
+        });
+    }
+    // Add number of column if it is passed in props and should be number type and type should be grid.
+    if (numberOfColumn &&
+        typeof numberOfColumn === "number" &&
+        containerType === "grid") {
+        styleObject["gridTemplateColumns"] = `repeat(${numberOfColumn}, 1fr)`;
+    }
+    const mainClass = css(styleObject);
+    return React.createElement("div", { className: cx(mainClass, className) }, children);
+};
+
+const ICONS = {
+    breadCrumbIcon: (React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+        React.createElement("polyline", { points: "9 18 15 12 9 6" }))),
+    supportIcon: (React.createElement("svg", { width: "20", height: "20", viewBox: "0 0 20 20", fill: "#ffffff", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M7.87891 5.51884C9.05048 4.49372 10.95 4.49372 12.1215 5.51884C13.2931 6.54397 13.2931 8.20603 12.1215 9.23116C11.9176 9.40958 11.6917 9.55695 11.4513 9.67326C10.7056 10.0341 10.0002 10.6716 10.0002 11.5V12.25M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10ZM10 15.25H10.0075V15.2575H10V15.25Z", stroke: "#64748B", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" }))),
+    whatsNew: (React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 20 20", fill: "none" },
+        React.createElement("path", { d: "M9.16667 4.90182V16.0335C9.16667 16.8434 8.51008 17.5 7.70015 17.5C7.08038 17.5 6.52752 17.1104 6.31907 16.5267L4.53039 11.4024M15 10.8333C16.3807 10.8333 17.5 9.71404 17.5 8.33333C17.5 6.95262 16.3807 5.83333 15 5.83333M4.53039 11.4024C3.33691 10.8951 2.5 9.71194 2.5 8.33333C2.5 6.49238 3.99238 5 5.83333 5H7.36007C10.7773 5 13.7141 3.97159 15 2.5L15 14.1667C13.7141 12.6951 10.7773 11.6667 7.36007 11.6667L5.83331 11.6667C5.37098 11.6667 4.93064 11.5725 4.53039 11.4024Z", stroke: "#475569", "stroke-width": "1.4", "stroke-linecap": "round", "stroke-linejoin": "round" }))),
+};
+// const ICONS: IconType = {
+//   close: (
+//     <svg
+//       xmlns="http://www.w3.org/2000/svg"
+//       width="24"
+//       height="24"
+//       viewBox="0 0 24 24"
+//       fill="none"
+//     >
+//       <path
+//         d="M6 18L18 6M6 6L18 18"
+//         stroke="#475569"
+//         strokeWidth="1.5"
+//         strokeLinecap="round"
+//         strokeLinejoin="round"
+//       />
+//     </svg>
+//   ),
+//   plus: (
+//     <svg
+//       xmlns="http://www.w3.org/2000/svg"
+//       width="40"
+//       height="40"
+//       viewBox="0 0 40 40"
+//       fill="none"
+//       className="srfm-ts-preview-blank-form"
+//     >
+//       <path
+//         fillRule="evenodd"
+//         clipRule="evenodd"
+//         d="M20 6.25C20.6904 6.25 21.25 6.80964 21.25 7.5V18.75H32.5C33.1904 18.75 33.75 19.3096 33.75 20C33.75 20.6904 33.1904 21.25 32.5 21.25H21.25V32.5C21.25 33.1904 20.6904 33.75 20 33.75C19.3096 33.75 18.75 33.1904 18.75 32.5V21.25H7.5C6.80964 21.25 6.25 20.6904 6.25 20C6.25 19.3096 6.80964 18.75 7.5 18.75H18.75V7.5C18.75 6.80964 19.3096 6.25 20 6.25Z"
+//         fill="#555D66"
+//       />
+//     </svg>
+//   ),
+//   eye: (
+//     <svg
+//       width="25"
+//       height="24"
+//       viewBox="0 0 25 24"
+//       fill="none"
+//       xmlns="http://www.w3.org/2000/svg"
+//     >
+//       <path
+//         d="M4.04472 11.8528L3.97078 12.0503L4.06071 12.2412C4.81322 13.8378 6.01061 15.1834 7.50911 16.1162C9.00523 17.0476 10.738 17.528 12.5 17.5001C14.262 17.528 15.9948 17.0476 17.4909 16.1162C18.9894 15.1834 20.1868 13.8378 20.9393 12.2412L21.0292 12.0503L20.9553 11.8528C20.8333 11.5267 20.5079 11.0373 20.0674 10.5119C19.6142 9.97137 19.0026 9.34967 18.2654 8.75984C16.7988 7.58644 14.7848 6.5 12.5 6.5C10.2152 6.5 8.20118 7.58644 6.73463 8.75984C5.99743 9.34967 5.38585 9.97137 4.93262 10.5119C4.49207 11.0373 4.16673 11.5267 4.04472 11.8528ZM12.5 15.5C11.8078 15.5 11.1311 15.2947 10.5555 14.9101C9.97993 14.5256 9.53133 13.9789 9.26642 13.3394C9.00151 12.6999 8.9322 11.9961 9.06725 11.3172C9.2023 10.6383 9.53564 10.0146 10.0251 9.52513C10.5146 9.03564 11.1383 8.7023 11.8172 8.56725C12.4961 8.4322 13.1999 8.50151 13.8394 8.76642C14.4789 9.03133 15.0256 9.47993 15.4101 10.0555C15.7947 10.6311 16 11.3078 16 12C16 12.9283 15.6313 13.8185 14.9749 14.4749C14.3185 15.1313 13.4283 15.5 12.5 15.5ZM12.5 9.5C12.0055 9.5 11.5222 9.64662 11.1111 9.92133C10.7 10.196 10.3795 10.5865 10.1903 11.0433C10.0011 11.5001 9.95157 12.0028 10.048 12.4877C10.1445 12.9727 10.3826 13.4181 10.7322 13.7678C11.0819 14.1174 11.5273 14.3555 12.0123 14.452C12.4972 14.5484 12.9999 14.4989 13.4567 14.3097C13.9135 14.1205 14.304 13.8 14.5787 13.3889C14.8534 12.9778 15 12.4945 15 12C15 11.337 14.7366 10.7011 14.2678 10.2322C13.7989 9.76339 13.163 9.5 12.5 9.5ZM12.5 18.5C9.4172 18.5 7.03273 17.2462 5.41524 15.7825C4.60531 15.0496 3.99296 14.2684 3.58607 13.5755C3.16858 12.8645 3 12.3025 3 12C3 11.8937 3.04086 11.7031 3.16504 11.4258C3.28537 11.157 3.46876 10.8402 3.71375 10.4919C4.20345 9.79588 4.91842 9.00404 5.80204 8.25805C7.57719 6.75941 9.96653 5.5 12.5 5.5C15.0335 5.5 17.4228 6.75941 19.198 8.25805C20.0816 9.00404 20.7965 9.79588 21.2862 10.4919C21.5312 10.8402 21.7146 11.157 21.835 11.4258C21.9591 11.7031 22 11.8937 22 12C22 12.3025 21.8314 12.8645 21.4139 13.5755C21.007 14.2684 20.3947 15.0496 19.5848 15.7825C17.9673 17.2462 15.5828 18.5 12.5 18.5Z"
+//         fill="#1F2A37"
+//         stroke="#046BD2"
+//       />
+//     </svg>
+//   ),
+//   message: (
+//     <svg
+//       xmlns="http://www.w3.org/2000/svg"
+//       width="16"
+//       height="16"
+//       viewBox="0 0 16 16"
+//       fill="none"
+//     >
+//       <path
+//         d="M5.75 6.5C5.75 6.63807 5.63807 6.75 5.5 6.75C5.36193 6.75 5.25 6.63807 5.25 6.5C5.25 6.36193 5.36193 6.25 5.5 6.25C5.63807 6.25 5.75 6.36193 5.75 6.5ZM5.75 6.5H5.5M8.25 6.5C8.25 6.63807 8.13807 6.75 8 6.75C7.86193 6.75 7.75 6.63807 7.75 6.5C7.75 6.36193 7.86193 6.25 8 6.25C8.13807 6.25 8.25 6.36193 8.25 6.5ZM8.25 6.5H8M10.75 6.5C10.75 6.63807 10.6381 6.75 10.5 6.75C10.3619 6.75 10.25 6.63807 10.25 6.5C10.25 6.36193 10.3619 6.25 10.5 6.25C10.6381 6.25 10.75 6.36193 10.75 6.5ZM10.75 6.5H10.5M1.5 8.50623C1.5 9.57362 2.24894 10.5027 3.30497 10.658C4.02905 10.7644 4.761 10.8467 5.5 10.9038V14L8.28899 11.211C8.42681 11.0732 8.61289 10.9948 8.80774 10.99C10.1248 10.9574 11.4221 10.8452 12.695 10.6581C13.751 10.5028 14.5 9.5737 14.5 8.5063V4.4937C14.5 3.42631 13.751 2.49722 12.695 2.34196C11.1627 2.11668 9.59507 2 8.00019 2C6.40517 2 4.83741 2.1167 3.30498 2.34202C2.24894 2.49729 1.5 3.42637 1.5 4.49376V8.50623Z"
+//         stroke="#94A3B8"
+//         strokeWidth="1.5"
+//         strokeLinecap="round"
+//         strokeLinejoin="round"
+//       />
+//     </svg>
+//   ),
+//   back: (
+//     <svg
+//       xmlns="http://www.w3.org/2000/svg"
+//       width="20"
+//       height="20"
+//       viewBox="0 0 20 20"
+//       fill="none"
+//     >
+//       <path
+//         fillRule="evenodd"
+//         clipRule="evenodd"
+//         d="M17 10C17 10.4142 16.6642 10.75 16.25 10.75L5.61208 10.75L9.76983 14.7094C10.0684 14.9965 10.0777 15.4713 9.79062 15.7698C9.50353 16.0684 9.02875 16.0777 8.73017 15.7906L3.23017 10.5406C3.08311 10.3992 3 10.204 3 10C3 9.79599 3.08311 9.60078 3.23017 9.45938L8.73017 4.20938C9.02875 3.92228 9.50353 3.93159 9.79062 4.23017C10.0777 4.52875 10.0684 5.00353 9.76983 5.29063L5.61208 9.25L16.25 9.25C16.6642 9.25 17 9.58579 17 10Z"
+//         fill="#475569"
+//       />
+//     </svg>
+//   ),
+//   breadcrumb: (
+//     <svg
+//       xmlns="http://www.w3.org/2000/svg"
+//       width="14"
+//       height="14"
+//       viewBox="0 0 14 14"
+//       fill="none"
+//     >
+//       <path
+//         d="M5.4375 10.2734L8.70703 7.0039L5.4375 3.73438"
+//         stroke="#4B5563"
+//         strokeWidth="1.08984"
+//         strokeLinecap="round"
+//         strokeLinejoin="round"
+//       />
+//     </svg>
+//   ),
+// };
+// export default ICONS;
+
+const AdminHeader = ({ children, logo, breadcrumbs, breadcrumbIcon, navRightContent, className, }) => {
+    console.log("AdminHeaderProps");
+    let headerCss = {
+        backgroundColor: "#FFFFFF",
+        boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.1)",
+        borderBottom: "1px solid #E2E8F0",
+    };
+    // Define the breadcrumbs variable to store the breadcrumbs if available.
+    let breadCrumbsContent = null;
+    if (breadcrumbs?.length > 0) {
+        breadCrumbsContent = breadcrumbs.map((breadcrumb, index) => (React.createElement(React.Fragment, null,
+            ICONS.breadCrumbIcon,
+            React.createElement("span", { key: index }, breadcrumb.title))));
+        // Add css for the breadcrumbs.
+        const breadcrumbClassName = "& .bsf-ui-header-breadcrumbs";
+        const breadcrumbsCss = {
+            fontSize: "14px",
+            "& > span": {
+                fontWeight: "400",
+                fontFamily: "Inter",
+                color: "#64748B",
+                cursor: "pointer",
+            },
+            "& > svg": {
+                width: "16px",
+                height: "16px",
+            },
+        };
+        headerCss = {
+            ...headerCss,
+            [breadcrumbClassName]: css(breadcrumbsCss),
+        };
+    }
+    const headerLeftContent = (React.createElement(GridContainer, { containerType: "flex",
+        gap: 5,
+        padding: 0,
+        alignItems: "center",
+        className: "bsf-ui-header-left-content",
+        justifyContent: "flex-start" },
+        React.createElement("div", { className: "bsf-ui-header-logo", style: { display: "flex" } }, logo),
+        React.createElement(GridContainer, { containerType: "flex",
+            gap: 6.5,
+            padding: 0,
+            alignItems: "center",
+            className: "bsf-ui-header-breadcrumbs" }, breadCrumbsContent)));
+    const versionContent = (version) => {
+        return (React.createElement(GridContainer, { containerType: "flex",
+            gap: 6.5,
+            padding: 0,
+            alignItems: "center",
+            className: "bsf-ui-header-version-content" },
+            React.createElement("span", { className: "bsf-ui-version-label" }, version.label),
+            React.createElement("span", { className: "bsf-ui-version-badge" }, version.badge)));
+    };
+    // Add css for the version content.
+    const versionClassName = "& .bsf-ui-header-version-content";
+    const versionCss = {
+        fontWeight: "500",
+        fontFamily: "Inter",
+        color: "#64748B",
+        fontSize: "14px",
+        "& .bsf-ui-version-badge": {
+            padding: "2px 5px",
+            borderRadius: "4px",
+            border: "1px solid #E2E8F0",
+        },
+    };
+    headerCss = {
+        ...headerCss,
+        [versionClassName]: css(versionCss),
+    };
+    const separatorContent = () => {
+        return React.createElement("div", { className: "bsf-ui-header-separator" });
+    };
+    // Add css for the separator.
+    const separatorClassName = "& .bsf-ui-header-separator";
+    const separatorCss = {
+        height: "16px",
+        display: "block",
+        border: "1px solid #E2E8F0",
+    };
+    headerCss = {
+        ...headerCss,
+        [separatorClassName]: css(separatorCss),
+    };
+    const supportLinkContent = (supportLink) => {
+        return (React.createElement("div", { className: "bsf-ui-header-support-link" },
+            React.createElement("a", { href: supportLink.url }, ICONS.supportIcon)));
+    };
+    // Add css for the support link.
+    const supportLinkClassName = "& .bsf-ui-header-support-link a";
+    const supportLinkCss = {
+        textDecoration: "none",
+        "& svg": {
+            display: "block",
+        },
+    };
+    headerCss = {
+        ...headerCss,
+        [supportLinkClassName]: css(supportLinkCss),
+    };
+    const whatsNewContent = (whatsNew) => {
+        return (React.createElement("div", { onClick: whatsNew.onclick, className: "bsf-ui-header-whats-new" }, ICONS.whatsNew));
+    };
+    // Add css for the what's new button.
+    const whatsNewClassName = "& .bsf-ui-header-whats-new";
+    const whatsNewCss = {
+        cursor: "pointer",
+        "& svg": {
+            display: "block",
+        },
+    };
+    headerCss = {
+        ...headerCss,
+        [whatsNewClassName]: css(whatsNewCss),
+    };
+    const headerRightContent = (React.createElement(GridContainer, { containerType: "flex",
+        gap: 16,
+        padding: 0,
+        alignItems: "center",
+        justifyContent: "flex-end",
+        className: "bsf-ui-header-right-content" }, navRightContent.items.map((item, index) => {
+        if (item.version) {
+            return versionContent(item.version);
+        }
+        else if (item.separator) {
+            return separatorContent();
+        }
+        else if (item.supportLink) {
+            return supportLinkContent(item.supportLink);
+        }
+        else if (item.whatsNew) {
+            return whatsNewContent(item.whatsNew);
+        }
+    })));
+    const wrapperPrefixClass = getPrefix() + "admin-header";
+    const headerClass = css(headerCss);
+    const containerProps = {
+        gap: 0,
+        numberOfColumn: 2,
+        padding: 20,
+        justifyContent: "space-between",
+        alignItems: "center",
+        className: `${wrapperPrefixClass} ${headerClass} ${className}`,
+    };
+    return (React.createElement(GridContainer, { ...containerProps },
+        headerLeftContent,
+        headerRightContent));
 };
 
 class log {
@@ -30,4 +338,4 @@ function subtract(a, b) {
     return `Result of the t ${a} - ${b} = ${a - b}`;
 }
 
-export { Nav, add, log, subtract };
+export { AdminHeader, Nav, add, log, subtract };
