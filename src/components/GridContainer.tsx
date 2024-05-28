@@ -1,4 +1,4 @@
-import React, { CSSProperties, useEffect } from "react";
+import React, { CSSProperties, useEffect, useLayoutEffect } from "react";
 import { cx, css, injectGlobal } from "@emotion/css";
 
 interface GridContainerProps {
@@ -10,6 +10,7 @@ interface GridContainerProps {
   alignItems?: CSSProperties["alignItems"];
   alignContent?: CSSProperties["alignContent"];
   justifyItems?: CSSProperties["justifyItems"];
+  direction?: CSSProperties["flexDirection"];
   className?: string;
   style?: CSSProperties;
   children: React.ReactNode;
@@ -17,6 +18,7 @@ interface GridContainerProps {
     columnSpan?: number;
     style?: CSSProperties;
   }>;
+  extraProps?: any;
 }
 
 const GridContainer: React.FC<GridContainerProps> = (props) => {
@@ -29,21 +31,19 @@ const GridContainer: React.FC<GridContainerProps> = (props) => {
     alignItems,
     alignContent,
     justifyItems,
+    direction,
     className,
     style,
     children,
+    extraProps,
   } = props;
-
-  useEffect(() => {
-    injectGlobal`
-    #wpcontent {
-          padding: 0;
-      }
-    `;
-  }, []);
 
   // If additional style is not blank and should be object then assign it to additionalStyle variable else assign empty object.
   const additionalStyle = style && typeof style === "object" ? style : {};
+
+  const svgCss = {
+    "& svg": { display: "flex" },
+  };
 
   let styleObject = {
     display: containerType,
@@ -53,6 +53,7 @@ const GridContainer: React.FC<GridContainerProps> = (props) => {
     alignItems: alignItems,
     alignContent: alignContent,
     justifyItems: justifyItems,
+    ...svgCss,
     ...additionalStyle,
   };
 
@@ -79,9 +80,18 @@ const GridContainer: React.FC<GridContainerProps> = (props) => {
     styleObject["gridTemplateColumns"] = `repeat(${numberOfColumn}, 1fr)`;
   }
 
+  // Add direction if it is passed in props and should be string type and type should be flex.
+  if (direction && typeof direction === "string" && containerType === "flex") {
+    styleObject["flexDirection"] = direction;
+  }
+
   const mainClass = css(styleObject);
 
-  return <div className={cx(mainClass, className)}>{children}</div>;
+  return (
+    <div className={cx(mainClass, className)} {...extraProps}>
+      {children}
+    </div>
+  );
 };
 
 export default GridContainer;

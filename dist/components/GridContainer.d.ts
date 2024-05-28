@@ -8,6 +8,7 @@ interface GridContainerProps {
     alignItems?: CSSProperties["alignItems"];
     alignContent?: CSSProperties["alignContent"];
     justifyItems?: CSSProperties["justifyItems"];
+    direction?: CSSProperties["flexDirection"];
     className?: string;
     style?: CSSProperties;
     children: React.ReactNode;
@@ -15,6 +16,7 @@ interface GridContainerProps {
         columnSpan?: number;
         style?: CSSProperties;
     }>;
+    extraProps?: any;
 }
 declare const GridContainer: React.FC<GridContainerProps>;
 export default GridContainer;

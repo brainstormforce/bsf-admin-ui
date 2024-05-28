@@ -1,4 +1,23 @@
 import React from "react";
+interface LabelItem {
+    type: "text" | "icon" | "badge";
+    content: React.ReactNode;
+    icon_key?: string;
+    badgeSize?: "small" | "medium" | "large";
+    onClick?: () => void;
+    style?: React.CSSProperties;
+    className?: string;
+}
+interface LabelGroup {
+    type: "label-group";
+    gap: string;
+    items: (LabelItem | LabelGroup)[];
+    separator?: boolean;
+}
+interface NavRightContent {
+    gap: string;
+    items: (LabelItem | LabelGroup)[];
+}
 interface AdminHeaderProps {
     children: React.ReactNode;
     logo: string;
@@ -6,29 +25,7 @@ interface AdminHeaderProps {
     breadcrumbs: Array<{
         title: string;
     }>;
-    breadcrumbIcon: string;
-    navRightContent: {
-        gap: string;
-        items: Array<{
-            version?: {
-                label: string;
-                badge: string;
-                style: {
-                    color: string;
-                    fontSize: string;
-                    fontWeight: string;
-                    letterSpacing: string;
-                };
-            };
-            separator?: boolean;
-            supportLink?: {
-                url: string;
-            };
-            whatsNew?: {
-                onclick: () => void;
-            };
-        }>;
-    };
+    navRightContent: NavRightContent;
 }
 declare const AdminHeader: React.FC<AdminHeaderProps>;
 export default AdminHeader;

@@ -8,3 +8,4 @@ declare function subtract(a: number, b: number): string;
 export { log, add, subtract };
 export { default as Nav } from './navigation/Nav';
 export { default as AdminHeader } from './AdminHeader';
+export { default as AdminSidebar } from './AdminSidebar';

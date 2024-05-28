@@ -1,5 +1,5 @@
 import { ReactElement } from "react";
-declare const ICONS: {
-    [key: string]: ReactElement;
+declare const icons: {
+    [key: string]: ReactElement | String;
 };
-export default ICONS;
+export default icons;

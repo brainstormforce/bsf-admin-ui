@@ -1,8 +1,30 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { getPrefix } from "../utility/utils";
-import { GridContainer } from "../components";
-import { css, injectGlobal } from "@emotion/css";
+import { GridContainer, Label } from "../components";
+import { css } from "@emotion/css";
 import { ICONS } from "../utility";
+
+interface LabelItem {
+  type: "text" | "icon" | "badge";
+  content: React.ReactNode;
+  icon_key?: string;
+  badgeSize?: "small" | "medium" | "large";
+  onClick?: () => void;
+  style?: React.CSSProperties;
+  className?: string;
+}
+
+interface LabelGroup {
+  type: "label-group";
+  gap: string;
+  items: (LabelItem | LabelGroup)[];
+  separator?: boolean;
+}
+
+interface NavRightContent {
+  gap: string;
+  items: (LabelItem | LabelGroup)[];
+}
 
 // Create component interface for AdminHeader component
 interface AdminHeaderProps {
@@ -10,45 +32,20 @@ interface AdminHeaderProps {
   logo: string;
   className: string;
   breadcrumbs: Array<{ title: string }>;
-  breadcrumbIcon: string;
-  navRightContent: {
-    gap: string;
-    items: Array<{
-      version?: {
-        label: string;
-        badge: string;
-        style: {
-          color: string;
-          fontSize: string;
-          fontWeight: string;
-          letterSpacing: string;
-        };
-      };
-      separator?: boolean;
-      supportLink?: {
-        url: string;
-      };
-      whatsNew?: {
-        onclick: () => void;
-      };
-    }>;
-  };
+  navRightContent: NavRightContent;
 }
 
 const AdminHeader: React.FC<AdminHeaderProps> = ({
   children,
   logo,
   breadcrumbs,
-  breadcrumbIcon,
   navRightContent,
   className,
 }) => {
-  console.log("AdminHeaderProps");
-
   let headerCss = {
     backgroundColor: "#FFFFFF",
-    boxShadow: "0 2px 4px 0 rgba(0, 0, 0, 0.1)",
     borderBottom: "1px solid #E2E8F0",
+    height: "68px",
   };
 
   // Define the breadcrumbs variable to store the breadcrumbs if available.
@@ -112,42 +109,6 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
     </GridContainer>
   );
 
-  const versionContent = (version: { label: string; badge: string }) => {
-    return (
-      <GridContainer
-        {...{
-          containerType: "flex",
-          gap: 6.5,
-          padding: 0,
-          alignItems: "center",
-          className: "bsf-ui-header-version-content",
-        }}
-      >
-        <span className="bsf-ui-version-label">{version.label}</span>
-        <span className="bsf-ui-version-badge">{version.badge}</span>
-      </GridContainer>
-    );
-  };
-
-  // Add css for the version content.
-  const versionClassName: string = "& .bsf-ui-header-version-content";
-  const versionCss = {
-    fontWeight: "500",
-    fontFamily: "Inter",
-    color: "#64748B",
-    fontSize: "14px",
-    "& .bsf-ui-version-badge": {
-      padding: "2px 5px",
-      borderRadius: "4px",
-      border: "1px solid #E2E8F0",
-    },
-  };
-
-  headerCss = {
-    ...headerCss,
-    [versionClassName]: css(versionCss),
-  };
-
   const separatorContent = () => {
     return <div className="bsf-ui-header-separator" />;
   };
@@ -165,74 +126,38 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
     [separatorClassName]: css(separatorCss),
   };
 
-  const supportLinkContent = (supportLink: { url: string }) => {
+  const labelListContent = (
+    navRightContent: NavRightContent,
+    isParent: boolean = false
+  ) => {
     return (
-      <div className="bsf-ui-header-support-link">
-        <a href={supportLink.url}>{ICONS.supportIcon}</a>
-      </div>
-    );
-  };
-
-  // Add css for the support link.
-  const supportLinkClassName: string = "& .bsf-ui-header-support-link a";
-  const supportLinkCss = {
-    textDecoration: "none",
-    "& svg": {
-      display: "block",
-    },
-  };
-
-  headerCss = {
-    ...headerCss,
-    [supportLinkClassName]: css(supportLinkCss),
-  };
-
-  const whatsNewContent = (whatsNew: { onclick: () => void }) => {
-    return (
-      <div onClick={whatsNew.onclick} className="bsf-ui-header-whats-new">
-        {ICONS.whatsNew}
-      </div>
-    );
-  };
-
-  // Add css for the what's new button.
-  const whatsNewClassName: string = "& .bsf-ui-header-whats-new";
-  const whatsNewCss = {
-    cursor: "pointer",
-    "& svg": {
-      display: "block",
-    },
-  };
-
-  headerCss = {
-    ...headerCss,
-    [whatsNewClassName]: css(whatsNewCss),
-  };
-
-  const headerRightContent = (
-    <GridContainer
-      {...{
-        containerType: "flex",
-        gap: 16,
-        padding: 0,
-        alignItems: "center",
-        justifyContent: "flex-end",
-        className: "bsf-ui-header-right-content",
-      }}
-    >
-      {navRightContent.items.map((item, index) => {
-        if (item.version) {
-          return versionContent(item.version);
-        } else if (item.separator) {
-          return separatorContent();
-        } else if (item.supportLink) {
-          return supportLinkContent(item.supportLink);
-        } else if (item.whatsNew) {
-          return whatsNewContent(item.whatsNew);
+      <GridContainer
+        containerType="flex"
+        gap={parseFloat(navRightContent.gap)}
+        padding={0}
+        alignItems="center"
+        justifyContent={isParent ? "flex-end" : "flex-start"}
+        className={
+          isParent
+            ? "bsf-ui-header-right-content"
+            : "bsf-ui-header-right-content-child"
         }
-      })}
-    </GridContainer>
-  );
+      >
+        {navRightContent.items.map((item, index) => {
+          if (item.type === "label-group") {
+            return (
+              <React.Fragment key={index}>
+                {labelListContent(item as LabelGroup)}
+                {item.separator && separatorContent()}
+                {/* Render a separator if specified */}
+              </React.Fragment>
+            );
+          }
+          return <Label key={index} {...item} />;
+        })}
+      </GridContainer>
+    );
+  };
 
   const wrapperPrefixClass = getPrefix() + "admin-header";
 
@@ -241,16 +166,18 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
   const containerProps = {
     gap: 0,
     numberOfColumn: 2,
-    padding: 20,
     justifyContent: "space-between",
     alignItems: "center",
     className: `${wrapperPrefixClass} ${headerClass} ${className}`,
+    style: {
+      padding: "0 20px",
+    },
   };
 
   return (
     <GridContainer {...containerProps}>
       {headerLeftContent}
-      {headerRightContent}
+      {labelListContent(navRightContent, true)}
     </GridContainer>
   );
 };
