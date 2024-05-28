@@ -1,6 +1,26 @@
-export declare const cssVariables: {
-    colorPrimary: string;
-    colorSecondary: string;
-    colorTertiary: string;
-    fontSizeSmall: string;
+export declare const color: {
+    primary: string;
+    primaryHover: string;
+    secondary: string;
+    secondaryHover: string;
+    primaryBackground: string;
+    mutedBackground: string;
+    background: string;
+    foreground: string;
+    text: string;
+    muted: string;
+    border: string;
+    borderLight: string;
+    alertInfo: string;
+    alertSuccess: string;
+    alertWarning: string;
+    alertError: string;
+    alertInfoBg: string;
+    alertSuccessBg: string;
+    alertWarningBg: string;
+    alertErrorBg: string;
+    alertInfoText: string;
+    alertSuccessText: string;
+    alertWarningText: string;
+    alertErrorText: string;
 };

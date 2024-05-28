@@ -1,30 +1,26 @@
-// // Add some color scheme for the button in js.
-// export const colorScheme = {
-//     primary: 'blue',
-//     secondary: 'green',
-//     tertiary: 'red'
-//     };
-
-// // Add some font size for the button in js.
-// export const fontSize = {
-//     small: "var(--bsf-admin-button-size, 21px)",
-//     medium: '16px',
-//     large: '20px'
-//     };
-
-// light/slate
-// #6b21a8
-// dark/slate
-// #f8fafc
-// light/zinc
-// #18181b
-// dark/zinc
-// #fafafa
-// Primary colour for <Button />
-
-export const cssVariables = {
-    colorPrimary: "var(--bsf-admin-ui-color-primary, #6b21a8)",
-    colorSecondary: "var(--bsf-admin-ui-color-secondary, #f8fafc)",
-    colorTertiary: "var(--bsf-admin-ui-color-tertiary, #18181b)",
-    fontSizeSmall: "var(--bsf-admin-ui-font-size-small, 21px)",
+export const color = {
+    primary: "var(--bsf-admin-primary, #6B21A8)",
+    primaryHover: "var(--bsf-admin-primary-hover, #7E22CE)",
+    secondary: "var(--bsf-admin-secondary, #F3E8FF)",
+    secondaryHover: "var(--bsf-admin-secondary-hover, #E9D5FF)",
+    primaryBackground: "var(--bsf-admin-primary-background, #FAF5FF)",
+    mutedBackground: "var(--bsf-admin-muted-background, #F3F4F6)",
+    background: "var(--bsf-admin-background, #FFFFFF)",
+    foreground: "var(--bsf-admin-foreground, #020617)",
+    text: "var(--bsf-admin-text, #475569)",
+    muted: "var(--bsf-admin-muted, #64748B)",
+    border: "var(--bsf-admin-border, #CBD5E1)",
+    borderLight: "var(--bsf-admin-border-light, #E2E8F0)",
+    alertInfo: "var(--bsf-admin-alert-info, #3B82F6)",
+    alertSuccess: "var(--bsf-admin-alert-success, #22C55E)",
+    alertWarning: "var(--bsf-admin-alert-warning, #F59E0B)",
+    alertError: "var(--bsf-admin-alert-error, #EF4444)",
+    alertInfoBg: "var(--bsf-admin-alert-info-bg, #EFF6FF)",
+    alertSuccessBg: "var(--bsf-admin-alert-success-bg, #F0FDF4)",
+    alertWarningBg: "var(--bsf-admin-alert-warning-bg, #FFFBEB)",
+    alertErrorBg: "var(--bsf-admin-alert-error-bg, #FEF2F2)",
+    alertInfoText: "var(--bsf-admin-alert-info-text, #2563eb)",
+    alertSuccessText: "var(--bsf-admin-alert-success-text, #16a34a)",
+    alertWarningText: "var(--bsf-admin-alert-warning-text, #D97706)",
+    alertErrorText: "var(--bsf-admin-alert-error-text, #dc2626)",
 };

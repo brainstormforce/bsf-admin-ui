@@ -4,7 +4,7 @@ import React, {
   useImperativeHandle,
   useState,
 } from "react";
-import { css } from "@emotion/css";
+import { css, cx } from "@emotion/css";
 import Select from "react-select";
 import GridContainer from "./GridContainer";
 
@@ -18,7 +18,7 @@ interface CustomOptionType {
 
 interface RichSelectProps {
   options: CustomOptionType[];
-  value: CustomOptionType | CustomOptionType[] | null | string;
+  value?: CustomOptionType | CustomOptionType[] | null | string;
   onChange: (value: CustomOptionType | object) => void;
   onSelectResetsInput?: boolean;
   openMenuOnFocus?: boolean;
@@ -113,8 +113,6 @@ const RichSelect = forwardRef((props: RichSelectProps, ref) => {
   );
 });
 
-// export default RichSelect;
-
 interface VariablePickerProps {
   options: CustomOptionType[];
   onChange: (value: string) => void;
@@ -127,20 +125,14 @@ interface VariablePickerProps {
 const VariablePicker = (props: VariablePickerProps) => {
   const { onChange, options, type, value, className, inputStyle } = props;
 
-  console.log("VariablePicker props->", props);
-
   const selectRef = useRef<any>(null);
 
   const inputRef = useRef<any>(null);
 
-  const [selectedVariable, setSelectedVariable] = useState("");
-
   const [openVariablePicker, setOpenVariablePicker] = useState(false);
 
-  const inputClass = className;
-
-  const handleKeyDown = (event) => {
-    if (event.key === "%" || event.key === "ArrowDown") {
+  const handleKeyDown = (event: any) => {
+    if (event?.key === "%" || event?.key === "ArrowDown") {
       setOpenVariablePicker(true);
       setTimeout(() => {
         selectRef.current?.focus();
@@ -149,21 +141,56 @@ const VariablePicker = (props: VariablePickerProps) => {
     }
   };
 
-  const updateData = (event) => {};
-
-  const commonInputProps = {
-    value: value,
-    onChange: (event: object) => updateData(event),
-    onKeyDown: (event: object) => handleKeyDown(event),
-    ref: inputRef,
-    className: inputClass,
+  const updateData = (event: any) => {
+    onChange(event?.target?.value);
   };
+
+  const updateInputData = (selectedOption: any) => {
+    const pickerValue = selectedOption?.title;
+    if (!value) return;
+
+    const concatWithValue = value + " " + pickerValue;
+
+    onChange(concatWithValue);
+    setOpenVariablePicker(false);
+  };
+
+  const inputClass = css({
+    display: "block",
+    "&.bsf-admin-ui-input, &.bsf-admin-ui-input": {
+      fontSize: "15px",
+      padding: "12px 14px",
+      border: "1px solid #d0d5dd",
+      position: "relative",
+      borderRadius: "8px",
+      boxShadow: "0px 1px 2px 0px #1018280D",
+      lineHeight: 1,
+      minHeight: "unset",
+      ...inputStyle,
+    },
+  });
+
+  let combineClass = cx(className, "bsf-admin-ui-input", inputClass);
 
   let field =
     "textarea" === type ? (
-      <textarea rows={3} {...commonInputProps} />
+      <textarea
+        rows={3}
+        value={value}
+        onKeyDown={handleKeyDown}
+        onChange={updateData}
+        ref={inputRef}
+        className={combineClass}
+      />
     ) : (
-      <input type="text" {...commonInputProps} />
+      <input
+        type="text"
+        value={value}
+        onKeyDown={handleKeyDown}
+        onChange={updateData}
+        ref={inputRef}
+        className={combineClass}
+      />
     );
 
   return (
@@ -172,15 +199,11 @@ const VariablePicker = (props: VariablePickerProps) => {
       {openVariablePicker && (
         <RichSelect
           options={options}
-          value={selectedVariable}
-          onChange={(selectedOption) => {
-            console.log("selectedOption", selectedOption);
-          }}
+          onChange={(selectedOption) => updateInputData(selectedOption)}
           onSelectResetsInput={true}
           ref={selectRef}
           openMenuOnFocus={true}
           onBlur={() => {
-            console.log("onBlur");
             setOpenVariablePicker(false);
           }}
           style={{ width: "80%" }}

@@ -1,6 +1,7 @@
 import * as React from "react";
 import { ReactNode } from "react";
 import { cx, css } from "@emotion/css";
+import { color } from "../css-variables";
 type PropsType = {
   children: ReactNode;
   onClick?: () => void;
@@ -27,9 +28,13 @@ const Button = (props: PropsType) => {
     borderRadius: "6px",
     fontSize: "14px",
     padding: "9px 17px",
-    backgroundColor: "#6B21A8",
+    backgroundColor: color.primary,
     color: "white",
     fontWeight: 500,
+    width: "fit-content",
+    "&:hover": {
+      backgroundColor: color.primaryHover,
+    },
     ...additionalStyle,
   };
 

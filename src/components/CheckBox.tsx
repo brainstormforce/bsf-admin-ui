@@ -2,6 +2,7 @@ import React from "react";
 import { css, cx } from "@emotion/css";
 import GridContainer from "./GridContainer";
 import { ICONS } from "../utility";
+import { color } from "../css-variables";
 
 interface CheckboxProps {
   label?: React.ReactNode;
@@ -38,7 +39,7 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
       height: "16px",
       borderRadius: "4px",
       boxShadow: "inset 0 1px 2px rgba(0, 0, 0, .1)",
-      border: "1px solid #8c8f94",
+      border: "1px solid " + color.foreground,
     },
     "&.checkbox-checked": {
       "&> div": {
@@ -112,7 +113,6 @@ const CheckBox: React.FC<CheckboxGroupProps> = ({
           key={item.id}
           label={item.label}
           checked={item.checked}
-          //   disabled={disabled}
           style={checkboxStyle}
           className={className}
           onChange={(checked) => {

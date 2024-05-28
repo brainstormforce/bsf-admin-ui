@@ -3,6 +3,33 @@ import React__default, { forwardRef, useRef, useImperativeHandle, useState } fro
 import { css, cx } from '@emotion/css';
 import Select from 'react-select';
 
+const color = {
+    primary: "var(--bsf-admin-primary, #6B21A8)",
+    primaryHover: "var(--bsf-admin-primary-hover, #7E22CE)",
+    secondary: "var(--bsf-admin-secondary, #F3E8FF)",
+    secondaryHover: "var(--bsf-admin-secondary-hover, #E9D5FF)",
+    primaryBackground: "var(--bsf-admin-primary-background, #FAF5FF)",
+    mutedBackground: "var(--bsf-admin-muted-background, #F3F4F6)",
+    background: "var(--bsf-admin-background, #FFFFFF)",
+    foreground: "var(--bsf-admin-foreground, #020617)",
+    text: "var(--bsf-admin-text, #475569)",
+    muted: "var(--bsf-admin-muted, #64748B)",
+    border: "var(--bsf-admin-border, #CBD5E1)",
+    borderLight: "var(--bsf-admin-border-light, #E2E8F0)",
+    alertInfo: "var(--bsf-admin-alert-info, #3B82F6)",
+    alertSuccess: "var(--bsf-admin-alert-success, #22C55E)",
+    alertWarning: "var(--bsf-admin-alert-warning, #F59E0B)",
+    alertError: "var(--bsf-admin-alert-error, #EF4444)",
+    alertInfoBg: "var(--bsf-admin-alert-info-bg, #EFF6FF)",
+    alertSuccessBg: "var(--bsf-admin-alert-success-bg, #F0FDF4)",
+    alertWarningBg: "var(--bsf-admin-alert-warning-bg, #FFFBEB)",
+    alertErrorBg: "var(--bsf-admin-alert-error-bg, #FEF2F2)",
+    alertInfoText: "var(--bsf-admin-alert-info-text, #2563eb)",
+    alertSuccessText: "var(--bsf-admin-alert-success-text, #16a34a)",
+    alertWarningText: "var(--bsf-admin-alert-warning-text, #D97706)",
+    alertErrorText: "var(--bsf-admin-alert-error-text, #dc2626)",
+};
+
 const Button = (props) => {
     const { children, onClick, style } = props;
     const additionalStyle = style && typeof style === "object" ? style : {};
@@ -14,9 +41,13 @@ const Button = (props) => {
         borderRadius: "6px",
         fontSize: "14px",
         padding: "9px 17px",
-        backgroundColor: "#6B21A8",
+        backgroundColor: color.primary,
         color: "white",
         fontWeight: 500,
+        width: "fit-content",
+        "&:hover": {
+            backgroundColor: color.primaryHover,
+        },
         ...additionalStyle,
     };
     const completeStyle = css(baseCss);
@@ -347,7 +378,7 @@ const CheckboxWithLabel = ({ label, checked, onChange, disabled, checkBoxGap = 8
             height: "16px",
             borderRadius: "4px",
             boxShadow: "inset 0 1px 2px rgba(0, 0, 0, .1)",
-            border: "1px solid #8c8f94",
+            border: "1px solid " + color.foreground,
         },
         "&.checkbox-checked": {
             "&> div": {
@@ -375,9 +406,7 @@ const CheckBox = ({ group, onChange, gap, numberOfColumns, groupStyle, checkboxS
     return (React__default.createElement(GridContainer, { numberOfColumn: numberOfColumns,
         gap: gap,
         style: groupStyle,
-        className: groupClassName }, group.map((item) => (React__default.createElement(CheckboxWithLabel, { key: item.id, label: item.label, checked: item.checked, 
-        //   disabled={disabled}
-        style: checkboxStyle, className: className, onChange: (checked) => {
+        className: groupClassName }, group.map((item) => (React__default.createElement(CheckboxWithLabel, { key: item.id, label: item.label, checked: item.checked, style: checkboxStyle, className: className, onChange: (checked) => {
             if (onChange) {
                 onChange(checked, item.id);
             }
@@ -543,14 +572,11 @@ const RichSelect = forwardRef((props, ref) => {
 });
 const VariablePicker = (props) => {
     const { onChange, options, type, value, className, inputStyle } = props;
-    console.log("VariablePicker props->", props);
     const selectRef = useRef(null);
     const inputRef = useRef(null);
-    const [selectedVariable, setSelectedVariable] = useState("");
     const [openVariablePicker, setOpenVariablePicker] = useState(false);
-    const inputClass = className;
     const handleKeyDown = (event) => {
-        if (event.key === "%" || event.key === "ArrowDown") {
+        if (event?.key === "%" || event?.key === "ArrowDown") {
             setOpenVariablePicker(true);
             setTimeout(() => {
                 selectRef.current?.focus();
@@ -558,21 +584,36 @@ const VariablePicker = (props) => {
             event.preventDefault();
         }
     };
-    const updateData = (event) => { };
-    const commonInputProps = {
-        value: value,
-        onChange: (event) => updateData(),
-        onKeyDown: (event) => handleKeyDown(event),
-        ref: inputRef,
-        className: inputClass,
+    const updateData = (event) => {
+        onChange(event?.target?.value);
     };
-    let field = "textarea" === type ? (React__default.createElement("textarea", { rows: 3, ...commonInputProps })) : (React__default.createElement("input", { type: "text", ...commonInputProps }));
+    const updateInputData = (selectedOption) => {
+        const pickerValue = selectedOption?.title;
+        if (!value)
+            return;
+        const concatWithValue = value + " " + pickerValue;
+        onChange(concatWithValue);
+        setOpenVariablePicker(false);
+    };
+    const inputClass = css({
+        display: "block",
+        "&.bsf-admin-ui-input, &.bsf-admin-ui-input": {
+            fontSize: "15px",
+            padding: "12px 14px",
+            border: "1px solid #d0d5dd",
+            position: "relative",
+            borderRadius: "8px",
+            boxShadow: "0px 1px 2px 0px #1018280D",
+            lineHeight: 1,
+            minHeight: "unset",
+            ...inputStyle,
+        },
+    });
+    let combineClass = cx(className, "bsf-admin-ui-input", inputClass);
+    let field = "textarea" === type ? (React__default.createElement("textarea", { rows: 3, value: value, onKeyDown: handleKeyDown, onChange: updateData, ref: inputRef, className: combineClass })) : (React__default.createElement("input", { type: "text", value: value, onKeyDown: handleKeyDown, onChange: updateData, ref: inputRef, className: combineClass }));
     return (React__default.createElement(React__default.Fragment, null,
         field,
-        openVariablePicker && (React__default.createElement(RichSelect, { options: options, value: selectedVariable, onChange: (selectedOption) => {
-                console.log("selectedOption", selectedOption);
-            }, onSelectResetsInput: true, ref: selectRef, openMenuOnFocus: true, onBlur: () => {
-                console.log("onBlur");
+        openVariablePicker && (React__default.createElement(RichSelect, { options: options, onChange: (selectedOption) => updateInputData(selectedOption), onSelectResetsInput: true, ref: selectRef, openMenuOnFocus: true, onBlur: () => {
                 setOpenVariablePicker(false);
             }, style: { width: "80%" } }))));
 };
