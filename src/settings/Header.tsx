@@ -3,6 +3,7 @@ import { getPrefix } from "../utility/utils";
 import { GridContainer, Label } from "../components";
 import { css } from "@emotion/css";
 import { ICONS } from "../utility";
+import { color as colorsVar } from "../css-variables";
 
 interface LabelItem {
   type: "text" | "icon" | "badge";
@@ -26,16 +27,16 @@ interface NavRightContent {
   items: (LabelItem | LabelGroup)[];
 }
 
-// Create component interface for AdminHeader component
-interface AdminHeaderProps {
+// Create component interface for Header component
+interface HeaderProps {
   children: React.ReactNode;
   logo: string;
   className: string;
-  breadcrumbs: Array<{ title: string }>;
+  breadcrumbs: Array<{ title: React.ReactNode }>;
   navRightContent: NavRightContent;
 }
 
-const AdminHeader: React.FC<AdminHeaderProps> = ({
+const Header: React.FC<HeaderProps> = ({
   children,
   logo,
   breadcrumbs,
@@ -43,8 +44,8 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
   className,
 }) => {
   let headerCss = {
-    backgroundColor: "#FFFFFF",
-    borderBottom: "1px solid #E2E8F0",
+    backgroundColor: colorsVar.background,
+    borderBottom: "1px solid " + colorsVar.borderLight,
     height: "68px",
   };
 
@@ -53,7 +54,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
   if (breadcrumbs?.length > 0) {
     breadCrumbsContent = breadcrumbs.map((breadcrumb, index) => (
       <>
-        {ICONS.breadCrumbIcon}
+        {ICONS.breadCrumb}
         <span key={index}>{breadcrumb.title}</span>
       </>
     ));
@@ -65,7 +66,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
       "& > span": {
         fontWeight: "400",
         fontFamily: "Inter",
-        color: "#64748B",
+        color: colorsVar.text,
         cursor: "pointer",
       },
       "& > svg": {
@@ -84,8 +85,7 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
     <GridContainer
       {...{
         containerType: "flex",
-        gap: 5,
-        padding: 0,
+        gap: 6.5,
         alignItems: "center",
         className: "bsf-ui-header-left-content",
         justifyContent: "flex-start",
@@ -99,7 +99,6 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
         {...{
           containerType: "flex",
           gap: 6.5,
-          padding: 0,
           alignItems: "center",
           className: "bsf-ui-header-breadcrumbs",
         }}
@@ -134,7 +133,6 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
       <GridContainer
         containerType="flex"
         gap={parseFloat(navRightContent.gap)}
-        padding={0}
         alignItems="center"
         justifyContent={isParent ? "flex-end" : "flex-start"}
         className={
@@ -164,7 +162,6 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
   const headerClass = css(headerCss);
 
   const containerProps = {
-    gap: 0,
     numberOfColumn: 2,
     justifyContent: "space-between",
     alignItems: "center",
@@ -182,4 +179,4 @@ const AdminHeader: React.FC<AdminHeaderProps> = ({
   );
 };
 
-export default AdminHeader;
+export default Header;

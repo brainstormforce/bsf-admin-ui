@@ -58,7 +58,6 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
     <GridContainer
       {...{
         gap: checkBoxGap,
-        padding: 0,
         containerType: "flex",
         alignItems: "center",
         className: cx(
@@ -102,6 +101,7 @@ const CheckBox: React.FC<CheckboxGroupProps> = ({
   return (
     <GridContainer
       {...{
+        padding: 10,
         numberOfColumn: numberOfColumns,
         gap: gap,
         style: groupStyle,

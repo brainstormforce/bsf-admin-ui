@@ -11,6 +11,7 @@ interface InputPropsTypes {
     style?: React.CSSProperties;
     inputContainerStyle?: React.CSSProperties;
     className?: string;
+    inputProps?: any;
 }
-declare const Input: React.FC<InputPropsTypes>;
+declare const Input: (props: InputPropsTypes) => React.JSX.Element;
 export default Input;

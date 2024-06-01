@@ -12,6 +12,7 @@ interface VariablePickerProps {
     value: string;
     inputStyle?: React.CSSProperties;
     className?: string;
+    inputProps?: any;
 }
 declare const VariablePicker: (props: VariablePickerProps) => React.JSX.Element;
 export default VariablePicker;

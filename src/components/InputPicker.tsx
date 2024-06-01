@@ -7,6 +7,7 @@ import React, {
 import { css, cx } from "@emotion/css";
 import Select from "react-select";
 import GridContainer from "./GridContainer";
+import { color as colorsVar } from "../css-variables";
 
 // Define the type for the custom data structure in options
 interface CustomOptionType {
@@ -72,14 +73,14 @@ const RichSelect = forwardRef((props: RichSelectProps, ref) => {
           justifyContent: "space-between",
           extraProps: innerProps,
           padding: 10,
-          gap: 0,
           className: customStyle,
+          gap: 10,
         }}
       >
         <GridContainer
           {...{
-            padding: 0,
             gap: 8,
+            padding: 10,
             extraProps: innerProps,
           }}
         >
@@ -120,10 +121,11 @@ interface VariablePickerProps {
   value: string;
   inputStyle?: React.CSSProperties;
   className?: string;
+  inputProps?: any;
 }
 
 const VariablePicker = (props: VariablePickerProps) => {
-  const { onChange, options, type, value, className, inputStyle } = props;
+  const { onChange, options, type, value, className, inputStyle, inputProps } = props;
 
   const selectRef = useRef<any>(null);
 
@@ -147,9 +149,8 @@ const VariablePicker = (props: VariablePickerProps) => {
 
   const updateInputData = (selectedOption: any) => {
     const pickerValue = selectedOption?.title;
-    if (!value) return;
 
-    const concatWithValue = value + " " + pickerValue;
+    const concatWithValue = "" !== value ? value + " " + pickerValue : pickerValue;
 
     onChange(concatWithValue);
     setOpenVariablePicker(false);
@@ -160,10 +161,10 @@ const VariablePicker = (props: VariablePickerProps) => {
     "&.bsf-admin-ui-input, &.bsf-admin-ui-input": {
       fontSize: "15px",
       padding: "12px 14px",
-      border: "1px solid #d0d5dd",
+      border: "1px solid " + colorsVar.borderLight,
       position: "relative",
       borderRadius: "8px",
-      boxShadow: "0px 1px 2px 0px #1018280D",
+      boxShadow: "0px 1px 2px 0px " + colorsVar.borderLight,
       lineHeight: 1,
       minHeight: "unset",
       ...inputStyle,
@@ -175,8 +176,9 @@ const VariablePicker = (props: VariablePickerProps) => {
   let field =
     "textarea" === type ? (
       <textarea
-        rows={3}
+        { ...inputProps}
         value={value}
+        rows={3}
         onKeyDown={handleKeyDown}
         onChange={updateData}
         ref={inputRef}
@@ -184,8 +186,9 @@ const VariablePicker = (props: VariablePickerProps) => {
       />
     ) : (
       <input
-        type="text"
+        { ...inputProps }
         value={value}
+        type="text"
         onKeyDown={handleKeyDown}
         onChange={updateData}
         ref={inputRef}

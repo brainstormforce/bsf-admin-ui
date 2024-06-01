@@ -1,5 +1,6 @@
 import React, { CSSProperties, useEffect, useLayoutEffect } from "react";
-import { cx, css, injectGlobal } from "@emotion/css";
+import { cx, css } from "@emotion/css";
+import { Global } from "@emotion/react";
 
 interface GridContainerProps {
   containerType?: "grid" | "flex";
@@ -24,9 +25,11 @@ interface GridContainerProps {
 const GridContainer: React.FC<GridContainerProps> = (props) => {
   const {
     containerType = "grid",
-    gap = 10,
+    // gap = 10,
+    gap = 0,
     numberOfColumn,
-    padding = 10,
+    padding = 0,
+    // padding = 10,
     justifyContent,
     alignItems,
     alignContent,
@@ -88,9 +91,11 @@ const GridContainer: React.FC<GridContainerProps> = (props) => {
   const mainClass = css(styleObject);
 
   return (
-    <div className={cx(mainClass, className)} {...extraProps}>
-      {children}
-    </div>
+    <>
+      <div className={cx(mainClass, className)} {...extraProps}>
+        {children}
+      </div>
+    </>
   );
 };
 

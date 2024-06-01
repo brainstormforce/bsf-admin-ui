@@ -29,7 +29,7 @@ const Button = (props: PropsType) => {
     fontSize: "14px",
     padding: "9px 17px",
     backgroundColor: color.primary,
-    color: "white",
+    color: "#FFFF",
     fontWeight: 500,
     width: "fit-content",
     "&:hover": {

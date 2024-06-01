@@ -15,8 +15,39 @@ function getPrefix() {
     return 'bsf-admin-ui-';
 }
 
+const color = {
+    primary: "var(--bsf-admin-primary, #6B21A8)",
+    primaryHover: "var(--bsf-admin-primary-hover, #7E22CE)",
+    secondary: "var(--bsf-admin-secondary, #F3E8FF)",
+    secondaryHover: "var(--bsf-admin-secondary-hover, #E9D5FF)",
+    primaryBackground: "var(--bsf-admin-primary-background, #FAF5FF)",
+    mutedBackground: "var(--bsf-admin-muted-background, #F3F4F6)",
+    background: "var(--bsf-admin-background, #FFFFFF)",
+    foreground: "var(--bsf-admin-foreground, #020617)",
+    text: "var(--bsf-admin-text, #475569)",
+    muted: "var(--bsf-admin-muted, #64748B)",
+    border: "var(--bsf-admin-border, #CBD5E1)",
+    borderLight: "var(--bsf-admin-border-light, #E2E8F0)",
+    alertInfo: "var(--bsf-admin-alert-info, #3B82F6)",
+    alertSuccess: "var(--bsf-admin-alert-success, #22C55E)",
+    alertWarning: "var(--bsf-admin-alert-warning, #F59E0B)",
+    alertError: "var(--bsf-admin-alert-error, #EF4444)",
+    alertInfoBg: "var(--bsf-admin-alert-info-bg, #EFF6FF)",
+    alertSuccessBg: "var(--bsf-admin-alert-success-bg, #F0FDF4)",
+    alertWarningBg: "var(--bsf-admin-alert-warning-bg, #FFFBEB)",
+    alertErrorBg: "var(--bsf-admin-alert-error-bg, #FEF2F2)",
+    alertInfoText: "var(--bsf-admin-alert-info-text, #2563eb)",
+    alertSuccessText: "var(--bsf-admin-alert-success-text, #16a34a)",
+    alertWarningText: "var(--bsf-admin-alert-warning-text, #D97706)",
+    alertErrorText: "var(--bsf-admin-alert-error-text, #dc2626)",
+};
+
 const GridContainer = (props) => {
-    const { containerType = "grid", gap = 10, numberOfColumn, padding = 10, justifyContent, alignItems, alignContent, justifyItems, direction, className, style, children, extraProps, } = props;
+    const { containerType = "grid", 
+    // gap = 10,
+    gap = 0, numberOfColumn, padding = 0, 
+    // padding = 10,
+    justifyContent, alignItems, alignContent, justifyItems, direction, className, style, children, extraProps, } = props;
     // If additional style is not blank and should be object then assign it to additionalStyle variable else assign empty object.
     const additionalStyle = style && typeof style === "object" ? style : {};
     const svgCss = {
@@ -55,14 +86,15 @@ const GridContainer = (props) => {
         styleObject["flexDirection"] = direction;
     }
     const mainClass = css(styleObject);
-    return (React.createElement("div", { className: cx(mainClass, className), ...extraProps }, children));
+    return (React.createElement(React.Fragment, null,
+        React.createElement("div", { className: cx(mainClass, className), ...extraProps }, children)));
 };
 
 const icons = {
-    breadCrumbIcon: (React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+    breadCrumb: (React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
         React.createElement("polyline", { points: "9 18 15 12 9 6" }))),
-    supportIcon: (React.createElement("svg", { width: "20", height: "20", viewBox: "0 0 20 20", fill: "#ffffff", xmlns: "http://www.w3.org/2000/svg" },
-        React.createElement("path", { d: "M7.87891 5.51884C9.05048 4.49372 10.95 4.49372 12.1215 5.51884C13.2931 6.54397 13.2931 8.20603 12.1215 9.23116C11.9176 9.40958 11.6917 9.55695 11.4513 9.67326C10.7056 10.0341 10.0002 10.6716 10.0002 11.5V12.25M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10ZM10 15.25H10.0075V15.2575H10V15.25Z", stroke: "#64748B", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" }))),
+    support: (React.createElement("svg", { width: "20", height: "20", viewBox: "0 0 20 20", fill: "#ffffff", xmlns: "http://www.w3.org/2000/svg" },
+        React.createElement("path", { d: "M7.87891 5.51884C9.05048 4.49372 10.95 4.49372 12.1215 5.51884C13.2931 6.54397 13.2931 8.20603 12.1215 9.23116C11.9176 9.40958 11.6917 9.55695 11.4513 9.67326C10.7056 10.0341 10.0002 10.6716 10.0002 11.5V12.25M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10ZM10 15.25H10.0075V15.2575H10V15.25Z", stroke: "#475569", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" }))),
     whatsNew: (React.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 20 20", fill: "none" },
         React.createElement("path", { d: "M9.16667 4.90182V16.0335C9.16667 16.8434 8.51008 17.5 7.70015 17.5C7.08038 17.5 6.52752 17.1104 6.31907 16.5267L4.53039 11.4024M15 10.8333C16.3807 10.8333 17.5 9.71404 17.5 8.33333C17.5 6.95262 16.3807 5.83333 15 5.83333M4.53039 11.4024C3.33691 10.8951 2.5 9.71194 2.5 8.33333C2.5 6.49238 3.99238 5 5.83333 5H7.36007C10.7773 5 13.7141 3.97159 15 2.5L15 14.1667C13.7141 12.6951 10.7773 11.6667 7.36007 11.6667L5.83331 11.6667C5.37098 11.6667 4.93064 11.5725 4.53039 11.4024Z", stroke: "#475569", "stroke-width": "1.4", "stroke-linecap": "round", "stroke-linejoin": "round" }))),
     checkMark: "data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20viewBox%3D%270%200%2020%2020%27%3E%3Cpath%20d%3D%27M14.83%204.89l1.34.94-5.81%208.38H9.02L5.78%209.67l1.34-1.25%202.57%202.4z%27%20fill%3D%27%233582c4%27%2F%3E%3C%2Fsvg%3E",
@@ -151,10 +183,10 @@ forwardRef((props, ref) => {
             justifyContent: "space-between",
             extraProps: innerProps,
             padding: 10,
-            gap: 0,
-            className: customStyle },
-            React.createElement(GridContainer, { padding: 0,
-                gap: 8,
+            className: customStyle,
+            gap: 10 },
+            React.createElement(GridContainer, { gap: 8,
+                padding: 10,
                 extraProps: innerProps },
                 React.createElement("div", { className: "bsf-admin-ui-input-picker-header-label" }, data.label),
                 React.createElement("div", { className: "bsf-admin-ui-input-picker-description" }, data.description)),
@@ -164,17 +196,17 @@ forwardRef((props, ref) => {
         React.createElement(Select, { ref: selectRef, components: { Option: CustomOption }, options: options, value: value, onChange: (value) => onChange(value), ...rest })));
 });
 
-const AdminHeader = ({ children, logo, breadcrumbs, navRightContent, className, }) => {
+const Header = ({ children, logo, breadcrumbs, navRightContent, className, }) => {
     let headerCss = {
-        backgroundColor: "#FFFFFF",
-        borderBottom: "1px solid #E2E8F0",
+        backgroundColor: color.background,
+        borderBottom: "1px solid " + color.borderLight,
         height: "68px",
     };
     // Define the breadcrumbs variable to store the breadcrumbs if available.
     let breadCrumbsContent = null;
     if (breadcrumbs?.length > 0) {
         breadCrumbsContent = breadcrumbs.map((breadcrumb, index) => (React.createElement(React.Fragment, null,
-            icons.breadCrumbIcon,
+            icons.breadCrumb,
             React.createElement("span", { key: index }, breadcrumb.title))));
         // Add css for the breadcrumbs.
         const breadcrumbClassName = "& .bsf-ui-header-breadcrumbs";
@@ -183,7 +215,7 @@ const AdminHeader = ({ children, logo, breadcrumbs, navRightContent, className, 
             "& > span": {
                 fontWeight: "400",
                 fontFamily: "Inter",
-                color: "#64748B",
+                color: color.text,
                 cursor: "pointer",
             },
             "& > svg": {
@@ -197,15 +229,13 @@ const AdminHeader = ({ children, logo, breadcrumbs, navRightContent, className, 
         };
     }
     const headerLeftContent = (React.createElement(GridContainer, { containerType: "flex",
-        gap: 5,
-        padding: 0,
+        gap: 6.5,
         alignItems: "center",
         className: "bsf-ui-header-left-content",
         justifyContent: "flex-start" },
         React.createElement("div", { className: "bsf-ui-header-logo", style: { display: "flex" } }, logo),
         React.createElement(GridContainer, { containerType: "flex",
             gap: 6.5,
-            padding: 0,
             alignItems: "center",
             className: "bsf-ui-header-breadcrumbs" }, breadCrumbsContent)));
     const separatorContent = () => {
@@ -223,7 +253,7 @@ const AdminHeader = ({ children, logo, breadcrumbs, navRightContent, className, 
         [separatorClassName]: css(separatorCss),
     };
     const labelListContent = (navRightContent, isParent = false) => {
-        return (React.createElement(GridContainer, { containerType: "flex", gap: parseFloat(navRightContent.gap), padding: 0, alignItems: "center", justifyContent: isParent ? "flex-end" : "flex-start", className: isParent
+        return (React.createElement(GridContainer, { containerType: "flex", gap: parseFloat(navRightContent.gap), alignItems: "center", justifyContent: isParent ? "flex-end" : "flex-start", className: isParent
                 ? "bsf-ui-header-right-content"
                 : "bsf-ui-header-right-content-child" }, navRightContent.items.map((item, index) => {
             if (item.type === "label-group") {
@@ -237,7 +267,6 @@ const AdminHeader = ({ children, logo, breadcrumbs, navRightContent, className, 
     const wrapperPrefixClass = getPrefix() + "admin-header";
     const headerClass = css(headerCss);
     const containerProps = {
-        gap: 0,
         numberOfColumn: 2,
         justifyContent: "space-between",
         alignItems: "center",
@@ -251,7 +280,7 @@ const AdminHeader = ({ children, logo, breadcrumbs, navRightContent, className, 
         labelListContent(navRightContent, true)));
 };
 
-const Sidebar = ({ listItems, listItemColor = "#000", listItemHoverColor = "#333", listIconColor = "#000", listIconHoverColor = "#333", listItemBackgroundColor = "#fff", listItemHoverBackgroundColor = "#f5f5f5", listStyle, className, activeItem, }) => {
+const Sidebar = ({ listItems, listItemColor = color.text, listItemHoverColor = color.foreground, listIconColor = color.muted, listIconHoverColor = color.primary, listItemBackgroundColor = color.background, listItemHoverBackgroundColor = color.primaryBackground, listStyle, className, activeItem, }) => {
     const sidebarCSS = css({
         display: "flex",
         flexDirection: "column",
@@ -281,8 +310,8 @@ const Sidebar = ({ listItems, listItemColor = "#000", listItemHoverColor = "#333
             },
         },
         "& .sidebar-list-item svg": {
-            width: "18px",
-            height: "18px",
+            width: "16px",
+            height: "16px",
             color: listIconColor,
         },
         ...listStyle,
@@ -316,4 +345,4 @@ function subtract(a, b) {
     return `Result of the t ${a} - ${b} = ${a - b}`;
 }
 
-export { AdminHeader, Sidebar as AdminSidebar, Nav, add, log, subtract };
+export { Sidebar as AdminSidebar, Header, Nav, add, log, subtract };

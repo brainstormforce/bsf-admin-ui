@@ -1,5 +1,6 @@
 import React from "react";
 import { css, cx } from "@emotion/css";
+import { color, color as colorsVar } from "../css-variables";
 
 interface ListItem {
   label: string;
@@ -24,12 +25,12 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({
   listItems,
-  listItemColor = "#000",
-  listItemHoverColor = "#333",
-  listIconColor = "#000",
-  listIconHoverColor = "#333",
-  listItemBackgroundColor = "#fff",
-  listItemHoverBackgroundColor = "#f5f5f5",
+  listItemColor = colorsVar.text,
+  listItemHoverColor = colorsVar.foreground,
+  listIconColor = colorsVar.muted,
+  listIconHoverColor = colorsVar.primary,
+  listItemBackgroundColor = colorsVar.background,
+  listItemHoverBackgroundColor = colorsVar.primaryBackground,
   listStyle,
   className,
   activeItem,
@@ -64,8 +65,8 @@ const Sidebar: React.FC<SidebarProps> = ({
       },
     },
     "& .sidebar-list-item svg": {
-      width: "18px",
-      height: "18px",
+      width: "16px",
+      height: "16px",
       color: listIconColor,
     },
     ...listStyle,

@@ -82,7 +82,6 @@ const RadioLabel: React.FC<RadioProps> = ({
     <GridContainer
       {...{
         gap: radioBoxGap,
-        padding: 0,
         containerType: "flex",
         alignItems: "center",
         className: cx(
@@ -131,7 +130,6 @@ const Radio: React.FC<RadioGroupProps> = ({
   return (
     <GridContainer
       {...{
-        padding: 0,
         numberOfColumn: numberOfColumns,
         gap: gap,
         style: groupStyle,

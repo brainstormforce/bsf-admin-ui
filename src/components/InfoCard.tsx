@@ -1,6 +1,8 @@
 import React, { ReactNode, CSSProperties } from "react";
 import GridContainer from "./GridContainer";
 import { cx, css } from "@emotion/css";
+import { color as colorsVar } from "../css-variables";
+
 type propsType = {
   title: string;
   infoIcon?: ReactNode;
@@ -10,6 +12,7 @@ type propsType = {
   style?: CSSProperties;
   children: ReactNode;
   padding?: string;
+  gap?: number;
 };
 
 export const InfoCard = (props: propsType) => {
@@ -20,7 +23,8 @@ export const InfoCard = (props: propsType) => {
     className,
     disableHeader = false,
     children,
-    padding = "16px 24px",
+    padding = "24px",
+    gap = 24,
   } = props;
 
   let style = !(props.style && typeof props.style === "object")
@@ -28,15 +32,17 @@ export const InfoCard = (props: propsType) => {
     : props.style;
 
   let baseCssObject = {
-    border: "1px solid #E2E8F0",
+    border: "1px solid " + colorsVar.borderLight,
     borderRadius: "4px",
-    boxShadow: "0px 1px 2px 0px #0D131E1A",
-    backgroundColor: "#FFFFFF",
+    boxShadow: "0px 1px 2px 0px " + colorsVar.borderLight,
+    backgroundColor: colorsVar.background,
     "& .bsf-ui-info-card-content": {
+      display: "grid",
+      gap: gap,
       padding: padding,
     },
     "& h2, & h3": {
-      color: "#020617",
+      color: colorsVar.foreground,
       fontWeight: 600,
       margin: 0,
       lineHeight: 1,
@@ -55,10 +61,10 @@ export const InfoCard = (props: propsType) => {
   if (!disableHeader) {
     const headerStyle = css({
       padding: padding,
-      borderBottom: "1px solid #e2e8f0",
+      borderBottom: "1px solid " + colorsVar.borderLight,
       display: "flex",
       alignItems: "center",
-      gap: "6px",
+      gap: "8px",
     });
     header = (
       <div className={cx("bsf-ui-info-card-header", headerStyle)}>
@@ -102,7 +108,6 @@ export const InfoCardContent = (props: InfoCardProps) => {
       {...{
         containerType: "flex",
         gap: 16,
-        padding: 0,
         className: className,
       }}
     >
@@ -110,7 +115,6 @@ export const InfoCardContent = (props: InfoCardProps) => {
       <GridContainer
         {...{
           gap: 16,
-          padding: 0,
           className: "card-content",
           style: { width: "100%" },
         }}

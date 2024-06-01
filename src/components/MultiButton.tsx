@@ -1,5 +1,6 @@
 import React from "react";
 import GridContainer from "./GridContainer";
+import { color as colorsVar } from "../css-variables";
 
 interface MultiButtonControlProps {
   controlStyle?: "outline" | "filled";
@@ -19,9 +20,9 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
   onClick,
   activeItem,
   items,
-  backgroundColor = "#007bff",
-  color = "#ffffff",
-  hoverColor = "#0056b3",
+  backgroundColor = colorsVar.primaryBackground,
+  color = colorsVar.text,
+  hoverColor = colorsVar.foreground,
   className = "",
 }) => {
   let containerClass = "bsf-multi-button-control";
@@ -32,7 +33,7 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
   }
 
   let buttonCss = {};
-  
+
   let buttonItemCss = {
     fontWeight: 500,
     fontSize: "14px",
@@ -44,20 +45,20 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
 
   if (controlStyle === "outline") {
     buttonCss = {
-      border: "1px solid #E2E8F0",
+      border: "1px solid " + colorsVar.borderLight,
       borderRadius: "8px",
       overflow: "hidden",
 
       "& > div": {
         padding: "10px 12px",
-        color: "#020617",
-        borderRight: "1px solid #E2E8F0",
+        color: color,
+        borderRight: "1px solid " + colorsVar.borderLight,
         ...buttonItemCss,
         "&:last-child": {
           borderRight: "none",
         },
         "&.active": {
-          backgroundColor: "#FAF5FF",
+          backgroundColor: backgroundColor,
         },
       },
     };
@@ -65,16 +66,17 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
     buttonCss = {
       padding: "5px",
       borderRadius: "6px",
-      backgroundColor: "#f3f4f6",
+      backgroundColor: backgroundColor,
 
       "& > div": {
         padding: "6px 12px",
-        color: "#64748B",
+        color: color,
         backgroundColor: "transparent",
         borderRadius: "4px",
         ...buttonItemCss,
+        
         "&.active": {
-          color: "#020617",
+          color: hoverColor,
           backgroundColor: "#ffffff",
         },
       },
@@ -93,8 +95,6 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
     <GridContainer
       {...{
         numberOfColumn: items.length,
-        gap: 0,
-        padding: 0,
         className: containerClass,
         style: buttonCss,
       }}

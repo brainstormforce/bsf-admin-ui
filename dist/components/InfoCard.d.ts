@@ -8,6 +8,7 @@ type propsType = {
     style?: CSSProperties;
     children: ReactNode;
     padding?: string;
+    gap?: number;
 };
 export declare const InfoCard: (props: propsType) => React.JSX.Element;
 type InfoCardProps = {

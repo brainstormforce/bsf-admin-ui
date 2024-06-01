@@ -2,6 +2,7 @@ import React from "react";
 import { css, cx } from "@emotion/css";
 import GridContainer from "./GridContainer";
 import WithDescription from "./WithDescription";
+import { color as colorsVar } from "../css-variables";
 
 interface SwitchProps {
   checked?: boolean;
@@ -23,8 +24,8 @@ const Switch: React.FC<SwitchProps> = ({
   onClick,
   disabled = false,
   size = "small",
-  onColor = "#4caf50",
-  offColor = "#ccc",
+  onColor = colorsVar.primary,
+  offColor = colorsVar.border,
   thumbColor = "#fff",
   label,
   labelPosition = "right",
@@ -79,7 +80,7 @@ const Switch: React.FC<SwitchProps> = ({
     fontWeight: 400,
     lineHeight: "18px",
     display: "block",
-    color: "#64748B",
+    color: colorsVar.muted,
   });
 
   const handleOnclick = () => !disabled && onClick();
@@ -102,7 +103,6 @@ const Switch: React.FC<SwitchProps> = ({
           containerType: "flex",
           gap: labelGap,
           alignItems: "center",
-          padding: 0,
           style: disabled ? { opacity: 0.5 } : {},
         }}
       >

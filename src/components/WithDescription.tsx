@@ -33,7 +33,6 @@ const WithDescription: React.FC<WithDescriptionProps> = ({
     <GridContainer
       {...{
         gap: gap,
-        padding: 0,
       }}
     >
       {children}

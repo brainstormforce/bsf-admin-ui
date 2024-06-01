@@ -15,21 +15,24 @@ interface InputPropsTypes {
   style?: React.CSSProperties;
   inputContainerStyle?: React.CSSProperties;
   className?: string;
+  inputProps?: any;
 }
 
-const Input: React.FC<InputPropsTypes> = ({
-  type = "text",
-  value = "",
-  label = "",
-  labelPosition = "top",
-  labelGap = 8,
-  description = "",
-  descriptionGap = 6,
-  inputContainerStyle = {},
-  style = {},
-  className = "",
-  ...props
-}) => {
+const Input = (props: InputPropsTypes) => {
+  const {
+    type = "text",
+    value = "",
+    label = "",
+    labelPosition = "top",
+    labelGap = 8,
+    description = "",
+    descriptionGap = 6,
+    inputContainerStyle = {},
+    style = {},
+    className = "",
+    inputProps,
+  } = props;
+
   const containerWithInputStyle = {
     ...inputContainerStyle,
     "& > input.bsf-ui-input, & textarea.bsf-ui-input": {
@@ -40,7 +43,7 @@ const Input: React.FC<InputPropsTypes> = ({
       borderRadius: "8px",
       boxShadow: "0px 1px 2px 0px #1018280D",
       lineHeight: 1,
-      minHeight: 'unset',
+      minHeight: "unset",
       ...style,
     },
   };
@@ -53,11 +56,11 @@ const Input: React.FC<InputPropsTypes> = ({
 
   if (type === "textarea") {
     inputContent = (
-      <textarea className={inputClassNames} value={value} {...props} />
+      <textarea {...inputProps} className={inputClassNames} value={value}  />
     );
   } else {
     inputContent = (
-      <input className={inputClassNames} type={type} value={value} {...props} />
+      <input {...inputProps} className={inputClassNames} type={type} value={value} />
     );
   }
 
@@ -71,7 +74,7 @@ const Input: React.FC<InputPropsTypes> = ({
       <GridContainer
         {...{
           gap: labelGap,
-          padding: 0,
+          padding: 10,
           style: containerWithInputStyle,
         }}
       >
