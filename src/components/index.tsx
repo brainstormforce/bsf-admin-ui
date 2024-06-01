@@ -1,5 +1,5 @@
 export { default as Button } from './Button';
-export { default as GridContainer } from './GridContainer';
+export { default as Container } from './Container';
 export { default as Label } from './Label';
 import { InfoCard, InfoCardContent } from './InfoCard';
 export { InfoCard, InfoCardContent };

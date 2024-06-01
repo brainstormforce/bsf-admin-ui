@@ -1,28 +1,2 @@
-class log {
-    static success(message: string) {
-        console.log(`%c ${message}`, 'color: green');
-    }
-    static error(message: string) {
-        console.log(`%c ${message}`, 'color: red');
-    }
-    static warning(message: string) {
-        console.log(`%c ${message}`, 'color: orange');
-    }
-}
-
-// Create and export new function which perform addition of two numbers and return the result.
-function add(a: number, b: number): string {
-    // return a + b;
-    return `addition ${a} + ${b} = ${a + b}`;
-}
-
-// Create and export new function which perform subtraction of two numbers and return the result.
-function subtract(a: number, b: number): string {
-    return `Result of the t ${a} - ${b} = ${a - b}`;
-}
-
-export { log, add, subtract };
-
-export { default as Nav } from './navigation/Nav';
 export { default as Header } from './Header';
 export { default as AdminSidebar } from './AdminSidebar';

@@ -1,8 +1,8 @@
 import React, { CSSProperties } from "react";
-interface GridContainerProps {
+interface ContainerProps {
     containerType?: "grid" | "flex";
     gap?: number;
-    numberOfColumn?: number;
+    columns?: number;
     padding?: number;
     justifyContent?: CSSProperties["justifyContent"];
     alignItems?: CSSProperties["alignItems"];
@@ -18,5 +18,5 @@ interface GridContainerProps {
     }>;
     extraProps?: any;
 }
-declare const GridContainer: React.FC<GridContainerProps>;
-export default GridContainer;
+declare const Container: React.FC<ContainerProps>;
+export default Container;

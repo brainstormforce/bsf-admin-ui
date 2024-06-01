@@ -1,6 +1,6 @@
 import React from "react";
 import { css, cx } from "@emotion/css";
-import GridContainer from "./GridContainer";
+import Container from "./Container";
 import WithDescription from "./WithDescription";
 
 interface InputPropsTypes {
@@ -71,7 +71,7 @@ const Input = (props: InputPropsTypes) => {
         description,
       }}
     >
-      <GridContainer
+      <Container
         {...{
           gap: labelGap,
           padding: 10,
@@ -80,7 +80,7 @@ const Input = (props: InputPropsTypes) => {
       >
         {labelContent}
         {inputContent}
-      </GridContainer>
+      </Container>
     </WithDescription>
   );
 };

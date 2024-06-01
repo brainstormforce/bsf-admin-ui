@@ -2,10 +2,10 @@ import React, { CSSProperties, useEffect, useLayoutEffect } from "react";
 import { cx, css } from "@emotion/css";
 import { Global } from "@emotion/react";
 
-interface GridContainerProps {
+interface ContainerProps {
   containerType?: "grid" | "flex";
   gap?: number;
-  numberOfColumn?: number;
+  columns?: number;
   padding?: number;
   justifyContent?: CSSProperties["justifyContent"];
   alignItems?: CSSProperties["alignItems"];
@@ -22,12 +22,12 @@ interface GridContainerProps {
   extraProps?: any;
 }
 
-const GridContainer: React.FC<GridContainerProps> = (props) => {
+const Container: React.FC<ContainerProps> = (props) => {
   const {
     containerType = "grid",
     // gap = 10,
     gap = 0,
-    numberOfColumn,
+    columns,
     padding = 0,
     // padding = 10,
     justifyContent,
@@ -76,11 +76,11 @@ const GridContainer: React.FC<GridContainerProps> = (props) => {
 
   // Add number of column if it is passed in props and should be number type and type should be grid.
   if (
-    numberOfColumn &&
-    typeof numberOfColumn === "number" &&
+    columns &&
+    typeof columns === "number" &&
     containerType === "grid"
   ) {
-    styleObject["gridTemplateColumns"] = `repeat(${numberOfColumn}, 1fr)`;
+    styleObject["gridTemplateColumns"] = `repeat(${columns}, 1fr)`;
   }
 
   // Add direction if it is passed in props and should be string type and type should be flex.
@@ -99,4 +99,4 @@ const GridContainer: React.FC<GridContainerProps> = (props) => {
   );
 };
 
-export default GridContainer;
+export default Container;

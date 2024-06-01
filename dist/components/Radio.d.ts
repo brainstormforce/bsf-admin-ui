@@ -8,7 +8,7 @@ interface RadioGroupProps {
     onChange?: (checked: string) => void;
     disabled?: boolean;
     gap?: number;
-    numberOfColumns?: number;
+    columnss?: number;
     groupStyle?: React.CSSProperties;
     radioBoxStyle?: React.CSSProperties;
     className?: string;

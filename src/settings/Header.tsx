@@ -1,6 +1,6 @@
 import React from "react";
 import { getPrefix } from "../utility/utils";
-import { GridContainer, Label } from "../components";
+import { Container, Label } from "../components";
 import { css } from "@emotion/css";
 import { ICONS } from "../utility";
 import { color as colorsVar } from "../css-variables";
@@ -82,7 +82,7 @@ const Header: React.FC<HeaderProps> = ({
   }
 
   const headerLeftContent = (
-    <GridContainer
+    <Container
       {...{
         containerType: "flex",
         gap: 6.5,
@@ -95,7 +95,7 @@ const Header: React.FC<HeaderProps> = ({
       <div className="bsf-ui-header-logo" style={{ display: "flex" }}>
         {logo}
       </div>
-      <GridContainer
+      <Container
         {...{
           containerType: "flex",
           gap: 6.5,
@@ -104,8 +104,8 @@ const Header: React.FC<HeaderProps> = ({
         }}
       >
         {breadCrumbsContent}
-      </GridContainer>
-    </GridContainer>
+      </Container>
+    </Container>
   );
 
   const separatorContent = () => {
@@ -130,7 +130,7 @@ const Header: React.FC<HeaderProps> = ({
     isParent: boolean = false
   ) => {
     return (
-      <GridContainer
+      <Container
         containerType="flex"
         gap={parseFloat(navRightContent.gap)}
         alignItems="center"
@@ -153,7 +153,7 @@ const Header: React.FC<HeaderProps> = ({
           }
           return <Label key={index} {...item} />;
         })}
-      </GridContainer>
+      </Container>
     );
   };
 
@@ -162,7 +162,7 @@ const Header: React.FC<HeaderProps> = ({
   const headerClass = css(headerCss);
 
   const containerProps = {
-    numberOfColumn: 2,
+    columns: 2,
     justifyContent: "space-between",
     alignItems: "center",
     className: `${wrapperPrefixClass} ${headerClass} ${className}`,
@@ -172,10 +172,10 @@ const Header: React.FC<HeaderProps> = ({
   };
 
   return (
-    <GridContainer {...containerProps}>
+    <Container {...containerProps}>
       {headerLeftContent}
       {labelListContent(navRightContent, true)}
-    </GridContainer>
+    </Container>
   );
 };
 

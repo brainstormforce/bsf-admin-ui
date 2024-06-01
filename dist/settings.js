@@ -2,15 +2,6 @@ import React, { forwardRef, useRef, useImperativeHandle } from 'react';
 import { css, cx } from '@emotion/css';
 import Select from 'react-select';
 
-// Define the AdminNavbar component
-const Nav = ({ children }) => {
-    return (React.createElement("div", { className: "admin-navbar" },
-        React.createElement("div", null, "First Nested Div"),
-        React.createElement("div", null, "Second Nested Div"),
-        children,
-        " "));
-};
-
 function getPrefix() {
     return 'bsf-admin-ui-';
 }
@@ -42,10 +33,10 @@ const color = {
     alertErrorText: "var(--bsf-admin-alert-error-text, #dc2626)",
 };
 
-const GridContainer = (props) => {
+const Container = (props) => {
     const { containerType = "grid", 
     // gap = 10,
-    gap = 0, numberOfColumn, padding = 0, 
+    gap = 0, columns, padding = 0, 
     // padding = 10,
     justifyContent, alignItems, alignContent, justifyItems, direction, className, style, children, extraProps, } = props;
     // If additional style is not blank and should be object then assign it to additionalStyle variable else assign empty object.
@@ -76,10 +67,10 @@ const GridContainer = (props) => {
         });
     }
     // Add number of column if it is passed in props and should be number type and type should be grid.
-    if (numberOfColumn &&
-        typeof numberOfColumn === "number" &&
+    if (columns &&
+        typeof columns === "number" &&
         containerType === "grid") {
-        styleObject["gridTemplateColumns"] = `repeat(${numberOfColumn}, 1fr)`;
+        styleObject["gridTemplateColumns"] = `repeat(${columns}, 1fr)`;
     }
     // Add direction if it is passed in props and should be string type and type should be flex.
     if (direction && typeof direction === "string" && containerType === "flex") {
@@ -179,13 +170,13 @@ forwardRef((props, ref) => {
                 color: "#686868",
             },
         });
-        return (React.createElement(GridContainer, { containerType: "flex",
+        return (React.createElement(Container, { containerType: "flex",
             justifyContent: "space-between",
             extraProps: innerProps,
             padding: 10,
             className: customStyle,
             gap: 10 },
-            React.createElement(GridContainer, { gap: 8,
+            React.createElement(Container, { gap: 8,
                 padding: 10,
                 extraProps: innerProps },
                 React.createElement("div", { className: "bsf-admin-ui-input-picker-header-label" }, data.label),
@@ -228,13 +219,13 @@ const Header = ({ children, logo, breadcrumbs, navRightContent, className, }) =>
             [breadcrumbClassName]: css(breadcrumbsCss),
         };
     }
-    const headerLeftContent = (React.createElement(GridContainer, { containerType: "flex",
+    const headerLeftContent = (React.createElement(Container, { containerType: "flex",
         gap: 6.5,
         alignItems: "center",
         className: "bsf-ui-header-left-content",
         justifyContent: "flex-start" },
         React.createElement("div", { className: "bsf-ui-header-logo", style: { display: "flex" } }, logo),
-        React.createElement(GridContainer, { containerType: "flex",
+        React.createElement(Container, { containerType: "flex",
             gap: 6.5,
             alignItems: "center",
             className: "bsf-ui-header-breadcrumbs" }, breadCrumbsContent)));
@@ -253,7 +244,7 @@ const Header = ({ children, logo, breadcrumbs, navRightContent, className, }) =>
         [separatorClassName]: css(separatorCss),
     };
     const labelListContent = (navRightContent, isParent = false) => {
-        return (React.createElement(GridContainer, { containerType: "flex", gap: parseFloat(navRightContent.gap), alignItems: "center", justifyContent: isParent ? "flex-end" : "flex-start", className: isParent
+        return (React.createElement(Container, { containerType: "flex", gap: parseFloat(navRightContent.gap), alignItems: "center", justifyContent: isParent ? "flex-end" : "flex-start", className: isParent
                 ? "bsf-ui-header-right-content"
                 : "bsf-ui-header-right-content-child" }, navRightContent.items.map((item, index) => {
             if (item.type === "label-group") {
@@ -267,7 +258,7 @@ const Header = ({ children, logo, breadcrumbs, navRightContent, className, }) =>
     const wrapperPrefixClass = getPrefix() + "admin-header";
     const headerClass = css(headerCss);
     const containerProps = {
-        numberOfColumn: 2,
+        columns: 2,
         justifyContent: "space-between",
         alignItems: "center",
         className: `${wrapperPrefixClass} ${headerClass} ${className}`,
@@ -275,7 +266,7 @@ const Header = ({ children, logo, breadcrumbs, navRightContent, className, }) =>
             padding: "0 20px",
         },
     };
-    return (React.createElement(GridContainer, { ...containerProps },
+    return (React.createElement(Container, { ...containerProps },
         headerLeftContent,
         labelListContent(navRightContent, true)));
 };
@@ -324,25 +315,4 @@ const Sidebar = ({ listItems, listItemColor = color.text, listItemHoverColor = c
         React.createElement("span", null, item.label))))));
 };
 
-class log {
-    static success(message) {
-        console.log(`%c ${message}`, 'color: green');
-    }
-    static error(message) {
-        console.log(`%c ${message}`, 'color: red');
-    }
-    static warning(message) {
-        console.log(`%c ${message}`, 'color: orange');
-    }
-}
-// Create and export new function which perform addition of two numbers and return the result.
-function add(a, b) {
-    // return a + b;
-    return `addition ${a} + ${b} = ${a + b}`;
-}
-// Create and export new function which perform subtraction of two numbers and return the result.
-function subtract(a, b) {
-    return `Result of the t ${a} - ${b} = ${a - b}`;
-}
-
-export { Sidebar as AdminSidebar, Header, Nav, add, log, subtract };
+export { Sidebar as AdminSidebar, Header };

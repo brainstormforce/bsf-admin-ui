@@ -6,13 +6,11 @@ type PropsType = {
   children: ReactNode;
   onClick?: () => void;
   className?: string;
-  //   content?: ReactNode;
   //   loading?: boolean;
   //   disabled?: boolean;
   //   icon?: ReactNode;
   // iconPosition?: "left" | "right";
   style?: React.CSSProperties;
-  // type?: 'prime' | 'secondary' | 'danger' | 'success' | 'warning' | 'info' | 'light' | 'dark';
   // size?: 'sm' | 'md' | 'lg' | 'base';
 };
 const Button = (props: PropsType) => {

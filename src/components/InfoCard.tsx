@@ -1,5 +1,5 @@
 import React, { ReactNode, CSSProperties } from "react";
-import GridContainer from "./GridContainer";
+import Container from "./Container";
 import { cx, css } from "@emotion/css";
 import { color as colorsVar } from "../css-variables";
 
@@ -104,7 +104,7 @@ export const InfoCardContent = (props: InfoCardProps) => {
   }
 
   return (
-    <GridContainer
+    <Container
       {...{
         containerType: "flex",
         gap: 16,
@@ -112,7 +112,7 @@ export const InfoCardContent = (props: InfoCardProps) => {
       }}
     >
       {heading}
-      <GridContainer
+      <Container
         {...{
           gap: 16,
           className: "card-content",
@@ -120,7 +120,7 @@ export const InfoCardContent = (props: InfoCardProps) => {
         }}
       >
         {children}
-      </GridContainer>
-    </GridContainer>
+      </Container>
+    </Container>
   );
 };

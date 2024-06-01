@@ -55,10 +55,10 @@ const Button = (props) => {
         React.createElement("button", { onClick: onClick, className: cx(allUnset, completeStyle) }, children)));
 };
 
-const GridContainer = (props) => {
+const Container = (props) => {
     const { containerType = "grid", 
     // gap = 10,
-    gap = 0, numberOfColumn, padding = 0, 
+    gap = 0, columns, padding = 0, 
     // padding = 10,
     justifyContent, alignItems, alignContent, justifyItems, direction, className, style, children, extraProps, } = props;
     // If additional style is not blank and should be object then assign it to additionalStyle variable else assign empty object.
@@ -89,10 +89,10 @@ const GridContainer = (props) => {
         });
     }
     // Add number of column if it is passed in props and should be number type and type should be grid.
-    if (numberOfColumn &&
-        typeof numberOfColumn === "number" &&
+    if (columns &&
+        typeof columns === "number" &&
         containerType === "grid") {
-        styleObject["gridTemplateColumns"] = `repeat(${numberOfColumn}, 1fr)`;
+        styleObject["gridTemplateColumns"] = `repeat(${columns}, 1fr)`;
     }
     // Add direction if it is passed in props and should be string type and type should be flex.
     if (direction && typeof direction === "string" && containerType === "flex") {
@@ -213,11 +213,11 @@ const InfoCardContent = (props) => {
     `;
         heading = React__default.createElement("h3", { className: headingStyle }, title);
     }
-    return (React__default.createElement(GridContainer, { containerType: "flex",
+    return (React__default.createElement(Container, { containerType: "flex",
         gap: 16,
         className: className },
         heading,
-        React__default.createElement(GridContainer, { gap: 16,
+        React__default.createElement(Container, { gap: 16,
             className: "card-content",
             style: { width: "100%" } }, children)));
 };
@@ -269,7 +269,7 @@ const MultiButtonControl = ({ controlStyle = "filled", width = "fit-content", on
                 ...buttonItemCss,
                 "&.active": {
                     color: hoverColor,
-                    backgroundColor: "#ffffff",
+                    backgroundColor: color.background,
                 },
             },
         };
@@ -279,7 +279,7 @@ const MultiButtonControl = ({ controlStyle = "filled", width = "fit-content", on
             ? { ...buttonCss, ...{ width: "100%" } }
             : { ...buttonCss, ...{ width: "fit-content" } };
     let buttonItemClass = (id) => "bsf-multi-button-control__item" + (activeItem === id ? " active" : "");
-    return (React__default.createElement(GridContainer, { numberOfColumn: items.length,
+    return (React__default.createElement(Container, { columns: items.length,
         className: containerClass,
         style: buttonCss }, items.map((item) => (React__default.createElement("div", { key: item.id, className: buttonItemClass(item.id), onClick: () => item.id !== activeItem && onClick(item.id) }, item.label)))));
 };
@@ -297,7 +297,7 @@ const WithDescription = ({ description, gap = 6, children, style, }) => {
         color: "#64748B",
         ...style,
     });
-    return (React__default.createElement(GridContainer, { gap: gap },
+    return (React__default.createElement(Container, { gap: gap },
         children,
         React__default.createElement("span", { className: descriptionGapStyle }, description)));
 };
@@ -353,7 +353,7 @@ const Switch = ({ checked = false, onClick, disabled = false, size = "small", on
     const labelContent = (React__default.createElement("span", { className: labelClass, onClick: handleOnclick }, label));
     return (React__default.createElement(WithDescription, { gap: descriptionGap,
         description },
-        React__default.createElement(GridContainer, { containerType: "flex",
+        React__default.createElement(Container, { containerType: "flex",
             gap: labelGap,
             alignItems: "center",
             style: disabled ? { opacity: 0.5 } : {} },
@@ -363,7 +363,7 @@ const Switch = ({ checked = false, onClick, disabled = false, size = "small", on
             label && labelPosition === "right" && labelContent)));
 };
 
-const CheckboxWithLabel = ({ label, checked, onChange, disabled, checkBoxGap = 8, style, className = "", }) => {
+const CheckboxWithLabel = ({ label, checked, onChange, disabled, gap = 8, style, className = "", }) => {
     const handleChange = () => {
         if (onChange) {
             onChange(!checked);
@@ -393,7 +393,7 @@ const CheckboxWithLabel = ({ label, checked, onChange, disabled, checkBoxGap = 8
             lineHeight: 1,
         },
     });
-    return (React__default.createElement(GridContainer, { gap: checkBoxGap,
+    return (React__default.createElement(Container, { gap: gap,
         containerType: "flex",
         alignItems: "center",
         className: cx(checkboxStyle, { disabled }, checked ? "checkbox-checked" : "", className),
@@ -402,9 +402,9 @@ const CheckboxWithLabel = ({ label, checked, onChange, disabled, checkBoxGap = 8
         React__default.createElement("div", { onClick: () => handleChange() }),
         React__default.createElement("label", { onClick: () => handleChange() }, label)));
 };
-const CheckBox = ({ group, onChange, gap, numberOfColumns, groupStyle, checkboxStyle, groupClassName = "", className = "", }) => {
-    return (React__default.createElement(GridContainer, { padding: 10,
-        numberOfColumn: numberOfColumns,
+const CheckBox = ({ group, onChange, gap, columnss, groupStyle, checkboxStyle, groupClassName = "", className = "", }) => {
+    return (React__default.createElement(Container, { padding: 10,
+        columns: columnss,
         gap: gap,
         style: groupStyle,
         className: groupClassName }, group.map((item) => (React__default.createElement(CheckboxWithLabel, { key: item.id, label: item.label, checked: item.checked, style: checkboxStyle, className: className, onChange: (checked) => {
@@ -464,7 +464,7 @@ const RadioLabel = ({ label, checked, onChange, disabled, radioBoxGap = 8, style
             lineHeight: 1,
         },
     });
-    return (React__default.createElement(GridContainer, { gap: radioBoxGap,
+    return (React__default.createElement(Container, { gap: radioBoxGap,
         containerType: "flex",
         alignItems: "center",
         className: cx(radioStyle, { disabled }, checked ? "radio-checked" : "", className),
@@ -474,8 +474,8 @@ const RadioLabel = ({ label, checked, onChange, disabled, radioBoxGap = 8, style
         React__default.createElement("div", null, radioType === "checkbox" ? icons.checkMark2 : null),
         React__default.createElement("label", null, label)));
 };
-const Radio = ({ radioType = "radio", group, checked, onChange, gap, numberOfColumns, groupStyle, radioBoxStyle, groupClassName = "", className = "", }) => {
-    return (React__default.createElement(GridContainer, { numberOfColumn: numberOfColumns,
+const Radio = ({ radioType = "radio", group, checked, onChange, gap, columnss, groupStyle, radioBoxStyle, groupClassName = "", className = "", }) => {
+    return (React__default.createElement(Container, { columns: columnss,
         gap: gap,
         style: groupStyle,
         className: groupClassName }, group.map((item) => (React__default.createElement(RadioLabel, { key: item.id, radioType: radioType, label: item.label, checked: checked === item.id, style: radioBoxStyle, className: className, onChange: () => {
@@ -512,7 +512,7 @@ const Input = (props) => {
     }
     return (React__default.createElement(WithDescription, { gap: descriptionGap,
         description },
-        React__default.createElement(GridContainer, { gap: labelGap,
+        React__default.createElement(Container, { gap: labelGap,
             padding: 10,
             style: containerWithInputStyle },
             labelContent,
@@ -554,13 +554,13 @@ const RichSelect = forwardRef((props, ref) => {
                 color: "#686868",
             },
         });
-        return (React__default.createElement(GridContainer, { containerType: "flex",
+        return (React__default.createElement(Container, { containerType: "flex",
             justifyContent: "space-between",
             extraProps: innerProps,
             padding: 10,
             className: customStyle,
             gap: 10 },
-            React__default.createElement(GridContainer, { gap: 8,
+            React__default.createElement(Container, { gap: 8,
                 padding: 10,
                 extraProps: innerProps },
                 React__default.createElement("div", { className: "bsf-admin-ui-input-picker-header-label" }, data.label),
@@ -616,4 +616,4 @@ const VariablePicker = (props) => {
             }, style: { width: "80%" } }))));
 };
 
-export { Button, CheckBox, GridContainer, InfoCard, InfoCardContent, Input, VariablePicker as InputPicker, Label, MultiButtonControl as MultiButton, Radio, Switch };
+export { Button, CheckBox, Container, InfoCard, InfoCardContent, Input, VariablePicker as InputPicker, Label, MultiButtonControl as MultiButton, Radio, Switch };

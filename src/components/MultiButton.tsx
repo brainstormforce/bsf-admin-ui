@@ -1,5 +1,5 @@
 import React from "react";
-import GridContainer from "./GridContainer";
+import Container from "./Container";
 import { color as colorsVar } from "../css-variables";
 
 interface MultiButtonControlProps {
@@ -77,7 +77,7 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
         
         "&.active": {
           color: hoverColor,
-          backgroundColor: "#ffffff",
+          backgroundColor: colorsVar.background,
         },
       },
     };
@@ -92,9 +92,9 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
     "bsf-multi-button-control__item" + (activeItem === id ? " active" : "");
 
   return (
-    <GridContainer
+    <Container
       {...{
-        numberOfColumn: items.length,
+        columns: items.length,
         className: containerClass,
         style: buttonCss,
       }}
@@ -108,7 +108,7 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
           {item.label}
         </div>
       ))}
-    </GridContainer>
+    </Container>
   );
 };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { css, cx } from "@emotion/css";
-import GridContainer from "./GridContainer";
+import Container from "./Container";
 import { ICONS } from "../utility";
 import { color } from "../css-variables";
 
@@ -11,7 +11,7 @@ interface CheckboxProps {
   disabled?: boolean;
   style?: React.CSSProperties;
   className?: string;
-  checkBoxGap?: number;
+  gap?: number;
 }
 
 const CheckboxWithLabel: React.FC<CheckboxProps> = ({
@@ -19,7 +19,7 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
   checked,
   onChange,
   disabled,
-  checkBoxGap = 8,
+  gap = 8,
   style,
   className = "",
 }) => {
@@ -55,9 +55,9 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
   });
 
   return (
-    <GridContainer
+    <Container
       {...{
-        gap: checkBoxGap,
+        gap: gap,
         containerType: "flex",
         alignItems: "center",
         className: cx(
@@ -72,7 +72,7 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
       <input type="checkbox" checked={checked} disabled={disabled} />
       <div onClick={() => handleChange()}></div>
       <label onClick={() => handleChange()}>{label}</label>
-    </GridContainer>
+    </Container>
   );
 };
 
@@ -81,7 +81,7 @@ interface CheckboxGroupProps {
   onChange?: (checked: boolean, id: string) => void;
   disabled?: boolean;
   gap?: number;
-  numberOfColumns?: number;
+  columnss?: number;
   groupStyle?: React.CSSProperties;
   checkboxStyle?: React.CSSProperties;
   className?: string;
@@ -92,17 +92,17 @@ const CheckBox: React.FC<CheckboxGroupProps> = ({
   group,
   onChange,
   gap,
-  numberOfColumns,
+  columnss,
   groupStyle,
   checkboxStyle,
   groupClassName = "",
   className = "",
 }) => {
   return (
-    <GridContainer
+    <Container
       {...{
         padding: 10,
-        numberOfColumn: numberOfColumns,
+        columns: columnss,
         gap: gap,
         style: groupStyle,
         className: groupClassName,
@@ -122,7 +122,7 @@ const CheckBox: React.FC<CheckboxGroupProps> = ({
           }}
         />
       ))}
-    </GridContainer>
+    </Container>
   );
 };
 

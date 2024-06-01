@@ -1,6 +1,6 @@
 import React from "react";
 import { css } from "@emotion/css";
-import GridContainer from "./GridContainer";
+import Container from "./Container";
 
 interface WithDescriptionProps {
   description?: React.ReactNode;
@@ -30,14 +30,14 @@ const WithDescription: React.FC<WithDescriptionProps> = ({
   });
 
   return (
-    <GridContainer
+    <Container
       {...{
         gap: gap,
       }}
     >
       {children}
       <span className={descriptionGapStyle}>{description}</span>
-    </GridContainer>
+    </Container>
   );
 };
 

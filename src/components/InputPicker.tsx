@@ -6,7 +6,7 @@ import React, {
 } from "react";
 import { css, cx } from "@emotion/css";
 import Select from "react-select";
-import GridContainer from "./GridContainer";
+import Container from "./Container";
 import { color as colorsVar } from "../css-variables";
 
 // Define the type for the custom data structure in options
@@ -67,7 +67,7 @@ const RichSelect = forwardRef((props: RichSelectProps, ref) => {
     });
 
     return (
-      <GridContainer
+      <Container
         {...{
           containerType: "flex",
           justifyContent: "space-between",
@@ -77,7 +77,7 @@ const RichSelect = forwardRef((props: RichSelectProps, ref) => {
           gap: 10,
         }}
       >
-        <GridContainer
+        <Container
           {...{
             gap: 8,
             padding: 10,
@@ -91,12 +91,12 @@ const RichSelect = forwardRef((props: RichSelectProps, ref) => {
           <div className="bsf-admin-ui-input-picker-description">
             {data.description}
           </div>
-        </GridContainer>
+        </Container>
 
         <div className="bsf-admin-ui-input-picker-header-title">
           {data.title}
         </div>
-      </GridContainer>
+      </Container>
     );
   };
 

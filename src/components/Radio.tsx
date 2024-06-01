@@ -1,6 +1,6 @@
 import React from "react";
 import { css, cx } from "@emotion/css";
-import GridContainer from "./GridContainer";
+import Container from "./Container";
 import { ICONS } from "../utility";
 
 interface RadioProps {
@@ -79,7 +79,7 @@ const RadioLabel: React.FC<RadioProps> = ({
   });
 
   return (
-    <GridContainer
+    <Container
       {...{
         gap: radioBoxGap,
         containerType: "flex",
@@ -97,7 +97,7 @@ const RadioLabel: React.FC<RadioProps> = ({
       <input type="radio" checked={checked} disabled={disabled} />
       <div>{radioType === "checkbox" ? ICONS.checkMark2 : null}</div>
       <label>{label}</label>
-    </GridContainer>
+    </Container>
   );
 };
 
@@ -107,7 +107,7 @@ interface RadioGroupProps {
   onChange?: (checked: string) => void;
   disabled?: boolean;
   gap?: number;
-  numberOfColumns?: number;
+  columnss?: number;
   groupStyle?: React.CSSProperties;
   radioBoxStyle?: React.CSSProperties;
   className?: string;
@@ -121,16 +121,16 @@ const Radio: React.FC<RadioGroupProps> = ({
   checked,
   onChange,
   gap,
-  numberOfColumns,
+  columnss,
   groupStyle,
   radioBoxStyle,
   groupClassName = "",
   className = "",
 }) => {
   return (
-    <GridContainer
+    <Container
       {...{
-        numberOfColumn: numberOfColumns,
+        columns: columnss,
         gap: gap,
         style: groupStyle,
         className: groupClassName,
@@ -151,7 +151,7 @@ const Radio: React.FC<RadioGroupProps> = ({
           }}
         />
       ))}
-    </GridContainer>
+    </Container>
   );
 };
 

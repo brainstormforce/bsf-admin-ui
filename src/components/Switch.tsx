@@ -1,6 +1,6 @@
 import React from "react";
 import { css, cx } from "@emotion/css";
-import GridContainer from "./GridContainer";
+import Container from "./Container";
 import WithDescription from "./WithDescription";
 import { color as colorsVar } from "../css-variables";
 
@@ -98,7 +98,7 @@ const Switch: React.FC<SwitchProps> = ({
         description,
       }}
     >
-      <GridContainer
+      <Container
         {...{
           containerType: "flex",
           gap: labelGap,
@@ -111,7 +111,7 @@ const Switch: React.FC<SwitchProps> = ({
           <div className={thumbClass}></div>
         </div>
         {label && labelPosition === "right" && labelContent}
-      </GridContainer>
+      </Container>
     </WithDescription>
   );
 };
