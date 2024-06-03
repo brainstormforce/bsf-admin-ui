@@ -95,7 +95,7 @@ interface CheckboxGroupProps {
   groupClassName?: string;
 }
 
-const CheckBox: React.FC<CheckboxGroupProps> = ({
+const Checkbox: React.FC<CheckboxGroupProps> = ({
   group,
   onChange,
   gap,
@@ -133,4 +133,4 @@ const CheckBox: React.FC<CheckboxGroupProps> = ({
   );
 };
 
-export default CheckBox;
+export default Checkbox;

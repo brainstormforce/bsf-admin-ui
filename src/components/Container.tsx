@@ -27,7 +27,6 @@ const Container: React.FC<ContainerProps> = (props) => {
     gap = 0,
     columns,
     padding = 0,
-    // padding = 10,
     justifyContent,
     alignItems,
     alignContent,

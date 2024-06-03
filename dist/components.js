@@ -208,9 +208,7 @@ const Button = (props) => {
 };
 
 const Container = (props) => {
-    const { containerType = "grid", gap = 0, columns, padding = 0, 
-    // padding = 10,
-    justifyContent, alignItems, alignContent, justifyItems, direction, className, style, children, extraProps, } = props;
+    const { containerType = "grid", gap = 0, columns, padding = 0, justifyContent, alignItems, alignContent, justifyItems, direction, className, style, children, extraProps, } = props;
     // If additional style is not blank and should be object then assign it to additionalStyle variable else assign empty object.
     const additionalStyle = style && typeof style === "object" ? style : {};
     const svgCss = {
@@ -560,7 +558,7 @@ const CheckboxWithLabel = ({ label, checked, onChange, disabled, gap = 8, style,
         React__default.createElement("div", { onClick: () => handleChange() }, checked && icons.checkMark),
         React__default.createElement("label", { onClick: () => handleChange() }, label)));
 };
-const CheckBox = ({ group, onChange, gap, columns, groupStyle, checkboxStyle, groupClassName = "", className = "", }) => {
+const Checkbox = ({ group, onChange, gap, columns, groupStyle, checkboxStyle, groupClassName = "", className = "", }) => {
     return (React__default.createElement(Container, { padding: 10,
         columns: columns,
         gap: gap,
@@ -781,4 +779,4 @@ const VariablePicker = (props) => {
             }, style: { width: "80%" } }))));
 };
 
-export { Button, CheckBox, Container, InfoCard, InfoCardContent, Input, VariablePicker as InputPicker, Label, MultiButtonControl as MultiButton, Radio, Switch };
+export { Button, Checkbox, Container, InfoCard, InfoCardContent, Input, VariablePicker as InputPicker, Label, MultiButtonControl as MultiButton, Radio, Switch };

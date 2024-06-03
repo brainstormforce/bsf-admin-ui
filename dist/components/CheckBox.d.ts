@@ -14,5 +14,5 @@ interface CheckboxGroupProps {
     className?: string;
     groupClassName?: string;
 }
-declare const CheckBox: React.FC<CheckboxGroupProps>;
-export default CheckBox;
+declare const Checkbox: React.FC<CheckboxGroupProps>;
+export default Checkbox;

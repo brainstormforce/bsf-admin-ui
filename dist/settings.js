@@ -75,9 +75,7 @@ const header = {
 };
 
 const Container = (props) => {
-    const { containerType = "grid", gap = 0, columns, padding = 0, 
-    // padding = 10,
-    justifyContent, alignItems, alignContent, justifyItems, direction, className, style, children, extraProps, } = props;
+    const { containerType = "grid", gap = 0, columns, padding = 0, justifyContent, alignItems, alignContent, justifyItems, direction, className, style, children, extraProps, } = props;
     // If additional style is not blank and should be object then assign it to additionalStyle variable else assign empty object.
     const additionalStyle = style && typeof style === "object" ? style : {};
     const svgCss = {
@@ -358,4 +356,4 @@ const Sidebar = ({ listItems, listItemColor = sidebar.listItemColor, listItemHov
         React.createElement("span", null, item.label))))));
 };
 
-export { Sidebar as AdminSidebar, Header };
+export { Header, Sidebar };
