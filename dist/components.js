@@ -645,7 +645,7 @@ const Radio = ({ radioType = "radio", group, checked, onChange, gap, columns, gr
 
 const Input = (props) => {
     const { type = "text", value = "", labelGap = 8, description = "", descriptionGap = 6, inputContainerStyle = {}, style = {}, className = "", inputProps, } = props;
-    const inputClassName = prefix + "input";
+    const inputClassName = prefix() + "input";
     const cssKey = "& > input." + inputClassName + ", & > textarea." + inputClassName;
     const containerWithInputStyle = {
         ...inputContainerStyle,
@@ -686,9 +686,9 @@ const RichSelect = forwardRef((props, ref) => {
             }
         },
     }));
-    const labelClassName = prefix + "input-picker-header-label";
-    const descriptionClassName = prefix + "input-picker-description";
-    const titleClassName = prefix + "input-picker-header-title";
+    const labelClassName = prefix() + "input-picker-header-label";
+    const descriptionClassName = prefix() + "input-picker-description";
+    const titleClassName = prefix() + "input-picker-header-title";
     const labelClassKey = "& ." + labelClassName;
     const descriptionClassKey = "& ." + descriptionClassName;
     const titleClassKey = "& ." + titleClassName;
@@ -756,7 +756,7 @@ const VariablePicker = (props) => {
         onChange(concatWithValue);
         setOpenVariablePicker(false);
     };
-    const inputClassName = prefix + "input";
+    const inputClassName = prefix() + "input";
     const cssKey = "&." + inputClassName;
     const inputClassCss = css({
         display: "block",

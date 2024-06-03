@@ -182,9 +182,9 @@ forwardRef((props, ref) => {
             }
         },
     }));
-    const labelClassName = prefix + "input-picker-header-label";
-    const descriptionClassName = prefix + "input-picker-description";
-    const titleClassName = prefix + "input-picker-header-title";
+    const labelClassName = prefix() + "input-picker-header-label";
+    const descriptionClassName = prefix() + "input-picker-description";
+    const titleClassName = prefix() + "input-picker-header-title";
     const labelClassKey = "& ." + labelClassName;
     const descriptionClassKey = "& ." + descriptionClassName;
     const titleClassKey = "& ." + titleClassName;

@@ -40,9 +40,9 @@ const RichSelect = forwardRef((props: RichSelectProps, ref) => {
     },
   }));
 
-  const labelClassName: string = prefix + "input-picker-header-label";
-  const descriptionClassName: string = prefix + "input-picker-description";
-  const titleClassName: string = prefix + "input-picker-header-title";
+  const labelClassName: string = prefix() + "input-picker-header-label";
+  const descriptionClassName: string = prefix() + "input-picker-description";
+  const titleClassName: string = prefix() + "input-picker-header-title";
 
   const labelClassKey: string = "& ." + labelClassName;
   const descriptionClassKey: string = "& ." + descriptionClassName;
@@ -161,7 +161,7 @@ const VariablePicker = (props: VariablePickerProps) => {
     setOpenVariablePicker(false);
   };
 
-  const inputClassName: string = prefix + "input";
+  const inputClassName: string = prefix() + "input";
   const cssKey: string = "&." + inputClassName;
 
   const inputClassCss = css({

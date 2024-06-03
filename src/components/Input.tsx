@@ -32,7 +32,7 @@ const Input = (props: InputPropsTypes) => {
     inputProps,
   } = props;
 
-  const inputClassName: string = prefix + "input";
+  const inputClassName: string = prefix() + "input";
   const cssKey: string =
     "& > input." + inputClassName + ", & > textarea." + inputClassName;
 
