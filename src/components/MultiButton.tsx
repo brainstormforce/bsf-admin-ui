@@ -1,6 +1,9 @@
 import React from "react";
 import Container from "./Container";
-import { color as colorsVar, multiButton as multiButtonVars } from "../css-variables";
+import {
+  color as colorsVar,
+  multiButton as multiButtonVars,
+} from "../css-variables";
 
 interface MultiButtonControlProps {
   controlStyle?: "outline" | "filled";
@@ -74,7 +77,7 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
         backgroundColor: "transparent",
         borderRadius: multiButtonVars.filledBorderRadiusInner,
         ...buttonItemCss,
-        
+
         "&.active": {
           color: hoverColor,
           backgroundColor: colorsVar.background,

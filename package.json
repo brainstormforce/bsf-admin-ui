@@ -8,7 +8,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npx rollup -c",
-    "start": "rollup -c -w"
+    "start": "rollup -c -w",
+    "format": "prettier --write .",
+    "lint": "prettier --check . && turbo lint"
   },
   "repository": {
     "type": "git",
@@ -61,5 +63,9 @@
       "types": "./dist/settings.d.ts",
       "default": "./dist/settings.js"
     }
+  },
+  "devDependencies": {
+    "prettier": "^3.2.5",
+    "prettier-plugin-organize-imports": "^3.2.4"
   }
 }

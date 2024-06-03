@@ -127,7 +127,7 @@ const Header: React.FC<HeaderProps> = ({
 
   const labelListContent = (
     navRightContent: NavRightContent,
-    isParent: boolean = false
+    isParent: boolean = false,
   ) => {
     return (
       <Container

@@ -1,6 +1,5 @@
-
 function prefix(): string {
-    return 'bsf-admin-ui-';
+  return "bsf-admin-ui-";
 }
 
 export { prefix };

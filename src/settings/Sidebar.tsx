@@ -1,6 +1,6 @@
 import React from "react";
 import { css, cx } from "@emotion/css";
-import {  sidebar as sidebarVars } from "../css-variables";
+import { sidebar as sidebarVars } from "../css-variables";
 
 interface ListItem {
   label: string;
@@ -85,7 +85,7 @@ const Sidebar: React.FC<SidebarProps> = ({
           className={cx(
             item?.className,
             "sidebar-list-item",
-            isActive(item.id) && "active"
+            isActive(item.id) && "active",
           )}
           onClick={item.onClick}
         >

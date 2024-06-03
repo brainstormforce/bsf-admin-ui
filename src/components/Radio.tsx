@@ -56,8 +56,10 @@ const RadioLabel: React.FC<RadioProps> = ({
     },
     "&.radio-checked": {
       "&> div": {
-        borderColor: radioType === "checkbox" ? "transparent" : radioVars.backgroundColor,
-        backgroundColor: radioType === "checkbox" ? radioVars.backgroundColor : "transparent",
+        borderColor:
+          radioType === "checkbox" ? "transparent" : radioVars.backgroundColor,
+        backgroundColor:
+          radioType === "checkbox" ? radioVars.backgroundColor : "transparent",
         "&::before":
           radioType === "radio"
             ? {
@@ -66,12 +68,12 @@ const RadioLabel: React.FC<RadioProps> = ({
                 width: radioVars.radioInnerSize,
                 borderRadius: "50%",
                 display: "block",
-                backgroundColor: radioVars.backgroundColor
+                backgroundColor: radioVars.backgroundColor,
               }
             : {},
       },
       "& label": {
-        color: radioVars.backgroundColor
+        color: radioVars.backgroundColor,
       },
     },
     label: {
@@ -89,7 +91,7 @@ const RadioLabel: React.FC<RadioProps> = ({
           radioStyle,
           { disabled },
           checked ? "radio-checked" : "",
-          className
+          className,
         ),
         style: style,
         extraProps: { onClick: () => handleChange() },

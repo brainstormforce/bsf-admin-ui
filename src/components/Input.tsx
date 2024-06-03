@@ -53,7 +53,6 @@ const Input = (props: InputPropsTypes) => {
 
   const inputClassNames = inputClassName + (!className ? "" : " " + className);
 
-
   let inputContent;
 
   if (type === "textarea") {

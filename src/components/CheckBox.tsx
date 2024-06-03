@@ -69,15 +69,13 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
           checkboxStyle,
           { disabled },
           checked ? "checkbox-checked" : "",
-          className
+          className,
         ),
         style: style,
       }}
     >
       <input type="checkbox" checked={checked} disabled={disabled} />
-      <div onClick={() => handleChange()}>
-        {checked && ICONS.checkMark }
-      </div>
+      <div onClick={() => handleChange()}>{checked && ICONS.checkMark}</div>
       <label onClick={() => handleChange()}>{label}</label>
     </Container>
   );

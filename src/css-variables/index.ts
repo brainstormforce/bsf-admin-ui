@@ -216,14 +216,22 @@ export const sidebar = {
 };
 
 export const header = {
-    padding: "var(--bsf-admin-header-padding, 0 24px)",
-    backgroundColor: "var(--bsf-admin-header-background-color, " + color.background + ")",
-    borderBottom: "var(--bsf-admin-header-border-bottom, 1px solid " + color.borderLight + ")",
-    height: "var(--bsf-admin-header-height, 68px)",
-    breadCrumbsFontSize: "var(--bsf-admin-header-breadcrumbs-font-size, 14px)",
-    breadCrumbColor: "var(--bsf-admin-header-breadcrumbs-color, " + color.text + ")",
-    breadCrumbSvgSize: "var(--bsf-admin-header-breadcrumbs-svg-size, 16px)",
-    gap: "var(--bsf-admin-header-gap, 6.5px)",
-    separatorHeight: "var(--bsf-admin-header-breadcrumbs-separator-height, 16px)",
-    separatorBorder: "var(--bsf-admin-header-breadcrumbs-separator-border, 1px solid " + color.borderLight + ")",
-}
+  padding: "var(--bsf-admin-header-padding, 0 24px)",
+  backgroundColor:
+    "var(--bsf-admin-header-background-color, " + color.background + ")",
+  borderBottom:
+    "var(--bsf-admin-header-border-bottom, 1px solid " +
+    color.borderLight +
+    ")",
+  height: "var(--bsf-admin-header-height, 68px)",
+  breadCrumbsFontSize: "var(--bsf-admin-header-breadcrumbs-font-size, 14px)",
+  breadCrumbColor:
+    "var(--bsf-admin-header-breadcrumbs-color, " + color.text + ")",
+  breadCrumbSvgSize: "var(--bsf-admin-header-breadcrumbs-svg-size, 16px)",
+  gap: "var(--bsf-admin-header-gap, 6.5px)",
+  separatorHeight: "var(--bsf-admin-header-breadcrumbs-separator-height, 16px)",
+  separatorBorder:
+    "var(--bsf-admin-header-breadcrumbs-separator-border, 1px solid " +
+    color.borderLight +
+    ")",
+};

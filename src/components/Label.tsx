@@ -22,11 +22,10 @@ const Label: React.FC<LabelProps> = ({
   icon_key,
   className,
 }) => {
-  
   const badgeStyle: React.CSSProperties = {};
   if (type === "badge") {
     // Add some padding and border radius to the badge.
-    badgeStyle["padding"] = labelVars.padding
+    badgeStyle["padding"] = labelVars.padding;
     badgeStyle["border"] = labelVars.border;
     badgeStyle["borderRadius"] = labelVars.borderRadius;
 
@@ -42,8 +41,8 @@ const Label: React.FC<LabelProps> = ({
         break;
     }
   }
-  
-  let labelStyle= {
+
+  let labelStyle = {
     color: labelVars.color,
     cursor: onClick ? "pointer" : "default",
     fontWeight: "bold",
@@ -52,7 +51,7 @@ const Label: React.FC<LabelProps> = ({
     ...style,
   };
 
-  let labelClass = css( labelStyle );
+  let labelClass = css(labelStyle);
 
   // if className is passed, add it to the labelClass
   if (className) {

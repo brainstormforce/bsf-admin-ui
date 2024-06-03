@@ -72,11 +72,7 @@ const Container: React.FC<ContainerProps> = (props) => {
   }
 
   // Add number of column if it is passed in props and should be number type and type should be grid.
-  if (
-    columns &&
-    typeof columns === "number" &&
-    containerType === "grid"
-  ) {
+  if (columns && typeof columns === "number" && containerType === "grid") {
     styleObject["gridTemplateColumns"] = `repeat(${columns}, 1fr)`;
   }
 
