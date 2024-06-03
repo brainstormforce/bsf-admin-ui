@@ -60,14 +60,6 @@
     "./settings.js": {
       "types": "./dist/settings.d.ts",
       "default": "./dist/settings.js"
-    },
-    "./fields": {
-      "types": "./dist/fields.d.ts",
-      "default": "./dist/fields.js"
-    },
-    "./fields.js": {
-      "types": "./dist/fields.d.ts",
-      "default": "./dist/fields.js"
     }
   }
 }

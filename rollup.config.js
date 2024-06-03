@@ -30,15 +30,5 @@ export default defineConfig([
         },
         external: ["react", "react-dom"],
         plugins: [typescript({ tsconfig: "tsconfig.json" })],
-    },
-    {
-        input: "src/fields.ts",
-        output: {
-            dir: "dist",
-            format: "es",
-            name: "bsf-admin-ui",
-        },
-        external: ["react", "react-dom"],
-        plugins: [typescript({ tsconfig: "tsconfig.json" })],
-    },
+    }
 ]);
