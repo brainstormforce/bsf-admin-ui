@@ -1,6 +1,8 @@
 import React, { ReactElement } from "react";
 
-const icons: { [key: string]: ReactElement | String } = {
+const icons: {
+  [key: string]: ReactElement | string;
+} = {
   breadCrumb: (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -34,13 +36,7 @@ const icons: { [key: string]: ReactElement | String } = {
     </svg>
   ),
   whatsNew: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="20"
-      height="20"
-      viewBox="0 0 20 20"
-      fill="none"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
       <path
         d="M9.16667 4.90182V16.0335C9.16667 16.8434 8.51008 17.5 7.70015 17.5C7.08038 17.5 6.52752 17.1104 6.31907 16.5267L4.53039 11.4024M15 10.8333C16.3807 10.8333 17.5 9.71404 17.5 8.33333C17.5 6.95262 16.3807 5.83333 15 5.83333M4.53039 11.4024C3.33691 10.8951 2.5 9.71194 2.5 8.33333C2.5 6.49238 3.99238 5 5.83333 5H7.36007C10.7773 5 13.7141 3.97159 15 2.5L15 14.1667C13.7141 12.6951 10.7773 11.6667 7.36007 11.6667L5.83331 11.6667C5.37098 11.6667 4.93064 11.5725 4.53039 11.4024Z"
         stroke="#475569"
@@ -51,13 +47,7 @@ const icons: { [key: string]: ReactElement | String } = {
     </svg>
   ),
   checkMark: (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      width="9"
-      height="7"
-      viewBox="0 0 9 7"
-      fill="none"
-    >
+    <svg xmlns="http://www.w3.org/2000/svg" width="9" height="7" viewBox="0 0 9 7" fill="none">
       <path
         d="M8.87179 0.545513L8.45503 0.128761C8.28333 -0.0429202 8.00306 -0.0429202 7.82988 0.128761L3.45987 4.50027L1.17066 2.21107C0.998981 2.03937 0.718691 2.03937 0.545533 2.21107L0.128761 2.62782C-0.0429202 2.79952 -0.0429202 3.07979 0.128761 3.25295L3.14584 6.27C3.23242 6.35659 3.34393 6.40062 3.45693 6.40062C3.56994 6.40062 3.68292 6.35659 3.76805 6.27L8.86737 1.17066C9.04347 0.996046 9.04347 0.717233 8.87179 0.545513Z"
         fill="currentColor"

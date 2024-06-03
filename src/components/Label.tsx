@@ -42,7 +42,7 @@ const Label: React.FC<LabelProps> = ({
     }
   }
 
-  let labelStyle = {
+  const labelStyle = {
     color: labelVars.color,
     cursor: onClick ? "pointer" : "default",
     fontWeight: "bold",

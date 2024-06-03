@@ -42,7 +42,9 @@ const Container: React.FC<ContainerProps> = (props) => {
   const additionalStyle = style && typeof style === "object" ? style : {};
 
   const svgCss = {
-    "& svg": { display: "flex" },
+    "& svg": {
+      display: "flex",
+    },
   };
 
   let styleObject = {
@@ -67,7 +69,10 @@ const Container: React.FC<ContainerProps> = (props) => {
 
       const objectKey: string = `& > :nth-child(${index + 1})`;
 
-      styleObject = { ...styleObject, [objectKey]: gridItemStyle };
+      styleObject = {
+        ...styleObject,
+        [objectKey]: gridItemStyle,
+      };
     });
   }
 

@@ -32,17 +32,13 @@ interface HeaderProps {
   children: React.ReactNode;
   logo: string;
   className: string;
-  breadcrumbs: Array<{ title: React.ReactNode }>;
+  breadcrumbs: Array<{
+    title: React.ReactNode;
+  }>;
   navRightContent: NavRightContent;
 }
 
-const Header: React.FC<HeaderProps> = ({
-  children,
-  logo,
-  breadcrumbs,
-  navRightContent,
-  className,
-}) => {
+const Header: React.FC<HeaderProps> = ({ logo, breadcrumbs, navRightContent, className }) => {
   let headerCss = {
     backgroundColor: headerVars.backgroundColor,
     borderBottom: headerVars.borderBottom,
@@ -92,7 +88,12 @@ const Header: React.FC<HeaderProps> = ({
       }}
     >
       {/* TODO: need to add back button if available in props */}
-      <div className="bsf-ui-header-logo" style={{ display: "flex" }}>
+      <div
+        className="bsf-ui-header-logo"
+        style={{
+          display: "flex",
+        }}
+      >
         {logo}
       </div>
       <Container
@@ -125,21 +126,14 @@ const Header: React.FC<HeaderProps> = ({
     [separatorClassName]: css(separatorCss),
   };
 
-  const labelListContent = (
-    navRightContent: NavRightContent,
-    isParent: boolean = false,
-  ) => {
+  const labelListContent = (navRightContent: NavRightContent, isParent: boolean = false) => {
     return (
       <Container
         containerType="flex"
         gap={parseFloat(navRightContent.gap)}
         alignItems="center"
         justifyContent={isParent ? "flex-end" : "flex-start"}
-        className={
-          isParent
-            ? "bsf-ui-header-right-content"
-            : "bsf-ui-header-right-content-child"
-        }
+        className={isParent ? "bsf-ui-header-right-content" : "bsf-ui-header-right-content-child"}
       >
         {navRightContent.items.map((item, index) => {
           if (item.type === "label-group") {

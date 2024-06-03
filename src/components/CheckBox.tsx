@@ -67,7 +67,9 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
         alignItems: "center",
         className: cx(
           checkboxStyle,
-          { disabled },
+          {
+            disabled,
+          },
           checked ? "checkbox-checked" : "",
           className,
         ),
@@ -82,7 +84,11 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
 };
 
 interface CheckboxGroupProps {
-  group: { id: string; label: React.ReactNode; checked: boolean }[];
+  group: {
+    id: string;
+    label: React.ReactNode;
+    checked: boolean;
+  }[];
   onChange?: (checked: boolean, id: string) => void;
   disabled?: boolean;
   gap?: number;

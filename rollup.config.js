@@ -9,7 +9,11 @@ export default defineConfig([
       name: "bsf-admin-ui",
     },
     external: ["react", "react-dom"],
-    plugins: [typescript({ tsconfig: "tsconfig.json" })],
+    plugins: [
+      typescript({
+        tsconfig: "tsconfig.json",
+      }),
+    ],
   },
   {
     input: "src/components.ts",
@@ -19,7 +23,11 @@ export default defineConfig([
       name: "bsf-admin-ui",
     },
     external: ["react", "react-dom"],
-    plugins: [typescript({ tsconfig: "tsconfig.json" })],
+    plugins: [
+      typescript({
+        tsconfig: "tsconfig.json",
+      }),
+    ],
   },
   {
     input: "src/settings.ts",
@@ -29,6 +37,10 @@ export default defineConfig([
       name: "bsf-admin-ui",
     },
     external: ["react", "react-dom"],
-    plugins: [typescript({ tsconfig: "tsconfig.json" })],
+    plugins: [
+      typescript({
+        tsconfig: "tsconfig.json",
+      }),
+    ],
   },
 ]);

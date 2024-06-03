@@ -103,7 +103,11 @@ const Switch: React.FC<SwitchProps> = ({
           containerType: "flex",
           gap: labelGap,
           alignItems: "center",
-          style: disabled ? { opacity: 0.5 } : {},
+          style: disabled
+            ? {
+                opacity: 0.5,
+              }
+            : {},
         }}
       >
         {label && labelPosition === "left" && labelContent}

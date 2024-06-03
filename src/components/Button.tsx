@@ -12,7 +12,6 @@ type PropsType = {
 const Button = (props: PropsType) => {
   const { children, onClick, style, size = "medium" } = props;
   const additionalStyle = style && typeof style === "object" ? style : {};
-
   const allUnset = css`
     all: unset;
   `;
@@ -42,7 +41,7 @@ const Button = (props: PropsType) => {
       borderRadius = buttonVar.mediumBorderRadius;
   }
 
-  let baseCss = {
+  const baseCss = {
     cursor: "pointer",
     fontSize,
     padding,

@@ -1,16 +1,16 @@
 import React from "react";
 import Container from "./Container";
-import {
-  color as colorsVar,
-  multiButton as multiButtonVars,
-} from "../css-variables";
+import { color as colorsVar, multiButton as multiButtonVars } from "../css-variables";
 
 interface MultiButtonControlProps {
   controlStyle?: "outline" | "filled";
   width?: "fit-content" | "full-width";
   onClick: (id: string) => void;
   activeItem: string;
-  items: { id: string; label: string }[];
+  items: {
+    id: string;
+    label: string;
+  }[];
   backgroundColor?: string;
   color?: string;
   hoverColor?: string;
@@ -37,7 +37,7 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
 
   let buttonCss = {};
 
-  let buttonItemCss = {
+  const buttonItemCss = {
     fontWeight: 500,
     fontSize: multiButtonVars.fontSize,
     cursor: "pointer",
@@ -88,10 +88,20 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
 
   buttonCss =
     width === "full-width"
-      ? { ...buttonCss, ...{ width: "100%" } }
-      : { ...buttonCss, ...{ width: "fit-content" } };
+      ? {
+          ...buttonCss,
+          ...{
+            width: "100%",
+          },
+        }
+      : {
+          ...buttonCss,
+          ...{
+            width: "fit-content",
+          },
+        };
 
-  let buttonItemClass = (id: string) =>
+  const buttonItemClass = (id: string) =>
     "bsf-multi-button-control__item" + (activeItem === id ? " active" : "");
 
   return (

@@ -1,11 +1,7 @@
 import React, { ReactNode, CSSProperties } from "react";
 import Container from "./Container";
 import { cx, css } from "@emotion/css";
-import {
-  color as colorsVar,
-  card as cardVars,
-  textSizes,
-} from "../css-variables";
+import { color as colorsVar, card as cardVars, textSizes } from "../css-variables";
 import { prefix } from "../utility/utils";
 
 type propsType = {
@@ -32,14 +28,12 @@ export const InfoCard = (props: propsType) => {
     gap = cardVars.gap,
   } = props;
 
-  let style = !(props.style && typeof props.style === "object")
-    ? {}
-    : props.style;
+  const style = !(props.style && typeof props.style === "object") ? {} : props.style;
 
   const cardContentClass: string = prefix() + "info-card-content";
   const classKey = "& ." + cardContentClass;
 
-  let baseCssObject = {
+  const baseCssObject = {
     border: cardVars.border,
     borderRadius: cardVars.borderRadius,
     boxShadow: cardVars.boxShadow,
@@ -123,7 +117,9 @@ export const InfoCardContent = (props: InfoCardProps) => {
       <Container
         {...{
           gap: cardVars.cardContentGap,
-          style: { width: "100%" },
+          style: {
+            width: "100%",
+          },
         }}
       >
         {children}
