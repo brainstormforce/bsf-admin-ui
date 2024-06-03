@@ -1,6 +1,6 @@
 import React from "react";
 import { css, cx } from "@emotion/css";
-import { color, color as colorsVar } from "../css-variables";
+import {  sidebar as sidebarVars } from "../css-variables";
 
 interface ListItem {
   label: string;
@@ -25,12 +25,12 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({
   listItems,
-  listItemColor = colorsVar.text,
-  listItemHoverColor = colorsVar.foreground,
-  listIconColor = colorsVar.muted,
-  listIconHoverColor = colorsVar.primary,
-  listItemBackgroundColor = colorsVar.background,
-  listItemHoverBackgroundColor = colorsVar.primaryBackground,
+  listItemColor = sidebarVars.listItemColor,
+  listItemHoverColor = sidebarVars.listItemHoverColor,
+  listIconColor = sidebarVars.listIconColor,
+  listIconHoverColor = sidebarVars.listIconHoverColor,
+  listItemBackgroundColor = sidebarVars.listItemBackgroundColor,
+  listItemHoverBackgroundColor = sidebarVars.listItemHoverBackgroundColor,
   listStyle,
   className,
   activeItem,
@@ -38,24 +38,24 @@ const Sidebar: React.FC<SidebarProps> = ({
   const sidebarCSS = css({
     display: "flex",
     flexDirection: "column",
-    gap: "4px",
+    gap: sidebarVars.gap,
 
     boxSizing: "border-box",
     "& *": {
       boxSizing: "border-box",
     },
     "& .sidebar-list-item": {
-      fontWeight: "500",
-      fontSize: "14px",
+      fontWeight: sidebarVars.listItemFontWeight,
+      fontSize: sidebarVars.listItemFontSize,
       display: "flex",
       alignItems: "center",
-      padding: "8px 16px",
+      padding: sidebarVars.listItemPadding,
       color: listItemColor,
       backgroundColor: listItemBackgroundColor,
       cursor: "pointer",
       transition: "background-color 0.3s, color 0.3s",
-      gap: "8px",
-      borderRadius: "6px",
+      gap: sidebarVars.listItemsGap,
+      borderRadius: sidebarVars.listItemsBorderRadius,
       "&:hover, &.active": {
         backgroundColor: listItemHoverBackgroundColor,
         color: listItemHoverColor,
@@ -65,8 +65,8 @@ const Sidebar: React.FC<SidebarProps> = ({
       },
     },
     "& .sidebar-list-item svg": {
-      width: "16px",
-      height: "16px",
+      width: sidebarVars.listItemSvgSize,
+      height: sidebarVars.listItemSvgSize,
       color: listIconColor,
     },
     ...listStyle,

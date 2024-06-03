@@ -1,7 +1,8 @@
 import React from "react";
-import { css, cx } from "@emotion/css";
 import Container from "./Container";
 import WithDescription from "./WithDescription";
+import { input as inputValues } from "../css-variables";
+import { prefix } from "../utility/utils";
 
 interface InputPropsTypes {
   type: string;
@@ -22,8 +23,6 @@ const Input = (props: InputPropsTypes) => {
   const {
     type = "text",
     value = "",
-    label = "",
-    labelPosition = "top",
     labelGap = 8,
     description = "",
     descriptionGap = 6,
@@ -33,34 +32,42 @@ const Input = (props: InputPropsTypes) => {
     inputProps,
   } = props;
 
+  const inputClassName: string = prefix + "input";
+  const cssKey: string =
+    "& > input." + inputClassName + ", & > textarea." + inputClassName;
+
   const containerWithInputStyle = {
     ...inputContainerStyle,
-    "& > input.bsf-ui-input, & textarea.bsf-ui-input": {
-      fontSize: "15px",
-      padding: "12px 14px",
-      border: "1px solid #d0d5dd",
+    [cssKey]: {
+      fontSize: inputValues.fontSize,
+      padding: inputValues.padding,
+      border: inputValues.border,
       position: "relative",
-      borderRadius: "8px",
-      boxShadow: "0px 1px 2px 0px #1018280D",
+      borderRadius: inputValues.borderRadius,
+      boxShadow: inputValues.boxShadow,
       lineHeight: 1,
       minHeight: "unset",
       ...style,
     },
   };
 
-  const inputClassNames = "bsf-ui-input" + (!className ? "" : " " + className);
+  const inputClassNames = inputClassName + (!className ? "" : " " + className);
 
-  let labelContent = label ? <span>{value}</span> : null;
 
   let inputContent;
 
   if (type === "textarea") {
     inputContent = (
-      <textarea {...inputProps} className={inputClassNames} value={value}  />
+      <textarea {...inputProps} className={inputClassNames} value={value} />
     );
   } else {
     inputContent = (
-      <input {...inputProps} className={inputClassNames} type={type} value={value} />
+      <input
+        {...inputProps}
+        className={inputClassNames}
+        type={type}
+        value={value}
+      />
     );
   }
 
@@ -78,7 +85,6 @@ const Input = (props: InputPropsTypes) => {
           style: containerWithInputStyle,
         }}
       >
-        {labelContent}
         {inputContent}
       </Container>
     </WithDescription>

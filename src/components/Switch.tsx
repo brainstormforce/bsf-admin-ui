@@ -1,8 +1,8 @@
 import React from "react";
-import { css, cx } from "@emotion/css";
+import { css } from "@emotion/css";
 import Container from "./Container";
 import WithDescription from "./WithDescription";
-import { color as colorsVar } from "../css-variables";
+import { switchVar } from "../css-variables";
 
 interface SwitchProps {
   checked?: boolean;
@@ -24,30 +24,30 @@ const Switch: React.FC<SwitchProps> = ({
   onClick,
   disabled = false,
   size = "small",
-  onColor = colorsVar.primary,
-  offColor = colorsVar.border,
-  thumbColor = "#fff",
+  onColor = switchVar.onColor,
+  offColor = switchVar.offColor,
+  thumbColor = switchVar.thumbColor,
   label,
   labelPosition = "right",
-  labelGap = 8,
+  labelGap = switchVar.labelGap,
   description,
-  descriptionGap = 6,
+  descriptionGap = switchVar.descriptionGap,
 }) => {
   const switchSize = {
     small: {
-      width: "36px",
-      height: "20px",
-      thumbSize: "16px",
+      width: switchVar.smallWidth,
+      height: switchVar.smallHeight,
+      thumbSize: switchVar.smallThumbSize,
     },
     medium: {
-      width: "60px",
-      height: "30px",
-      thumbSize: "26px",
+      width: switchVar.mediumWidth,
+      height: switchVar.mediumHeight,
+      thumbSize: switchVar.mediumThumbSize,
     },
     large: {
-      width: "80px",
-      height: "40px",
-      thumbSize: "36px",
+      width: switchVar.largeWidth,
+      height: switchVar.largeHeight,
+      thumbSize: switchVar.largeThumbSize,
     },
   }[size];
 
@@ -57,7 +57,7 @@ const Switch: React.FC<SwitchProps> = ({
     width: switchSize.width,
     height: switchSize.height,
     backgroundColor: checked ? onColor : offColor,
-    borderRadius: "34px",
+    borderRadius: switchVar.borderRadius,
     cursor: "pointer",
     transition: "background-color 0.2s",
   });
@@ -76,11 +76,11 @@ const Switch: React.FC<SwitchProps> = ({
 
   const labelClass = css({
     cursor: "pointer",
-    fontSize: "12px",
+    fontSize: switchVar.labelFontSize,
     fontWeight: 400,
-    lineHeight: "18px",
+    lineHeight: switchVar.labelLineHeight,
     display: "block",
-    color: colorsVar.muted,
+    color: switchVar.labelColor,
   });
 
   const handleOnclick = () => !disabled && onClick();

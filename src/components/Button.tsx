@@ -1,37 +1,59 @@
 import * as React from "react";
 import { ReactNode } from "react";
 import { cx, css } from "@emotion/css";
-import { color } from "../css-variables";
+import { button as buttonVar } from "../css-variables";
 type PropsType = {
   children: ReactNode;
   onClick?: () => void;
   className?: string;
-  //   loading?: boolean;
-  //   disabled?: boolean;
-  //   icon?: ReactNode;
-  // iconPosition?: "left" | "right";
   style?: React.CSSProperties;
-  // size?: 'sm' | 'md' | 'lg' | 'base';
+  size?: "small" | "medium" | "large";
 };
 const Button = (props: PropsType) => {
-  const { children, onClick, style } = props;
+  const { children, onClick, style, size = "medium" } = props;
   const additionalStyle = style && typeof style === "object" ? style : {};
 
   const allUnset = css`
     all: unset;
   `;
 
+  let fontSize;
+  let padding;
+  let borderRadius;
+  switch (size) {
+    case "small":
+      fontSize = buttonVar.smallFontSize;
+      padding = buttonVar.smallPadding;
+      borderRadius = buttonVar.smallBorderRadius;
+      break;
+    case "medium":
+      fontSize = buttonVar.mediumFontSize;
+      padding = buttonVar.mediumPadding;
+      borderRadius = buttonVar.mediumBorderRadius;
+      break;
+    case "large":
+      fontSize = buttonVar.largeFontSize;
+      padding = buttonVar.largePadding;
+      borderRadius = buttonVar.largeBorderRadius;
+      break;
+    default:
+      fontSize = buttonVar.mediumFontSize;
+      padding = buttonVar.mediumPadding;
+      borderRadius = buttonVar.mediumBorderRadius;
+  }
+
   let baseCss = {
     cursor: "pointer",
-    borderRadius: "6px",
-    fontSize: "14px",
-    padding: "9px 17px",
-    backgroundColor: color.primary,
-    color: "#FFFF",
-    fontWeight: 500,
+    fontSize,
+    padding,
+    borderRadius,
+    backgroundColor: buttonVar.backgroundColor,
+    color: buttonVar.color,
+    fontWeight: buttonVar.fontWeight,
     width: "fit-content",
     "&:hover": {
-      backgroundColor: color.primaryHover,
+      backgroundColor: buttonVar.hoverBackgroundColor,
+      color: buttonVar.hoverColor,
     },
     ...additionalStyle,
   };

@@ -1,6 +1,6 @@
 import React from "react";
 import Container from "./Container";
-import { color as colorsVar } from "../css-variables";
+import { color as colorsVar, multiButton as multiButtonVars } from "../css-variables";
 
 interface MultiButtonControlProps {
   controlStyle?: "outline" | "filled";
@@ -20,9 +20,9 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
   onClick,
   activeItem,
   items,
-  backgroundColor = colorsVar.primaryBackground,
-  color = colorsVar.text,
-  hoverColor = colorsVar.foreground,
+  backgroundColor = multiButtonVars.background,
+  color = multiButtonVars.color,
+  hoverColor = multiButtonVars.hoverColor,
   className = "",
 }) => {
   let containerClass = "bsf-multi-button-control";
@@ -36,7 +36,7 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
 
   let buttonItemCss = {
     fontWeight: 500,
-    fontSize: "14px",
+    fontSize: multiButtonVars.fontSize,
     cursor: "pointer",
     display: "flex",
     alignItems: "center",
@@ -45,14 +45,14 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
 
   if (controlStyle === "outline") {
     buttonCss = {
-      border: "1px solid " + colorsVar.borderLight,
-      borderRadius: "8px",
+      border: multiButtonVars.outlineBorder,
+      borderRadius: multiButtonVars.outlineBorderRadius,
       overflow: "hidden",
 
       "& > div": {
-        padding: "10px 12px",
+        padding: multiButtonVars.outlinePadding,
         color: color,
-        borderRight: "1px solid " + colorsVar.borderLight,
+        borderRight: multiButtonVars.outlineBorder,
         ...buttonItemCss,
         "&:last-child": {
           borderRight: "none",
@@ -64,15 +64,15 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
     };
   } else {
     buttonCss = {
-      padding: "5px",
-      borderRadius: "6px",
+      padding: multiButtonVars.filledPadding,
+      borderRadius: multiButtonVars.filledBorderRadius,
       backgroundColor: backgroundColor,
 
       "& > div": {
-        padding: "6px 12px",
+        padding: multiButtonVars.filledInnerPadding,
         color: color,
         backgroundColor: "transparent",
-        borderRadius: "4px",
+        borderRadius: multiButtonVars.filledBorderRadiusInner,
         ...buttonItemCss,
         
         "&.active": {

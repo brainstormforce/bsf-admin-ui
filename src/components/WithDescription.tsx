@@ -1,17 +1,18 @@
 import React from "react";
 import { css } from "@emotion/css";
 import Container from "./Container";
+import { description as descriptionVar } from "../css-variables";
 
 interface WithDescriptionProps {
   description?: React.ReactNode;
-  gap?: number;
+  gap?: number | string;
   style?: React.CSSProperties;
   children?: React.ReactNode;
 }
 
 const WithDescription: React.FC<WithDescriptionProps> = ({
   description,
-  gap = 6,
+  gap = descriptionVar.gap,
   children,
   style,
 }) => {
@@ -21,11 +22,11 @@ const WithDescription: React.FC<WithDescriptionProps> = ({
   }
 
   const descriptionGapStyle = css({
-    fontSize: "12px",
+    fontSize: descriptionVar.fontSize,
     fontWeight: 400,
-    lineHeight: "18px",
+    lineHeight: descriptionVar.lineHeight,
     display: "block",
-    color: "#64748B",
+    color: descriptionVar.color,
     ...style,
   });
 

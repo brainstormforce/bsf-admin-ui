@@ -1,2 +1,2 @@
-declare function getPrefix(): string;
-export { getPrefix };
+declare function prefix(): string;
+export { prefix };

@@ -8,7 +8,7 @@ interface CheckboxGroupProps {
     onChange?: (checked: boolean, id: string) => void;
     disabled?: boolean;
     gap?: number;
-    columnss?: number;
+    columns?: number;
     groupStyle?: React.CSSProperties;
     checkboxStyle?: React.CSSProperties;
     className?: string;

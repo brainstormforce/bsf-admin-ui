@@ -1,7 +1,7 @@
 import React, { CSSProperties } from "react";
 interface ContainerProps {
     containerType?: "grid" | "flex";
-    gap?: number;
+    gap?: number | string;
     columns?: number;
     padding?: number;
     justifyContent?: CSSProperties["justifyContent"];

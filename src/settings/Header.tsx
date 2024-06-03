@@ -1,9 +1,9 @@
 import React from "react";
-import { getPrefix } from "../utility/utils";
+import { prefix } from "../utility/utils";
 import { Container, Label } from "../components";
 import { css } from "@emotion/css";
 import { ICONS } from "../utility";
-import { color as colorsVar } from "../css-variables";
+import { header as headerVars } from "../css-variables";
 
 interface LabelItem {
   type: "text" | "icon" | "badge";
@@ -44,9 +44,9 @@ const Header: React.FC<HeaderProps> = ({
   className,
 }) => {
   let headerCss = {
-    backgroundColor: colorsVar.background,
-    borderBottom: "1px solid " + colorsVar.borderLight,
-    height: "68px",
+    backgroundColor: headerVars.backgroundColor,
+    borderBottom: headerVars.borderBottom,
+    height: headerVars.height,
   };
 
   // Define the breadcrumbs variable to store the breadcrumbs if available.
@@ -62,16 +62,16 @@ const Header: React.FC<HeaderProps> = ({
     // Add css for the breadcrumbs.
     const breadcrumbClassName: string = "& .bsf-ui-header-breadcrumbs";
     const breadcrumbsCss = {
-      fontSize: "14px",
+      fontSize: headerVars.breadCrumbsFontSize,
       "& > span": {
         fontWeight: "400",
         fontFamily: "Inter",
-        color: colorsVar.text,
+        color: headerVars.breadCrumbColor,
         cursor: "pointer",
       },
       "& > svg": {
-        width: "16px",
-        height: "16px",
+        width: headerVars.breadCrumbSvgSize,
+        height: headerVars.breadCrumbSvgSize,
       },
     };
 
@@ -85,7 +85,7 @@ const Header: React.FC<HeaderProps> = ({
     <Container
       {...{
         containerType: "flex",
-        gap: 6.5,
+        gap: headerVars.gap,
         alignItems: "center",
         className: "bsf-ui-header-left-content",
         justifyContent: "flex-start",
@@ -98,7 +98,7 @@ const Header: React.FC<HeaderProps> = ({
       <Container
         {...{
           containerType: "flex",
-          gap: 6.5,
+          gap: headerVars.gap,
           alignItems: "center",
           className: "bsf-ui-header-breadcrumbs",
         }}
@@ -115,9 +115,9 @@ const Header: React.FC<HeaderProps> = ({
   // Add css for the separator.
   const separatorClassName: string = "& .bsf-ui-header-separator";
   const separatorCss = {
-    height: "16px",
+    height: headerVars.separatorHeight,
     display: "block",
-    border: "1px solid #E2E8F0",
+    border: headerVars.separatorBorder,
   };
 
   headerCss = {
@@ -157,7 +157,7 @@ const Header: React.FC<HeaderProps> = ({
     );
   };
 
-  const wrapperPrefixClass = getPrefix() + "admin-header";
+  const wrapperPrefixClass = prefix() + "admin-header";
 
   const headerClass = css(headerCss);
 

@@ -5,6 +5,7 @@ type PropsType = {
     onClick?: () => void;
     className?: string;
     style?: React.CSSProperties;
+    size?: "small" | "medium" | "large";
 };
 declare const Button: (props: PropsType) => React.JSX.Element;
 export default Button;

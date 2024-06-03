@@ -2,6 +2,7 @@ import React from "react";
 import { css, cx } from "@emotion/css";
 import Container from "./Container";
 import { ICONS } from "../utility";
+import { radio as radioVars } from "../css-variables";
 
 interface RadioProps {
   label?: React.ReactNode;
@@ -19,7 +20,7 @@ const RadioLabel: React.FC<RadioProps> = ({
   checked,
   onChange,
   disabled,
-  radioBoxGap = 8,
+  radioBoxGap = radioVars.gap,
   style,
   className = "",
   radioType,
@@ -31,9 +32,9 @@ const RadioLabel: React.FC<RadioProps> = ({
   };
 
   const containerStyle = {
-    padding: "12px 16px",
-    border: checked ? "1px solid #7F56D9" : "1px solid #EAECF0",
-    borderRadius: "6px",
+    padding: radioVars.padding,
+    border: checked ? radioVars.checkedBorder : radioVars.containerBorder,
+    borderRadius: radioVars.borderRadius,
     cursor: "pointer",
   };
 
@@ -44,33 +45,33 @@ const RadioLabel: React.FC<RadioProps> = ({
       display: "none",
     },
     "&> div": {
-      width: "16px",
-      height: "16px",
+      width: radioVars.size,
+      height: radioVars.size,
       borderRadius: radioType === "radio" ? "50%" : "4px",
-      boxShadow: "inset 0 1px 2px rgba(0, 0, 0, .1)",
-      border: "1px solid #8c8f94",
+      boxShadow: radioVars.boxShadow,
+      border: radioVars.innerBorder,
       display: "flex",
       justifyContent: "center",
       alignItems: "center",
     },
     "&.radio-checked": {
       "&> div": {
-        borderColor: radioType === "checkbox" ? "transparent" : "#7F56D9",
-        backgroundColor: radioType === "checkbox" ? "#7F56D9" : "transparent",
+        borderColor: radioType === "checkbox" ? "transparent" : radioVars.backgroundColor,
+        backgroundColor: radioType === "checkbox" ? radioVars.backgroundColor : "transparent",
         "&::before":
           radioType === "radio"
             ? {
                 content: "''",
-                height: "6px",
-                width: "6px",
+                height: radioVars.radioInnerSize,
+                width: radioVars.radioInnerSize,
                 borderRadius: "50%",
                 display: "block",
-                backgroundColor: "#7F56D9",
+                backgroundColor: radioVars.backgroundColor
               }
             : {},
       },
       "& label": {
-        color: "#7F56D9",
+        color: radioVars.backgroundColor
       },
     },
     label: {
@@ -95,7 +96,7 @@ const RadioLabel: React.FC<RadioProps> = ({
       }}
     >
       <input type="radio" checked={checked} disabled={disabled} />
-      <div>{radioType === "checkbox" ? ICONS.checkMark2 : null}</div>
+      <div>{radioType === "checkbox" ? ICONS.checkMark : null}</div>
       <label>{label}</label>
     </Container>
   );
@@ -107,7 +108,7 @@ interface RadioGroupProps {
   onChange?: (checked: string) => void;
   disabled?: boolean;
   gap?: number;
-  columnss?: number;
+  columns?: number;
   groupStyle?: React.CSSProperties;
   radioBoxStyle?: React.CSSProperties;
   className?: string;
@@ -121,7 +122,7 @@ const Radio: React.FC<RadioGroupProps> = ({
   checked,
   onChange,
   gap,
-  columnss,
+  columns,
   groupStyle,
   radioBoxStyle,
   groupClassName = "",
@@ -130,7 +131,7 @@ const Radio: React.FC<RadioGroupProps> = ({
   return (
     <Container
       {...{
-        columns: columnss,
+        columns: columns,
         gap: gap,
         style: groupStyle,
         className: groupClassName,

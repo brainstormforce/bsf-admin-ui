@@ -1,6 +1,7 @@
 import React from "react";
 import { css, cx } from "@emotion/css";
 import { ICONS } from "../utility";
+import { label as labelVars } from "../css-variables";
 
 interface LabelProps {
   type: "text" | "icon" | "badge";
@@ -25,27 +26,26 @@ const Label: React.FC<LabelProps> = ({
   const badgeStyle: React.CSSProperties = {};
   if (type === "badge") {
     // Add some padding and border radius to the badge.
-    badgeStyle["padding"] = "2px 6px";
-    badgeStyle["border"] = "1px solid #e2e8f0";
-    badgeStyle["borderRadius"] = "4px";
+    badgeStyle["padding"] = labelVars.padding
+    badgeStyle["border"] = labelVars.border;
+    badgeStyle["borderRadius"] = labelVars.borderRadius;
 
     switch (badgeSize) {
       case "small":
-        badgeStyle["fontSize"] = "10px";
+        badgeStyle["fontSize"] = labelVars.smallSize;
         break;
       case "medium":
-        badgeStyle["fontSize"] = "14px";
+        badgeStyle["fontSize"] = labelVars.mediumSize;
         break;
       case "large":
-        badgeStyle["fontSize"] = "18px";
+        badgeStyle["fontSize"] = labelVars.largeSize;
         break;
     }
   }
   
   let labelStyle= {
-    color:"#94a3b8",
+    color: labelVars.color,
     cursor: onClick ? "pointer" : "default",
-    fontSize: "14px",
     fontWeight: "bold",
     width: "fit-content",
     ...badgeStyle,

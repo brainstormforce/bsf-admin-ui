@@ -7,7 +7,8 @@ import React, {
 import { css, cx } from "@emotion/css";
 import Select from "react-select";
 import Container from "./Container";
-import { color as colorsVar } from "../css-variables";
+import { inputPicker as inputPickerVars } from "../css-variables";
+import { prefix } from "../utility/utils";
 
 // Define the type for the custom data structure in options
 interface CustomOptionType {
@@ -39,23 +40,31 @@ const RichSelect = forwardRef((props: RichSelectProps, ref) => {
     },
   }));
 
+  const labelClassName: string = prefix + "input-picker-header-label";
+  const descriptionClassName: string = prefix + "input-picker-description";
+  const titleClassName: string = prefix + "input-picker-header-title";
+
+  const labelClassKey: string = "& ." + labelClassName;
+  const descriptionClassKey: string = "& ." + descriptionClassName;
+  const titleClassKey: string = "& ." + titleClassName;
+
   const CustomOption = (optionProps: any) => {
     const { data, innerProps } = optionProps;
 
     const customStyle = css({
       cursor: "pointer",
       borderBottom: "1px solid hsla(0, 0%, 0%, 0.1)",
-      "& .bsf-admin-ui-input-picker-header-label": {
+      [labelClassKey]: {
         fontSize: "14px",
         color: "#232323",
         fontWeight: 500,
       },
-      "& .bsf-admin-ui-input-picker-description": {
+      [descriptionClassKey]: {
         fontSize: 12,
         color: "#666",
         fontStyle: "italic",
       },
-      "& .bsf-admin-ui-input-picker-header-title": {
+      [titleClassKey]: {
         fontSize: 14,
         backgroundColor: "#e8e8e8",
         width: "fit-content",
@@ -84,18 +93,12 @@ const RichSelect = forwardRef((props: RichSelectProps, ref) => {
             extraProps: innerProps,
           }}
         >
-          <div className="bsf-admin-ui-input-picker-header-label">
-            {data.label}
-          </div>
+          <div className={labelClassName}>{data.label}</div>
 
-          <div className="bsf-admin-ui-input-picker-description">
-            {data.description}
-          </div>
+          <div className={descriptionClassName}>{data.description}</div>
         </Container>
 
-        <div className="bsf-admin-ui-input-picker-header-title">
-          {data.title}
-        </div>
+        <div className={titleClassName}>{data.title}</div>
       </Container>
     );
   };
@@ -125,7 +128,8 @@ interface VariablePickerProps {
 }
 
 const VariablePicker = (props: VariablePickerProps) => {
-  const { onChange, options, type, value, className, inputStyle, inputProps } = props;
+  const { onChange, options, type, value, className, inputStyle, inputProps } =
+    props;
 
   const selectRef = useRef<any>(null);
 
@@ -150,33 +154,37 @@ const VariablePicker = (props: VariablePickerProps) => {
   const updateInputData = (selectedOption: any) => {
     const pickerValue = selectedOption?.title;
 
-    const concatWithValue = "" !== value ? value + " " + pickerValue : pickerValue;
+    const concatWithValue =
+      "" !== value ? value + " " + pickerValue : pickerValue;
 
     onChange(concatWithValue);
     setOpenVariablePicker(false);
   };
 
-  const inputClass = css({
+  const inputClassName: string = prefix + "input";
+  const cssKey: string = "&." + inputClassName;
+
+  const inputClassCss = css({
     display: "block",
-    "&.bsf-admin-ui-input, &.bsf-admin-ui-input": {
-      fontSize: "15px",
-      padding: "12px 14px",
-      border: "1px solid " + colorsVar.borderLight,
+    [cssKey]: {
+      fontSize: inputPickerVars.fontSize,
+      padding: inputPickerVars.padding,
+      border: inputPickerVars.border,
+      borderRadius: inputPickerVars.borderRadius,
+      boxShadow: inputPickerVars.boxShadow,
       position: "relative",
-      borderRadius: "8px",
-      boxShadow: "0px 1px 2px 0px " + colorsVar.borderLight,
       lineHeight: 1,
       minHeight: "unset",
       ...inputStyle,
     },
   });
 
-  let combineClass = cx(className, "bsf-admin-ui-input", inputClass);
+  let combineClass = cx(className, inputClassName, inputClassCss);
 
   let field =
     "textarea" === type ? (
       <textarea
-        { ...inputProps}
+        {...inputProps}
         value={value}
         rows={3}
         onKeyDown={handleKeyDown}
@@ -186,7 +194,7 @@ const VariablePicker = (props: VariablePickerProps) => {
       />
     ) : (
       <input
-        { ...inputProps }
+        {...inputProps}
         value={value}
         type="text"
         onKeyDown={handleKeyDown}

@@ -2,7 +2,7 @@ import React from "react";
 import { css, cx } from "@emotion/css";
 import Container from "./Container";
 import { ICONS } from "../utility";
-import { color } from "../css-variables";
+import { checkbox as checkboxVars } from "../css-variables";
 
 interface CheckboxProps {
   label?: React.ReactNode;
@@ -35,17 +35,22 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
     },
     "&> div": {
       cursor: "pointer",
-      width: "16px",
-      height: "16px",
-      borderRadius: "4px",
-      boxShadow: "inset 0 1px 2px rgba(0, 0, 0, .1)",
-      border: "1px solid " + color.foreground,
+      width: checkboxVars.size,
+      height: checkboxVars.size,
+      borderRadius: checkboxVars.borderRadius,
+      boxShadow: checkboxVars.checkBoxBoxShadow,
+      border: checkboxVars.border,
     },
     "&.checkbox-checked": {
       "&> div": {
-        borderColor: "#007cba",
-        "&::before": {
-          content: `url(${ICONS.checkMark})`,
+        borderColor: checkboxVars.checkedBorderColor,
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        "> svg": {
+          height: checkboxVars.checkMarkSize,
+          width: checkboxVars.checkMarkSize,
+          color: checkboxVars.checkedBorderColor,
         },
       },
     },
@@ -70,7 +75,9 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
       }}
     >
       <input type="checkbox" checked={checked} disabled={disabled} />
-      <div onClick={() => handleChange()}></div>
+      <div onClick={() => handleChange()}>
+        {checked && ICONS.checkMark }
+      </div>
       <label onClick={() => handleChange()}>{label}</label>
     </Container>
   );
@@ -81,7 +88,7 @@ interface CheckboxGroupProps {
   onChange?: (checked: boolean, id: string) => void;
   disabled?: boolean;
   gap?: number;
-  columnss?: number;
+  columns?: number;
   groupStyle?: React.CSSProperties;
   checkboxStyle?: React.CSSProperties;
   className?: string;
@@ -92,7 +99,7 @@ const CheckBox: React.FC<CheckboxGroupProps> = ({
   group,
   onChange,
   gap,
-  columnss,
+  columns,
   groupStyle,
   checkboxStyle,
   groupClassName = "",
@@ -102,7 +109,7 @@ const CheckBox: React.FC<CheckboxGroupProps> = ({
     <Container
       {...{
         padding: 10,
-        columns: columnss,
+        columns: columns,
         gap: gap,
         style: groupStyle,
         className: groupClassName,

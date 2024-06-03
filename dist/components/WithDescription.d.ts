@@ -1,7 +1,7 @@
 import React from "react";
 interface WithDescriptionProps {
     description?: React.ReactNode;
-    gap?: number;
+    gap?: number | string;
     style?: React.CSSProperties;
     children?: React.ReactNode;
 }

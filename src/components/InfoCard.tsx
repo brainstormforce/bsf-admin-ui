@@ -1,7 +1,12 @@
 import React, { ReactNode, CSSProperties } from "react";
 import Container from "./Container";
 import { cx, css } from "@emotion/css";
-import { color as colorsVar } from "../css-variables";
+import {
+  color as colorsVar,
+  card as cardVars,
+  textSizes,
+} from "../css-variables";
+import { prefix } from "../utility/utils";
 
 type propsType = {
   title: string;
@@ -23,20 +28,23 @@ export const InfoCard = (props: propsType) => {
     className,
     disableHeader = false,
     children,
-    padding = "24px",
-    gap = 24,
+    padding = cardVars.padding,
+    gap = cardVars.gap,
   } = props;
 
   let style = !(props.style && typeof props.style === "object")
     ? {}
     : props.style;
 
+  const cardContentClass: string = prefix() + "info-card-content";
+  const classKey = "& ." + cardContentClass;
+
   let baseCssObject = {
-    border: "1px solid " + colorsVar.borderLight,
-    borderRadius: "4px",
-    boxShadow: "0px 1px 2px 0px " + colorsVar.borderLight,
-    backgroundColor: colorsVar.background,
-    "& .bsf-ui-info-card-content": {
+    border: cardVars.border,
+    borderRadius: cardVars.borderRadius,
+    boxShadow: cardVars.boxShadow,
+    backgroundColor: cardVars.backgroundColor,
+    [classKey]: {
       display: "grid",
       gap: gap,
       padding: padding,
@@ -48,10 +56,10 @@ export const InfoCard = (props: propsType) => {
       lineHeight: 1,
     },
     "& h2": {
-      fontSize: "18px",
+      fontSize: textSizes.h2,
     },
     "& h3": {
-      fontSize: "14px",
+      fontSize: textSizes.h3,
     },
     ...style,
   };
@@ -61,13 +69,13 @@ export const InfoCard = (props: propsType) => {
   if (!disableHeader) {
     const headerStyle = css({
       padding: padding,
-      borderBottom: "1px solid " + colorsVar.borderLight,
+      borderBottom: cardVars.border,
       display: "flex",
       alignItems: "center",
-      gap: "8px",
+      gap: cardVars.cardHeaderGap,
     });
     header = (
-      <div className={cx("bsf-ui-info-card-header", headerStyle)}>
+      <div className={headerStyle}>
         <h2>{title}</h2>
         {!disableInfoIcon && <span>{infoIcon ? infoIcon : "?"}</span>}
       </div>
@@ -79,7 +87,7 @@ export const InfoCard = (props: propsType) => {
   return (
     <div className={cx(baseCss, className)}>
       {!disableHeader && header}
-      <div className="bsf-ui-info-card-content">{children}</div>
+      <div className={cardContentClass}>{children}</div>
     </div>
   );
 };
@@ -98,7 +106,7 @@ export const InfoCardContent = (props: InfoCardProps) => {
   let heading = null;
   if (title) {
     const headingStyle = css`
-      min-width: 224px;
+      min-width: ${cardVars.width};
     `;
     heading = <h3 className={headingStyle}>{title}</h3>;
   }
@@ -107,15 +115,14 @@ export const InfoCardContent = (props: InfoCardProps) => {
     <Container
       {...{
         containerType: "flex",
-        gap: 16,
+        gap: cardVars.cardContentGap,
         className: className,
       }}
     >
       {heading}
       <Container
         {...{
-          gap: 16,
-          className: "card-content",
+          gap: cardVars.cardContentGap,
           style: { width: "100%" },
         }}
       >

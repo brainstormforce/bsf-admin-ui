@@ -1,10 +1,9 @@
-import React, { CSSProperties, useEffect, useLayoutEffect } from "react";
+import React, { CSSProperties } from "react";
 import { cx, css } from "@emotion/css";
-import { Global } from "@emotion/react";
 
 interface ContainerProps {
   containerType?: "grid" | "flex";
-  gap?: number;
+  gap?: number | string;
   columns?: number;
   padding?: number;
   justifyContent?: CSSProperties["justifyContent"];
@@ -25,7 +24,6 @@ interface ContainerProps {
 const Container: React.FC<ContainerProps> = (props) => {
   const {
     containerType = "grid",
-    // gap = 10,
     gap = 0,
     columns,
     padding = 0,
