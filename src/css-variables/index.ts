@@ -204,10 +204,12 @@ export const uploader = {
   inputFontSize: "var(--bsf-admin-uploader-input-font-size, 15px)",
   inputBorder: "var(--bsf-admin-uploader-input-border, 1px solid " + color.borderLight + ")",
   inputBorderRadius: "var(--bsf-admin-uploader-input-border-radius, 8px)",
-  inputBoxShadow: "var(--bsf-admin-uploader-input-box-shadow, 0px 1px 2px 0px " + color.borderLight + ")",
+  inputBoxShadow:
+    "var(--bsf-admin-uploader-input-box-shadow, 0px 1px 2px 0px " + color.borderLight + ")",
   inputColor: "var(--bsf-admin-uploader-input-color, " + color.text + ")",
   buttonPadding: "var(--bsf-admin-uploader-button-padding, 10px 14px)",
   buttonBorderRadius: "var(--bsf-admin-uploader-button-border-radius, 6px)",
   buttonColor: "var(--bsf-admin-uploader-button-color, " + color.primary + ")",
-  buttonBackgroundColor: "var(--bsf-admin-uploader-button-background-color, " + color.secondary + ")",
-}
+  buttonBackgroundColor:
+    "var(--bsf-admin-uploader-button-background-color, " + color.secondary + ")",
+};

@@ -1,7 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import { css } from "@emotion/css";
 import { prefix } from "bsf-admin-ui/utility/utils";
-import { uploader as uploaderVars } from "bsf-admin-ui/css-variables"
+import { uploader as uploaderVars } from "bsf-admin-ui/css-variables";
 
 // Define the props type for the WpFileUploader component
 interface WpFileUploaderProps {
@@ -39,6 +39,7 @@ const WpFileUploader: React.FC<WpFileUploaderProps> = (props) => {
 
   useEffect(() => {
     if (!(window as any)?.wp?.media) {
+      // eslint-disable-next-line no-console
       console.warn("wp.media not available please add wp_enqueue_media() in your plugin or theme");
       return;
     }
