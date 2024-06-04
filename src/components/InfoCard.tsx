@@ -67,11 +67,17 @@ export const InfoCard = (props: propsType) => {
       display: "flex",
       alignItems: "center",
       gap: cardVars.cardHeaderGap,
+      "& > span >svg": {
+        color: cardVars.cardHeaderInfoIconColor,
+        height: cardVars.cardHeaderInfoIconSize,
+        width: cardVars.cardHeaderInfoIconSize,
+      },
     });
+
     header = (
       <div className={headerStyle}>
         <h2>{title}</h2>
-        {!disableInfoIcon && <span>{infoIcon ? infoIcon : "?"}</span>}
+        {!disableInfoIcon && <span className="">{infoIcon ? infoIcon : "?"}</span>}
       </div>
     );
   }

@@ -19,6 +19,8 @@ interface ContainerProps {
     style?: CSSProperties;
   }>;
   extraProps?: any;
+  // I want to add add children style like that will be emotion css object type
+  childrenStyle?: any;
 }
 
 const Container: React.FC<ContainerProps> = (props) => {

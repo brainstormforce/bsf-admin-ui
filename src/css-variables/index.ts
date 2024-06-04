@@ -85,6 +85,8 @@ export const card = {
   width: "var(--bsf-admin-card-width, 224px)",
   cardHeaderGap: "var(--bsf-admin-card-header-gap, 8px)",
   cardContentGap: "var(--bsf-admin-card-content-gap, 16px)",
+  cardHeaderInfoIconSize: "var(--bsf-admin-card-header-info-icon-size, 16px)",
+  cardHeaderInfoIconColor: "var(--bsf-admin-card-header-info-icon-color, " + color.text + ")",
 };
 
 export const label = {
@@ -196,3 +198,16 @@ export const header = {
   separatorBorder:
     "var(--bsf-admin-header-breadcrumbs-separator-border, 1px solid " + color.borderLight + ")",
 };
+
+export const uploader = {
+  inputPadding: "var(--bsf-admin-uploader-input-padding, 10px 14px)",
+  inputFontSize: "var(--bsf-admin-uploader-input-font-size, 15px)",
+  inputBorder: "var(--bsf-admin-uploader-input-border, 1px solid " + color.borderLight + ")",
+  inputBorderRadius: "var(--bsf-admin-uploader-input-border-radius, 8px)",
+  inputBoxShadow: "var(--bsf-admin-uploader-input-box-shadow, 0px 1px 2px 0px " + color.borderLight + ")",
+  inputColor: "var(--bsf-admin-uploader-input-color, " + color.text + ")",
+  buttonPadding: "var(--bsf-admin-uploader-button-padding, 10px 14px)",
+  buttonBorderRadius: "var(--bsf-admin-uploader-button-border-radius, 6px)",
+  buttonColor: "var(--bsf-admin-uploader-button-color, " + color.primary + ")",
+  buttonBackgroundColor: "var(--bsf-admin-uploader-button-background-color, " + color.secondary + ")",
+}

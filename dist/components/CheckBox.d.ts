@@ -1,18 +1,18 @@
 import React from "react";
 interface CheckboxGroupProps {
-  group: {
-    id: string;
-    label: React.ReactNode;
-    checked: boolean;
-  }[];
-  onChange?: (checked: boolean, id: string) => void;
-  disabled?: boolean;
-  gap?: number;
-  columns?: number;
-  groupStyle?: React.CSSProperties;
-  checkboxStyle?: React.CSSProperties;
-  className?: string;
-  groupClassName?: string;
+    group: {
+        id: string;
+        label: React.ReactNode;
+        checked: boolean;
+    }[];
+    onChange?: (checked: boolean, id: string) => void;
+    disabled?: boolean;
+    gap?: number;
+    columns?: number;
+    groupStyle?: React.CSSProperties;
+    checkboxStyle?: React.CSSProperties;
+    className?: string;
+    groupClassName?: string;
 }
 declare const Checkbox: React.FC<CheckboxGroupProps>;
 export default Checkbox;
