@@ -38,7 +38,10 @@ const RadioLabel: React.FC<RadioProps> = ({
     cursor: "pointer",
   };
 
-  style = { ...containerStyle, ...style };
+  style = {
+    ...containerStyle,
+    ...style,
+  };
 
   const radioStyle = css({
     input: {
@@ -66,12 +69,12 @@ const RadioLabel: React.FC<RadioProps> = ({
                 width: radioVars.radioInnerSize,
                 borderRadius: "50%",
                 display: "block",
-                backgroundColor: radioVars.backgroundColor
+                backgroundColor: radioVars.backgroundColor,
               }
             : {},
       },
       "& label": {
-        color: radioVars.backgroundColor
+        color: radioVars.backgroundColor,
       },
     },
     label: {
@@ -87,12 +90,16 @@ const RadioLabel: React.FC<RadioProps> = ({
         alignItems: "center",
         className: cx(
           radioStyle,
-          { disabled },
+          {
+            disabled,
+          },
           checked ? "radio-checked" : "",
-          className
+          className,
         ),
         style: style,
-        extraProps: { onClick: () => handleChange() },
+        extraProps: {
+          onClick: () => handleChange(),
+        },
       }}
     >
       <input type="radio" checked={checked} disabled={disabled} />
@@ -103,7 +110,10 @@ const RadioLabel: React.FC<RadioProps> = ({
 };
 
 interface RadioGroupProps {
-  group: { id: string; label: React.ReactNode }[];
+  group: {
+    id: string;
+    label: React.ReactNode;
+  }[];
   checked?: string; // Checked id
   onChange?: (checked: string) => void;
   disabled?: boolean;

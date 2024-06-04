@@ -36,13 +36,9 @@ export const input = {
 export const inputPicker = {
   fontSize: "var(--bsf-admin-input-picker-font-size, 15px)",
   padding: "var(--bsf-admin-input-picker-padding, 12px 14px)",
-  border:
-    "var(--bsf-admin-input-picker-border, 1px solid " + color.borderLight + ")",
+  border: "var(--bsf-admin-input-picker-border, 1px solid " + color.borderLight + ")",
   borderRadius: "var(--bsf-admin-input-picker-border-radius, 8px)",
-  boxShadow:
-    "var(--bsf-admin-input-picker-box-shadow, 0px 1px 2px 0px " +
-    color.borderLight +
-    ")",
+  boxShadow: "var(--bsf-admin-input-picker-box-shadow, 0px 1px 2px 0px " + color.borderLight + ")",
 };
 
 export const button = {
@@ -55,29 +51,22 @@ export const button = {
   largeFontSize: "var(--bsf-admin-button-large-font-size, 16px)",
   largePadding: "var(--bsf-admin-button-large-padding, 11px 20px)",
   largeBorderRadius: "var(--bsf-admin-button-large-border-radius, 6px)",
-  backgroundColor:
-    "var(--bsf-admin-button-background-color, " + color.primary + ")",
+  backgroundColor: "var(--bsf-admin-button-background-color, " + color.primary + ")",
   color: "var(--bsf-admin-button-color, #FFFF)",
   fontWeight: "var(--bsf-admin-button-font-weight, 500)",
   hoverBackgroundColor:
-    "var(--bsf-admin-button-hover-background-color, " +
-    color.primaryHover +
-    ")",
+    "var(--bsf-admin-button-hover-background-color, " + color.primaryHover + ")",
   hoverColor: "var(--bsf-admin-button-hover-color, #FFFF)",
 };
 
 export const checkbox = {
   size: "var(--bsf-admin-checkbox-size, 16px)",
   borderRadius: "var(--bsf-admin-checkbox-border-radius, 4px)",
-  border:
-    "var(--bsf-admin-checkbox-border, 1px solid " + color.foreground + ")",
-  checkedBorderColor:
-    "var(--bsf-admin-checkbox-checked-border-color, " + color.primary + ")",
+  border: "var(--bsf-admin-checkbox-border, 1px solid " + color.foreground + ")",
+  checkedBorderColor: "var(--bsf-admin-checkbox-checked-border-color, " + color.primary + ")",
   checkMarkSize: "var(--bsf-admin-checkbox-check-mark-size, 10px)",
-  checkMarkColor:
-    "var(--bsf-admin-checkbox-check-mark-color, " + color.primary + ")",
-  checkBoxBoxShadow:
-    "var(--bsf-admin-checkbox-box-shadow, inset 0 1px 2px #0000001a)",
+  checkMarkColor: "var(--bsf-admin-checkbox-check-mark-color, " + color.primary + ")",
+  checkBoxBoxShadow: "var(--bsf-admin-checkbox-box-shadow, inset 0 1px 2px #0000001a)",
 };
 
 export const textSizes = {
@@ -89,12 +78,8 @@ export const textSizes = {
 export const card = {
   border: "var(--bsf-admin-card-border, 1px solid " + color.borderLight + ")",
   borderRadius: "var(--bsf-admin-card-border-radius, 4px)",
-  boxShadow:
-    "var(--bsf-admin-card-box-shadow, 0px 1px 2px 0px " +
-    color.borderLight +
-    ")",
-  backgroundColor:
-    "var(--bsf-admin-card-background-color, " + color.background + ")",
+  boxShadow: "var(--bsf-admin-card-box-shadow, 0px 1px 2px 0px " + color.borderLight + ")",
+  backgroundColor: "var(--bsf-admin-card-background-color, " + color.background + ")",
   padding: "var(--bsf-admin-card-padding, 24px)",
   gap: "var(--bsf-admin-card-gap, 24px)",
   width: "var(--bsf-admin-card-width, 224px)",
@@ -114,27 +99,19 @@ export const label = {
 };
 
 export const multiButton = {
-  background:
-    "var(--bsf-admin-multi-button-background-color, " +
-    color.primaryBackground +
-    ")",
+  background: "var(--bsf-admin-multi-button-background-color, " + color.primaryBackground + ")",
   color: "var(--bsf-admin-multi-button-color, " + color.text + ")",
-  hoverColor:
-    "var(--bsf-admin-multi-button-hover-color, " + color.foreground + ")",
+  hoverColor: "var(--bsf-admin-multi-button-hover-color, " + color.foreground + ")",
   fontSize: "var(--bsf-admin-multi-button-font-size, 14px)",
   outlineBorder:
-    "var(--bsf-admin-multi-button-outline-border, 1px solid " +
-    color.borderLight +
-    ")",
-  outlineBorderRadius:
-    "var(--bsf-admin-multi-button-outline-border-radius, 8px)",
+    "var(--bsf-admin-multi-button-outline-border, 1px solid " + color.borderLight + ")",
+  outlineBorderRadius: "var(--bsf-admin-multi-button-outline-border-radius, 8px)",
   outlinePadding: "var(--bsf-admin-multi-button-outline-padding, 10px 12px)",
 
   filledPadding: "var(--bsf-admin-multi-button-filled-padding, 5px)",
   filledInnerPadding: "var(--bsf-admin-multi-button-filled-padding, 6px 12px)",
   filledBorderRadius: "var(--bsf-admin-multi-button-filled-border-radius, 6px)",
-  filledBorderRadiusInner:
-    "var(--bsf-admin-multi-button-filled-border-radius-inner, 4px)",
+  filledBorderRadiusInner: "var(--bsf-admin-multi-button-filled-border-radius-inner, 4px)",
 };
 
 export const radio = {
@@ -144,8 +121,7 @@ export const radio = {
   checkedBorder: "var(--bsf-admin-radio-box-checked-border, 1px solid #7F56D9)",
   borderRadius: "var(--bsf-admin-radio-box-border-radius, 6px)",
   size: "var(--bsf-admin-radio-box-size, 16px)",
-  boxShadow:
-    "var(--bsf-admin-radio-box-shadow, inset 0 1px 2px rgba(0, 0, 0, .1))",
+  boxShadow: "var(--bsf-admin-radio-box-shadow, inset 0 1px 2px rgba(0, 0, 0, .1))",
   innerBorder: "var(--bsf-admin-radio-box-inner-border, 1px solid #8c8f94)",
   borderColor: "var(--bsf-admin-radio-box-border-color, #8c8f94)",
 
@@ -195,35 +171,28 @@ export const sidebar = {
   listItemPadding: "var(--bsf-admin-sidebar-list-item-padding, 8px 16px)",
 
   listItemColor: "var(--bsf-admin-sidebar-list-item-color, " + color.text + ")",
-  listItemHoverColor:
-    "var(--bsf-admin-sidebar-list-item-hover-color, " + color.foreground + ")",
-  listIconColor:
-    "var(--bsf-admin-sidebar-list-icon-color, " + color.muted + ")",
-  listIconHoverColor:
-    "var(--bsf-admin-sidebar-list-icon-hover-color, " + color.primary + ")",
+  listItemHoverColor: "var(--bsf-admin-sidebar-list-item-hover-color, " + color.foreground + ")",
+  listIconColor: "var(--bsf-admin-sidebar-list-icon-color, " + color.muted + ")",
+  listIconHoverColor: "var(--bsf-admin-sidebar-list-icon-hover-color, " + color.primary + ")",
   listItemBackgroundColor:
-    "var(--bsf-admin-sidebar-list-item-background-color, " +
-    color.background +
-    ")",
+    "var(--bsf-admin-sidebar-list-item-background-color, " + color.background + ")",
   listItemHoverBackgroundColor:
-    "var(--bsf-admin-sidebar-list-item-hover-background-color, " +
-    color.primaryBackground +
-    ")",
+    "var(--bsf-admin-sidebar-list-item-hover-background-color, " + color.primaryBackground + ")",
   listItemSvgSize: "var(--bsf-admin-sidebar-list-item-svg-size, 16px)",
   listItemsGap: "var(--bsf-admin-sidebar-list-items-gap, 8px)",
-  listItemsBorderRadius:
-    "var(--bsf-admin-sidebar-list-items-border-radius, 6px)",
+  listItemsBorderRadius: "var(--bsf-admin-sidebar-list-items-border-radius, 6px)",
 };
 
 export const header = {
-    padding: "var(--bsf-admin-header-padding, 0 24px)",
-    backgroundColor: "var(--bsf-admin-header-background-color, " + color.background + ")",
-    borderBottom: "var(--bsf-admin-header-border-bottom, 1px solid " + color.borderLight + ")",
-    height: "var(--bsf-admin-header-height, 68px)",
-    breadCrumbsFontSize: "var(--bsf-admin-header-breadcrumbs-font-size, 14px)",
-    breadCrumbColor: "var(--bsf-admin-header-breadcrumbs-color, " + color.text + ")",
-    breadCrumbSvgSize: "var(--bsf-admin-header-breadcrumbs-svg-size, 16px)",
-    gap: "var(--bsf-admin-header-gap, 6.5px)",
-    separatorHeight: "var(--bsf-admin-header-breadcrumbs-separator-height, 16px)",
-    separatorBorder: "var(--bsf-admin-header-breadcrumbs-separator-border, 1px solid " + color.borderLight + ")",
-}
+  padding: "var(--bsf-admin-header-padding, 0 24px)",
+  backgroundColor: "var(--bsf-admin-header-background-color, " + color.background + ")",
+  borderBottom: "var(--bsf-admin-header-border-bottom, 1px solid " + color.borderLight + ")",
+  height: "var(--bsf-admin-header-height, 68px)",
+  breadCrumbsFontSize: "var(--bsf-admin-header-breadcrumbs-font-size, 14px)",
+  breadCrumbColor: "var(--bsf-admin-header-breadcrumbs-color, " + color.text + ")",
+  breadCrumbSvgSize: "var(--bsf-admin-header-breadcrumbs-svg-size, 16px)",
+  gap: "var(--bsf-admin-header-gap, 6.5px)",
+  separatorHeight: "var(--bsf-admin-header-breadcrumbs-separator-height, 16px)",
+  separatorBorder:
+    "var(--bsf-admin-header-breadcrumbs-separator-border, 1px solid " + color.borderLight + ")",
+};

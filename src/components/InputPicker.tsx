@@ -1,9 +1,4 @@
-import React, {
-  useRef,
-  forwardRef,
-  useImperativeHandle,
-  useState,
-} from "react";
+import React, { useRef, forwardRef, useImperativeHandle, useState } from "react";
 import { css, cx } from "@emotion/css";
 import Select from "react-select";
 import Container from "./Container";
@@ -107,7 +102,9 @@ const RichSelect = forwardRef((props: RichSelectProps, ref) => {
     <>
       <Select
         ref={selectRef}
-        components={{ Option: CustomOption }}
+        components={{
+          Option: CustomOption,
+        }}
         options={options}
         value={value}
         onChange={(value: any) => onChange(value)}
@@ -128,8 +125,7 @@ interface VariablePickerProps {
 }
 
 const VariablePicker = (props: VariablePickerProps) => {
-  const { onChange, options, type, value, className, inputStyle, inputProps } =
-    props;
+  const { onChange, options, type, value, className, inputStyle, inputProps } = props;
 
   const selectRef = useRef<any>(null);
 
@@ -154,8 +150,7 @@ const VariablePicker = (props: VariablePickerProps) => {
   const updateInputData = (selectedOption: any) => {
     const pickerValue = selectedOption?.title;
 
-    const concatWithValue =
-      "" !== value ? value + " " + pickerValue : pickerValue;
+    const concatWithValue = "" !== value ? value + " " + pickerValue : pickerValue;
 
     onChange(concatWithValue);
     setOpenVariablePicker(false);
@@ -179,9 +174,9 @@ const VariablePicker = (props: VariablePickerProps) => {
     },
   });
 
-  let combineClass = cx(className, inputClassName, inputClassCss);
+  const combineClass = cx(className, inputClassName, inputClassCss);
 
-  let field =
+  const field =
     "textarea" === type ? (
       <textarea
         {...inputProps}
@@ -217,7 +212,9 @@ const VariablePicker = (props: VariablePickerProps) => {
           onBlur={() => {
             setOpenVariablePicker(false);
           }}
-          style={{ width: "80%" }}
+          style={{
+            width: "80%",
+          }}
         />
       )}
     </>

@@ -33,8 +33,7 @@ const Input = (props: InputPropsTypes) => {
   } = props;
 
   const inputClassName: string = prefix() + "input";
-  const cssKey: string =
-    "& > input." + inputClassName + ", & > textarea." + inputClassName;
+  const cssKey: string = "& > input." + inputClassName + ", & > textarea." + inputClassName;
 
   const containerWithInputStyle = {
     ...inputContainerStyle,
@@ -53,22 +52,12 @@ const Input = (props: InputPropsTypes) => {
 
   const inputClassNames = inputClassName + (!className ? "" : " " + className);
 
-
   let inputContent;
 
   if (type === "textarea") {
-    inputContent = (
-      <textarea {...inputProps} className={inputClassNames} value={value} />
-    );
+    inputContent = <textarea {...inputProps} className={inputClassNames} value={value} />;
   } else {
-    inputContent = (
-      <input
-        {...inputProps}
-        className={inputClassNames}
-        type={type}
-        value={value}
-      />
-    );
+    inputContent = <input {...inputProps} className={inputClassNames} type={type} value={value} />;
   }
 
   return (

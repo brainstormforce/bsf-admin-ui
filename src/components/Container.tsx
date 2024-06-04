@@ -42,7 +42,9 @@ const Container: React.FC<ContainerProps> = (props) => {
   const additionalStyle = style && typeof style === "object" ? style : {};
 
   const svgCss = {
-    "& svg": { display: "flex" },
+    "& svg": {
+      display: "flex",
+    },
   };
 
   let styleObject = {
@@ -67,16 +69,15 @@ const Container: React.FC<ContainerProps> = (props) => {
 
       const objectKey: string = `& > :nth-child(${index + 1})`;
 
-      styleObject = { ...styleObject, [objectKey]: gridItemStyle };
+      styleObject = {
+        ...styleObject,
+        [objectKey]: gridItemStyle,
+      };
     });
   }
 
   // Add number of column if it is passed in props and should be number type and type should be grid.
-  if (
-    columns &&
-    typeof columns === "number" &&
-    containerType === "grid"
-  ) {
+  if (columns && typeof columns === "number" && containerType === "grid") {
     styleObject["gridTemplateColumns"] = `repeat(${columns}, 1fr)`;
   }
 

@@ -67,24 +67,28 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
         alignItems: "center",
         className: cx(
           checkboxStyle,
-          { disabled },
+          {
+            disabled,
+          },
           checked ? "checkbox-checked" : "",
-          className
+          className,
         ),
         style: style,
       }}
     >
       <input type="checkbox" checked={checked} disabled={disabled} />
-      <div onClick={() => handleChange()}>
-        {checked && ICONS.checkMark }
-      </div>
+      <div onClick={() => handleChange()}>{checked && ICONS.checkMark}</div>
       <label onClick={() => handleChange()}>{label}</label>
     </Container>
   );
 };
 
 interface CheckboxGroupProps {
-  group: { id: string; label: React.ReactNode; checked: boolean }[];
+  group: {
+    id: string;
+    label: React.ReactNode;
+    checked: boolean;
+  }[];
   onChange?: (checked: boolean, id: string) => void;
   disabled?: boolean;
   gap?: number;
