@@ -9,6 +9,7 @@ export const color = {
   foreground: "var(--bsf-admin-foreground, #020617)",
   text: "var(--bsf-admin-text, #475569)",
   muted: "var(--bsf-admin-muted, #64748B)",
+  mutedText: "var(--bsf-admin-muted-text, #94A3B8)",
   border: "var(--bsf-admin-border, #CBD5E1)",
   borderLight: "var(--bsf-admin-border-light, #E2E8F0)",
   alertInfo: "var(--bsf-admin-alert-info, #3B82F6)",
@@ -31,6 +32,7 @@ export const input = {
   border: "var(--bsf-admin-input-border, 1px solid #d0d5dd)",
   borderRadius: "var(--bsf-admin-input-border-radius, 8px)",
   boxShadow: "var(--bsf-admin-input-box-shadow, 0px 1px 2px 0px #1018280D)",
+  color: "var(--bsf-admin-input-color, " + color.text + ")",
 };
 
 export const inputPicker = {
@@ -39,6 +41,7 @@ export const inputPicker = {
   border: "var(--bsf-admin-input-picker-border, 1px solid " + color.borderLight + ")",
   borderRadius: "var(--bsf-admin-input-picker-border-radius, 8px)",
   boxShadow: "var(--bsf-admin-input-picker-box-shadow, 0px 1px 2px 0px " + color.borderLight + ")",
+  color: "var(--bsf-admin-input-color, " + color.text + ")",
 };
 
 export const button = {
@@ -65,7 +68,7 @@ export const checkbox = {
   border: "var(--bsf-admin-checkbox-border, 1px solid " + color.foreground + ")",
   checkedBorderColor: "var(--bsf-admin-checkbox-checked-border-color, " + color.primary + ")",
   checkMarkSize: "var(--bsf-admin-checkbox-check-mark-size, 10px)",
-  checkMarkColor: "var(--bsf-admin-checkbox-check-mark-color, " + color.primary + ")",
+  checkMarkColor: "var(--bsf-admin-checkbox-check-mark-color, " + color.background + ")",
   checkBoxBoxShadow: "var(--bsf-admin-checkbox-box-shadow, inset 0 1px 2px #0000001a)",
 };
 
@@ -90,7 +93,7 @@ export const card = {
 };
 
 export const label = {
-  color: "var(--bsf-admin-label-color, #94a3b8)",
+  color: "var(--bsf-admin-label-color, " + color.mutedText + ")",
   fontSize: "var(--bsf-admin-label-font-size, 14px)",
   padding: "var(--bsf-admin-label-padding, 2px 6px)",
   border: "var(--bsf-admin-label-border, 1px solid " + color.borderLight + ")",
@@ -101,10 +104,13 @@ export const label = {
 };
 
 export const multiButton = {
-  background: "var(--bsf-admin-multi-button-background-color, " + color.primaryBackground + ")",
-  color: "var(--bsf-admin-multi-button-color, " + color.text + ")",
+  background: "var(--bsf-admin-multi-button-background-color, " + color.mutedBackground + ")",
+  color: "var(--bsf-admin-multi-button-color, " + color.mutedText + ")",
   hoverColor: "var(--bsf-admin-multi-button-hover-color, " + color.foreground + ")",
   fontSize: "var(--bsf-admin-multi-button-font-size, 14px)",
+
+  outlineActiveBackground:
+    "var(--bsf-admin-multi-button-outline-active-background, " + color.primaryBackground + ")",
   outlineBorder:
     "var(--bsf-admin-multi-button-outline-border, 1px solid " + color.borderLight + ")",
   outlineBorderRadius: "var(--bsf-admin-multi-button-outline-border-radius, 8px)",
@@ -120,7 +126,7 @@ export const radio = {
   gap: "var(--bsf-admin-radio-box-gap, 8px)",
   padding: "var(--bsf-admin-radio-box-padding, 12px 16px)",
   containerBorder: "var(--bsf-admin-radio-box-border, 1px solid #EAECF0)",
-  checkedBorder: "var(--bsf-admin-radio-box-checked-border, 1px solid #7F56D9)",
+  checkedBorder: "var(--bsf-admin-radio-box-checked-border, 1px solid " + color.primary + ")",
   borderRadius: "var(--bsf-admin-radio-box-border-radius, 6px)",
   size: "var(--bsf-admin-radio-box-size, 16px)",
   boxShadow: "var(--bsf-admin-radio-box-shadow, inset 0 1px 2px rgba(0, 0, 0, .1))",
@@ -128,7 +134,9 @@ export const radio = {
   borderColor: "var(--bsf-admin-radio-box-border-color, #8c8f94)",
 
   radioInnerSize: "var(--bsf-admin-radio-inner-size, 6px)",
-  backgroundColor: "var(--bsf-admin-radio-background-color, #7F56D9)",
+  backgroundColor: "var(--bsf-admin-radio-background-color, " + color.primary + ")",
+  checkBoxSize: "var(--bsf-admin-radio-check-box-size, 10px)",
+  checkMarkColor: "var(--bsf-admin-radio-check-mark-color, #FFFFFF)",
 };
 
 export const switchVar = {
@@ -200,16 +208,18 @@ export const header = {
 };
 
 export const uploader = {
-  inputPadding: "var(--bsf-admin-uploader-input-padding, 10px 14px)",
+  inputPadding: "var(--bsf-admin-uploader-input-padding, 12px 14px)",
   inputFontSize: "var(--bsf-admin-uploader-input-font-size, 15px)",
   inputBorder: "var(--bsf-admin-uploader-input-border, 1px solid " + color.borderLight + ")",
   inputBorderRadius: "var(--bsf-admin-uploader-input-border-radius, 8px)",
   inputBoxShadow:
     "var(--bsf-admin-uploader-input-box-shadow, 0px 1px 2px 0px " + color.borderLight + ")",
   inputColor: "var(--bsf-admin-uploader-input-color, " + color.text + ")",
-  buttonPadding: "var(--bsf-admin-uploader-button-padding, 10px 14px)",
+  buttonPadding: "var(--bsf-admin-uploader-button-padding, 10px 16px)",
   buttonBorderRadius: "var(--bsf-admin-uploader-button-border-radius, 6px)",
   buttonColor: "var(--bsf-admin-uploader-button-color, " + color.primary + ")",
   buttonBackgroundColor:
     "var(--bsf-admin-uploader-button-background-color, " + color.secondary + ")",
+  buttonFontSize: "var(--bsf-admin-uploader-button-font-size, 14px)",
+  buttonLineHeight: "var(--bsf-admin-uploader-button-line-height, 24px)",
 };

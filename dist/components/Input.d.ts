@@ -10,6 +10,7 @@ interface InputPropsTypes {
     props?: any;
     style?: React.CSSProperties;
     inputContainerStyle?: React.CSSProperties;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
     className?: string;
     inputProps?: any;
 }

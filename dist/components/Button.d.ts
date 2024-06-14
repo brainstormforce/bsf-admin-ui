@@ -6,6 +6,7 @@ type PropsType = {
     className?: string;
     style?: React.CSSProperties;
     size?: "small" | "medium" | "large";
+    isLoading?: boolean;
 };
 declare const Button: (props: PropsType) => React.JSX.Element;
 export default Button;

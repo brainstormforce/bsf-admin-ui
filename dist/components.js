@@ -1,6 +1,7 @@
 import * as React from 'react';
 import React__default, { forwardRef, useRef, useImperativeHandle, useState } from 'react';
 import { css, cx } from '@emotion/css';
+import { keyframes } from '@emotion/react';
 import Select from 'react-select';
 
 const color = {
@@ -14,6 +15,7 @@ const color = {
     foreground: "var(--bsf-admin-foreground, #020617)",
     text: "var(--bsf-admin-text, #475569)",
     muted: "var(--bsf-admin-muted, #64748B)",
+    mutedText: "var(--bsf-admin-muted-text, #94A3B8)",
     border: "var(--bsf-admin-border, #CBD5E1)",
     borderLight: "var(--bsf-admin-border-light, #E2E8F0)",
     alertInfo: "var(--bsf-admin-alert-info, #3B82F6)",
@@ -35,6 +37,7 @@ const input = {
     border: "var(--bsf-admin-input-border, 1px solid #d0d5dd)",
     borderRadius: "var(--bsf-admin-input-border-radius, 8px)",
     boxShadow: "var(--bsf-admin-input-box-shadow, 0px 1px 2px 0px #1018280D)",
+    color: "var(--bsf-admin-input-color, " + color.text + ")",
 };
 const inputPicker = {
     fontSize: "var(--bsf-admin-input-picker-font-size, 15px)",
@@ -42,6 +45,7 @@ const inputPicker = {
     border: "var(--bsf-admin-input-picker-border, 1px solid " + color.borderLight + ")",
     borderRadius: "var(--bsf-admin-input-picker-border-radius, 8px)",
     boxShadow: "var(--bsf-admin-input-picker-box-shadow, 0px 1px 2px 0px " + color.borderLight + ")",
+    color: "var(--bsf-admin-input-color, " + color.text + ")",
 };
 const button = {
     mediumFontSize: "var(--bsf-admin-button-medium-font-size, 14px)",
@@ -65,7 +69,7 @@ const checkbox = {
     border: "var(--bsf-admin-checkbox-border, 1px solid " + color.foreground + ")",
     checkedBorderColor: "var(--bsf-admin-checkbox-checked-border-color, " + color.primary + ")",
     checkMarkSize: "var(--bsf-admin-checkbox-check-mark-size, 10px)",
-    checkMarkColor: "var(--bsf-admin-checkbox-check-mark-color, " + color.primary + ")",
+    checkMarkColor: "var(--bsf-admin-checkbox-check-mark-color, " + color.background + ")",
     checkBoxBoxShadow: "var(--bsf-admin-checkbox-box-shadow, inset 0 1px 2px #0000001a)",
 };
 const textSizes = {
@@ -87,7 +91,7 @@ const card = {
     cardHeaderInfoIconColor: "var(--bsf-admin-card-header-info-icon-color, " + color.text + ")",
 };
 const label = {
-    color: "var(--bsf-admin-label-color, #94a3b8)",
+    color: "var(--bsf-admin-label-color, " + color.mutedText + ")",
     fontSize: "var(--bsf-admin-label-font-size, 14px)",
     padding: "var(--bsf-admin-label-padding, 2px 6px)",
     border: "var(--bsf-admin-label-border, 1px solid " + color.borderLight + ")",
@@ -97,10 +101,11 @@ const label = {
     largeSize: "var(--bsf-admin-label-large-size, 18px)",
 };
 const multiButton = {
-    background: "var(--bsf-admin-multi-button-background-color, " + color.primaryBackground + ")",
-    color: "var(--bsf-admin-multi-button-color, " + color.text + ")",
+    background: "var(--bsf-admin-multi-button-background-color, " + color.mutedBackground + ")",
+    color: "var(--bsf-admin-multi-button-color, " + color.mutedText + ")",
     hoverColor: "var(--bsf-admin-multi-button-hover-color, " + color.foreground + ")",
     fontSize: "var(--bsf-admin-multi-button-font-size, 14px)",
+    outlineActiveBackground: "var(--bsf-admin-multi-button-outline-active-background, " + color.primaryBackground + ")",
     outlineBorder: "var(--bsf-admin-multi-button-outline-border, 1px solid " + color.borderLight + ")",
     outlineBorderRadius: "var(--bsf-admin-multi-button-outline-border-radius, 8px)",
     outlinePadding: "var(--bsf-admin-multi-button-outline-padding, 10px 12px)",
@@ -113,14 +118,16 @@ const radio = {
     gap: "var(--bsf-admin-radio-box-gap, 8px)",
     padding: "var(--bsf-admin-radio-box-padding, 12px 16px)",
     containerBorder: "var(--bsf-admin-radio-box-border, 1px solid #EAECF0)",
-    checkedBorder: "var(--bsf-admin-radio-box-checked-border, 1px solid #7F56D9)",
+    checkedBorder: "var(--bsf-admin-radio-box-checked-border, 1px solid " + color.primary + ")",
     borderRadius: "var(--bsf-admin-radio-box-border-radius, 6px)",
     size: "var(--bsf-admin-radio-box-size, 16px)",
     boxShadow: "var(--bsf-admin-radio-box-shadow, inset 0 1px 2px rgba(0, 0, 0, .1))",
     innerBorder: "var(--bsf-admin-radio-box-inner-border, 1px solid #8c8f94)",
     borderColor: "var(--bsf-admin-radio-box-border-color, #8c8f94)",
     radioInnerSize: "var(--bsf-admin-radio-inner-size, 6px)",
-    backgroundColor: "var(--bsf-admin-radio-background-color, #7F56D9)",
+    backgroundColor: "var(--bsf-admin-radio-background-color, " + color.primary + ")",
+    checkBoxSize: "var(--bsf-admin-radio-check-box-size, 10px)",
+    checkMarkColor: "var(--bsf-admin-radio-check-mark-color, #FFFFFF)",
 };
 const switchVar = {
     smallWidth: "var(--bsf-admin-switch-small-width, 36px)",
@@ -149,8 +156,25 @@ const description = {
     gap: "var(--bsf-admin-description-gap, 6px)",
 };
 
+const icons = {
+    breadCrumb: (React__default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+        React__default.createElement("polyline", { points: "9 18 15 12 9 6" }))),
+    support: (React__default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 20 20", fill: "#ffffff", xmlns: "http://www.w3.org/2000/svg" },
+        React__default.createElement("path", { d: "M7.87891 5.51884C9.05048 4.49372 10.95 4.49372 12.1215 5.51884C13.2931 6.54397 13.2931 8.20603 12.1215 9.23116C11.9176 9.40958 11.6917 9.55695 11.4513 9.67326C10.7056 10.0341 10.0002 10.6716 10.0002 11.5V12.25M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10ZM10 15.25H10.0075V15.2575H10V15.25Z", stroke: "#475569", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" }))),
+    whatsNew: (React__default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 20 20", fill: "none" },
+        React__default.createElement("path", { d: "M9.16667 4.90182V16.0335C9.16667 16.8434 8.51008 17.5 7.70015 17.5C7.08038 17.5 6.52752 17.1104 6.31907 16.5267L4.53039 11.4024M15 10.8333C16.3807 10.8333 17.5 9.71404 17.5 8.33333C17.5 6.95262 16.3807 5.83333 15 5.83333M4.53039 11.4024C3.33691 10.8951 2.5 9.71194 2.5 8.33333C2.5 6.49238 3.99238 5 5.83333 5H7.36007C10.7773 5 13.7141 3.97159 15 2.5L15 14.1667C13.7141 12.6951 10.7773 11.6667 7.36007 11.6667L5.83331 11.6667C5.37098 11.6667 4.93064 11.5725 4.53039 11.4024Z", stroke: "#475569", "stroke-width": "1.4", "stroke-linecap": "round", "stroke-linejoin": "round" }))),
+    checkMark: (React__default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "9", height: "7", viewBox: "0 0 9 7", fill: "none" },
+        React__default.createElement("path", { d: "M8.87179 0.545513L8.45503 0.128761C8.28333 -0.0429202 8.00306 -0.0429202 7.82988 0.128761L3.45987 4.50027L1.17066 2.21107C0.998981 2.03937 0.718691 2.03937 0.545533 2.21107L0.128761 2.62782C-0.0429202 2.79952 -0.0429202 3.07979 0.128761 3.25295L3.14584 6.27C3.23242 6.35659 3.34393 6.40062 3.45693 6.40062C3.56994 6.40062 3.68292 6.35659 3.76805 6.27L8.86737 1.17066C9.04347 0.996046 9.04347 0.717233 8.87179 0.545513Z", fill: "currentColor" }))),
+    LoaderCircle: (React__default.createElement("svg", { "data-v-f6279e27": "", xmlns: "http://www.w3.org/2000/svg", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "stroke-width": "3", "stroke-linecap": "round", "stroke-linejoin": "round", height: 18, width: 18 },
+        React__default.createElement("path", { d: "M21 12a9 9 0 1 1-6.219-8.56" }))),
+    CircleAlert: (React__default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
+        React__default.createElement("circle", { cx: "12", cy: "12", r: "10" }),
+        React__default.createElement("line", { x1: "12", x2: "12", y1: "8", y2: "12" }),
+        React__default.createElement("line", { x1: "12", x2: "12.01", y1: "16", y2: "16" }))),
+};
+
 const Button = (props) => {
-    const { children, onClick, style, size = "medium" } = props;
+    const { children, onClick, style, size = "medium", isLoading = false } = props;
     const additionalStyle = style && typeof style === "object" ? style : {};
     const allUnset = css `
     all: unset;
@@ -179,7 +203,7 @@ const Button = (props) => {
             padding = button.mediumPadding;
             borderRadius = button.mediumBorderRadius;
     }
-    const baseCss = {
+    let baseCss = {
         cursor: "pointer",
         fontSize,
         padding,
@@ -188,15 +212,49 @@ const Button = (props) => {
         color: button.color,
         fontWeight: button.fontWeight,
         width: "fit-content",
+        display: "flex",
         "&:hover": {
             backgroundColor: button.hoverBackgroundColor,
             color: button.hoverColor,
         },
         ...additionalStyle,
     };
+    if (isLoading) {
+        const spin = keyframes `
+      to {
+        transform: rotate(360deg);
+      }
+    `;
+        const loadingCss = {
+            position: "absolute",
+            backgroundColor: "#ffffff80",
+            width: "100%",
+            left: 0,
+            height: "100%",
+            top: 0,
+            borderRadius,
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            "& > svg": {
+                animation: `${spin} 1s linear infinite`,
+            },
+        };
+        const loadingKey = "& > span";
+        baseCss = {
+            ...baseCss,
+            position: "relative",
+            cursor: "progress",
+            opacity: 0.7,
+            [loadingKey]: loadingCss,
+        };
+    }
     const completeStyle = css(baseCss);
+    const childrenContent = isLoading ? (React.createElement(React.Fragment, null,
+        React.createElement("span", null, icons.LoaderCircle),
+        children)) : (children);
     return (React.createElement(React.Fragment, null,
-        React.createElement("button", { onClick: onClick, className: cx(allUnset, completeStyle) }, children)));
+        React.createElement("button", { onClick: onClick, className: cx(allUnset, completeStyle) }, childrenContent)));
 };
 
 const Container = (props) => {
@@ -244,17 +302,6 @@ const Container = (props) => {
     const mainClass = css(styleObject);
     return (React__default.createElement(React__default.Fragment, null,
         React__default.createElement("div", { className: cx(mainClass, className), ...extraProps }, children)));
-};
-
-const icons = {
-    breadCrumb: (React__default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: "2", strokeLinecap: "round", strokeLinejoin: "round" },
-        React__default.createElement("polyline", { points: "9 18 15 12 9 6" }))),
-    support: (React__default.createElement("svg", { width: "20", height: "20", viewBox: "0 0 20 20", fill: "#ffffff", xmlns: "http://www.w3.org/2000/svg" },
-        React__default.createElement("path", { d: "M7.87891 5.51884C9.05048 4.49372 10.95 4.49372 12.1215 5.51884C13.2931 6.54397 13.2931 8.20603 12.1215 9.23116C11.9176 9.40958 11.6917 9.55695 11.4513 9.67326C10.7056 10.0341 10.0002 10.6716 10.0002 11.5V12.25M19 10C19 14.9706 14.9706 19 10 19C5.02944 19 1 14.9706 1 10C1 5.02944 5.02944 1 10 1C14.9706 1 19 5.02944 19 10ZM10 15.25H10.0075V15.2575H10V15.25Z", stroke: "#475569", "stroke-width": "1.5", "stroke-linecap": "round", "stroke-linejoin": "round" }))),
-    whatsNew: (React__default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "20", height: "20", viewBox: "0 0 20 20", fill: "none" },
-        React__default.createElement("path", { d: "M9.16667 4.90182V16.0335C9.16667 16.8434 8.51008 17.5 7.70015 17.5C7.08038 17.5 6.52752 17.1104 6.31907 16.5267L4.53039 11.4024M15 10.8333C16.3807 10.8333 17.5 9.71404 17.5 8.33333C17.5 6.95262 16.3807 5.83333 15 5.83333M4.53039 11.4024C3.33691 10.8951 2.5 9.71194 2.5 8.33333C2.5 6.49238 3.99238 5 5.83333 5H7.36007C10.7773 5 13.7141 3.97159 15 2.5L15 14.1667C13.7141 12.6951 10.7773 11.6667 7.36007 11.6667L5.83331 11.6667C5.37098 11.6667 4.93064 11.5725 4.53039 11.4024Z", stroke: "#475569", "stroke-width": "1.4", "stroke-linecap": "round", "stroke-linejoin": "round" }))),
-    checkMark: (React__default.createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "9", height: "7", viewBox: "0 0 9 7", fill: "none" },
-        React__default.createElement("path", { d: "M8.87179 0.545513L8.45503 0.128761C8.28333 -0.0429202 8.00306 -0.0429202 7.82988 0.128761L3.45987 4.50027L1.17066 2.21107C0.998981 2.03937 0.718691 2.03937 0.545533 2.21107L0.128761 2.62782C-0.0429202 2.79952 -0.0429202 3.07979 0.128761 3.25295L3.14584 6.27C3.23242 6.35659 3.34393 6.40062 3.45693 6.40062C3.56994 6.40062 3.68292 6.35659 3.76805 6.27L8.86737 1.17066C9.04347 0.996046 9.04347 0.717233 8.87179 0.545513Z", fill: "currentColor" }))),
 };
 
 const Label = ({ type, content, badgeSize = "medium", onClick, style = {}, icon_key, className, }) => {
@@ -321,7 +368,7 @@ const InfoCard = (props) => {
             color: color.foreground,
             fontWeight: 600,
             margin: 0,
-            lineHeight: 1,
+            lineHeight: 1.42,
         },
         "& h2": {
             fontSize: textSizes.h2,
@@ -360,6 +407,7 @@ const InfoCardContent = (props) => {
     if (title) {
         const headingStyle = css `
       min-width: ${card.width};
+      max-width: ${card.width};
     `;
         heading = React__default.createElement("h3", { className: headingStyle }, title);
     }
@@ -402,7 +450,7 @@ const MultiButtonControl = ({ controlStyle = "filled", width = "fit-content", on
                     borderRight: "none",
                 },
                 "&.active": {
-                    backgroundColor: backgroundColor,
+                    backgroundColor: multiButton.outlineActiveBackground,
                 },
             },
         };
@@ -549,13 +597,14 @@ const CheckboxWithLabel = ({ label, checked, onChange, disabled, gap = 8, style,
         "&.checkbox-checked": {
             "&> div": {
                 borderColor: checkbox.checkedBorderColor,
+                backgroundColor: checkbox.checkedBorderColor,
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 "> svg": {
                     height: checkbox.checkMarkSize,
                     width: checkbox.checkMarkSize,
-                    color: checkbox.checkedBorderColor,
+                    color: checkbox.checkMarkColor,
                 },
             },
         },
@@ -575,8 +624,7 @@ const CheckboxWithLabel = ({ label, checked, onChange, disabled, gap = 8, style,
         React__default.createElement("label", { onClick: () => handleChange() }, label)));
 };
 const Checkbox = ({ group, onChange, gap, columns, groupStyle, checkboxStyle, groupClassName = "", className = "", }) => {
-    return (React__default.createElement(Container, { padding: 10,
-        columns: columns,
+    return (React__default.createElement(Container, { columns: columns,
         gap: gap,
         style: groupStyle,
         className: groupClassName }, group.map((item) => (React__default.createElement(CheckboxWithLabel, { key: item.id, label: item.label, checked: item.checked, style: checkboxStyle, className: className, onChange: (checked) => {
@@ -602,6 +650,16 @@ const RadioLabel = ({ label, checked, onChange, disabled, radioBoxGap = radio.ga
         ...containerStyle,
         ...style,
     };
+    const radioStyleForRadio = radioType === "radio"
+        ? {
+            content: "''",
+            height: radio.radioInnerSize,
+            width: radio.radioInnerSize,
+            borderRadius: "50%",
+            display: "block",
+            backgroundColor: radio.backgroundColor,
+        }
+        : {};
     const radioStyle = css({
         input: {
             display: "none",
@@ -620,20 +678,16 @@ const RadioLabel = ({ label, checked, onChange, disabled, radioBoxGap = radio.ga
             "&> div": {
                 borderColor: radioType === "checkbox" ? "transparent" : radio.backgroundColor,
                 backgroundColor: radioType === "checkbox" ? radio.backgroundColor : "transparent",
-                "&::before": radioType === "radio"
-                    ? {
-                        content: "''",
-                        height: radio.radioInnerSize,
-                        width: radio.radioInnerSize,
-                        borderRadius: "50%",
-                        display: "block",
-                        backgroundColor: radio.backgroundColor,
-                    }
-                    : {},
+                "&::before": radioStyleForRadio,
             },
             "& label": {
                 color: radio.backgroundColor,
             },
+        },
+        " svg": {
+            height: radio.checkBoxSize,
+            width: radio.checkBoxSize,
+            color: radio.checkMarkColor,
         },
         label: {
             lineHeight: 1,
@@ -650,14 +704,14 @@ const RadioLabel = ({ label, checked, onChange, disabled, radioBoxGap = radio.ga
             onClick: () => handleChange(),
         } },
         React__default.createElement("input", { type: "radio", checked: checked, disabled: disabled }),
-        React__default.createElement("div", null, radioType === "checkbox" ? icons.checkMark : null),
+        React__default.createElement("div", null, radioType === "checkbox" && checked ? icons.checkMark : null),
         React__default.createElement("label", null, label)));
 };
-const Radio = ({ radioType = "radio", group, checked, onChange, gap, columns, groupStyle, radioBoxStyle, groupClassName = "", className = "", }) => {
+const Radio = ({ radioType = "radio", group, checked, onChange, gap, columns, groupStyle, radioBoxStyle, groupClassName = "", className = "", isMultiple = false, }) => {
     return (React__default.createElement(Container, { columns: columns,
         gap: gap,
         style: groupStyle,
-        className: groupClassName }, group.map((item) => (React__default.createElement(RadioLabel, { key: item.id, radioType: radioType, label: item.label, checked: checked === item.id, style: radioBoxStyle, className: className, onChange: () => {
+        className: groupClassName }, group.map((item) => (React__default.createElement(RadioLabel, { key: item.id, radioType: radioType, label: item.label, checked: checked === item.id || (isMultiple && item?.checked), style: radioBoxStyle, className: className, onChange: () => {
             if (onChange) {
                 onChange(item.id);
             }
@@ -665,7 +719,7 @@ const Radio = ({ radioType = "radio", group, checked, onChange, gap, columns, gr
 };
 
 const Input = (props) => {
-    const { type = "text", value = "", labelGap = 8, description = "", descriptionGap = 6, inputContainerStyle = {}, style = {}, className = "", inputProps, } = props;
+    const { type = "text", value = "", labelGap = 8, description = "", descriptionGap = 6, inputContainerStyle = {}, style = {}, className = "", inputProps, onChange = () => { }, } = props;
     const inputClassName = prefix() + "input";
     const cssKey = "& > input." + inputClassName + ", & > textarea." + inputClassName;
     const containerWithInputStyle = {
@@ -677,23 +731,24 @@ const Input = (props) => {
             position: "relative",
             borderRadius: input.borderRadius,
             boxShadow: input.boxShadow,
+            color: input.color,
             lineHeight: 1,
             minHeight: "unset",
+            margin: 0,
             ...style,
         },
     };
     const inputClassNames = inputClassName + (!className ? "" : " " + className);
     let inputContent;
     if (type === "textarea") {
-        inputContent = React__default.createElement("textarea", { ...inputProps, className: inputClassNames, value: value });
+        inputContent = React__default.createElement("textarea", { ...inputProps, className: inputClassNames, value: value, onChange: onChange });
     }
     else {
-        inputContent = React__default.createElement("input", { ...inputProps, className: inputClassNames, type: type, value: value });
+        inputContent = React__default.createElement("input", { ...inputProps, className: inputClassNames, type: type, value: value, onChange: onChange });
     }
     return (React__default.createElement(WithDescription, { gap: descriptionGap,
         description },
         React__default.createElement(Container, { gap: labelGap,
-            padding: 10,
             style: containerWithInputStyle }, inputContent)));
 };
 
@@ -792,6 +847,8 @@ const VariablePicker = (props) => {
             position: "relative",
             lineHeight: 1,
             minHeight: "unset",
+            color: inputPicker.color,
+            margin: 0,
             ...inputStyle,
         },
     });
@@ -806,4 +863,40 @@ const VariablePicker = (props) => {
             } }))));
 };
 
-export { Button, Checkbox, Container, InfoCard, InfoCardContent, Input, VariablePicker as InputPicker, Label, MultiButtonControl as MultiButton, Radio, Switch };
+const Notice = (props) => {
+    const { style = {}, children, className = "" } = props;
+    const svgKey = "& > svg";
+    const spanKey = "& > span";
+    const anchorKey = "& > a";
+    let containerStyle = {
+        backgroundColor: "#EFF6FF",
+        borderRadius: "6px",
+        border: "1px solid var(--blue-300, #93C5FD)",
+        boxShadow: "0px 1px 2px 0px #1018280D",
+        [svgKey]: {
+            height: "20px",
+            width: "20px",
+            color: "#1D4ED8",
+        },
+        [spanKey]: {
+            fontFamily: "Inter",
+            fontSize: "14px",
+            fontWeight: 400,
+            lineHeight: "18px",
+            [anchorKey]: {
+                textDecoration: "underline",
+                fontWeight: 500,
+            },
+        },
+    };
+    return (React__default.createElement(Container, { gap: 12,
+        alignItems: "center",
+        containerType: "flex",
+        padding: 12,
+        style: { ...containerStyle, ...style },
+        className: className },
+        icons.CircleAlert,
+        React__default.createElement("span", null, children)));
+};
+
+export { Button, Checkbox, Container, InfoCard, InfoCardContent, Input, VariablePicker as InputPicker, Label, MultiButtonControl as MultiButton, Notice, Radio, Switch };

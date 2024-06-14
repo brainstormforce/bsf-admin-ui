@@ -3,6 +3,7 @@ interface RadioGroupProps {
     group: {
         id: string;
         label: React.ReactNode;
+        checked?: boolean;
     }[];
     checked?: string;
     onChange?: (checked: string) => void;
@@ -14,6 +15,7 @@ interface RadioGroupProps {
     className?: string;
     groupClassName?: string;
     radioType?: "radio" | "checkbox";
+    isMultiple?: boolean;
 }
 declare const Radio: React.FC<RadioGroupProps>;
 export default Radio;

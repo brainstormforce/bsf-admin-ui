@@ -61,7 +61,7 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
           borderRight: "none",
         },
         "&.active": {
-          backgroundColor: backgroundColor,
+          backgroundColor: multiButtonVars.outlineActiveBackground,
         },
       },
     };

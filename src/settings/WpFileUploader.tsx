@@ -1,5 +1,5 @@
-import React, { useRef, useEffect } from "react";
-import { css } from "@emotion/css";
+import React, { useRef, useEffect, useState } from "react";
+import { css, cx } from "@emotion/css";
 import { prefix } from "bsf-admin-ui/utility/utils";
 import { uploader as uploaderVars } from "bsf-admin-ui/css-variables";
 
@@ -10,10 +10,21 @@ interface WpFileUploaderProps {
   uploadButtonText: string;
   containerClassName?: string;
   onSelect: (imageObject: { url: string } | null) => void;
+  onInputChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+  value?: string;
+  render?: (openModal: () => void) => React.ReactNode | null;
 }
 
 const WpFileUploader: React.FC<WpFileUploaderProps> = (props) => {
-  const { frameButtonTitle, frameHeaderTitle, uploadButtonText, onSelect } = props;
+  const {
+    frameButtonTitle,
+    frameHeaderTitle,
+    uploadButtonText,
+    onSelect,
+    value,
+    onInputChange = () => {},
+    render = null,
+  } = props;
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const openMediaUploader = () => {
@@ -44,16 +55,18 @@ const WpFileUploader: React.FC<WpFileUploaderProps> = (props) => {
       return;
     }
 
-    if (buttonRef.current) {
-      buttonRef.current.addEventListener("click", openMediaUploader);
+    const buttonElement = buttonRef.current;
+
+    if (buttonElement) {
+      buttonElement.addEventListener("click", openMediaUploader);
     }
 
     return () => {
-      if (buttonRef.current) {
-        buttonRef.current.removeEventListener("click", openMediaUploader);
+      if (buttonElement) {
+        buttonElement.removeEventListener("click", openMediaUploader);
       }
     };
-  }, []);
+  }, [frameButtonTitle, frameHeaderTitle, onSelect]);
 
   if (!(window as any)?.wp?.media) {
     return (
@@ -63,40 +76,48 @@ const WpFileUploader: React.FC<WpFileUploaderProps> = (props) => {
     );
   }
 
+  // If the render prop is provided, render the custom component.
+  if (render) {
+    return render(openMediaUploader);
+  }
+
   const containerClass = prefix() + "-file-uploader";
 
   const containerStyle = css({
-    all: "unset",
     display: "flex",
     justifyContent: "space-between",
     alignItems: "center",
     fontWeight: 500,
-    cursor: "pointer",
     width: "100%",
     gridGap: "14px",
-    "> span": {
+    "&> input": {
       padding: uploaderVars.inputPadding,
-      "&:first-child": {
-        flex: 1,
-        fontSize: uploaderVars.inputFontSize,
-        color: uploaderVars.inputColor,
-        boxShadow: uploaderVars.inputBoxShadow,
-        border: uploaderVars.inputBorder,
-        borderRadius: uploaderVars.inputBorderRadius,
-      },
-      "&:last-child": {
-        backgroundColor: uploaderVars.buttonBackgroundColor,
-        color: uploaderVars.buttonColor,
-        borderRadius: uploaderVars.buttonBorderRadius,
-        padding: uploaderVars.buttonPadding,
-      },
+      flex: 1,
+      fontSize: uploaderVars.inputFontSize,
+      color: uploaderVars.inputColor,
+      boxShadow: uploaderVars.inputBoxShadow,
+      border: uploaderVars.inputBorder,
+      borderRadius: uploaderVars.inputBorderRadius,
+      margin: 0,
+      lineHeight: 1,
+    },
+    "&> button": {
+      all: "unset",
+      backgroundColor: uploaderVars.buttonBackgroundColor,
+      color: uploaderVars.buttonColor,
+      borderRadius: uploaderVars.buttonBorderRadius,
+      padding: uploaderVars.buttonPadding,
+      fontSize: uploaderVars.buttonFontSize,
+      lineHeight: uploaderVars.buttonLineHeight,
+      cursor: "pointer",
     },
   });
+  
   return (
-    <div className={containerClass}>
-      <button className={containerStyle} ref={buttonRef} aria-label="Upload file">
-        <span className="surerank-seo-popup-upload-input-area">Choose file</span>
-        <span className="surerank-seo-popup-upload-button">{uploadButtonText}</span>
+    <div className={cx(containerClass, containerStyle)}>
+      <input type="text" value={value} onChange={onInputChange} />
+      <button ref={buttonRef} aria-label="Upload file">
+        {uploadButtonText}
       </button>
     </div>
   );

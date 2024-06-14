@@ -9,6 +9,7 @@ export declare const color: {
     foreground: string;
     text: string;
     muted: string;
+    mutedText: string;
     border: string;
     borderLight: string;
     alertInfo: string;
@@ -30,6 +31,7 @@ export declare const input: {
     border: string;
     borderRadius: string;
     boxShadow: string;
+    color: string;
 };
 export declare const inputPicker: {
     fontSize: string;
@@ -37,6 +39,7 @@ export declare const inputPicker: {
     border: string;
     borderRadius: string;
     boxShadow: string;
+    color: string;
 };
 export declare const button: {
     mediumFontSize: string;
@@ -96,6 +99,7 @@ export declare const multiButton: {
     color: string;
     hoverColor: string;
     fontSize: string;
+    outlineActiveBackground: string;
     outlineBorder: string;
     outlineBorderRadius: string;
     outlinePadding: string;
@@ -116,6 +120,8 @@ export declare const radio: {
     borderColor: string;
     radioInnerSize: string;
     backgroundColor: string;
+    checkBoxSize: string;
+    checkMarkColor: string;
 };
 export declare const switchVar: {
     smallWidth: string;
@@ -181,4 +187,6 @@ export declare const uploader: {
     buttonBorderRadius: string;
     buttonColor: string;
     buttonBackgroundColor: string;
+    buttonFontSize: string;
+    buttonLineHeight: string;
 };

@@ -47,7 +47,7 @@ export const InfoCard = (props: propsType) => {
       color: colorsVar.foreground,
       fontWeight: 600,
       margin: 0,
-      lineHeight: 1,
+      lineHeight: 1.42,
     },
     "& h2": {
       fontSize: textSizes.h2,
@@ -107,6 +107,7 @@ export const InfoCardContent = (props: InfoCardProps) => {
   if (title) {
     const headingStyle = css`
       min-width: ${cardVars.width};
+      max-width: ${cardVars.width};
     `;
     heading = <h3 className={headingStyle}>{title}</h3>;
   }

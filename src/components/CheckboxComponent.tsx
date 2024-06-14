@@ -44,13 +44,14 @@ const CheckboxWithLabel: React.FC<CheckboxProps> = ({
     "&.checkbox-checked": {
       "&> div": {
         borderColor: checkboxVars.checkedBorderColor,
+        backgroundColor: checkboxVars.checkedBorderColor,
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
         "> svg": {
           height: checkboxVars.checkMarkSize,
           width: checkboxVars.checkMarkSize,
-          color: checkboxVars.checkedBorderColor,
+          color: checkboxVars.checkMarkColor,
         },
       },
     },
@@ -112,7 +113,6 @@ const Checkbox: React.FC<CheckboxGroupProps> = ({
   return (
     <Container
       {...{
-        padding: 10,
         columns: columns,
         gap: gap,
         style: groupStyle,
