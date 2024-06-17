@@ -20,7 +20,7 @@ interface NavRightContent {
 }
 interface HeaderProps {
     children: React.ReactNode;
-    logo: string;
+    logo: React.ReactNode;
     className: string;
     breadcrumbs: Array<{
         title: React.ReactNode;
