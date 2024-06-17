@@ -30,7 +30,7 @@ interface NavRightContent {
 // Create component interface for Header component
 interface HeaderProps {
   children: React.ReactNode;
-  logo: string;
+  logo: React.ReactNode;
   className: string;
   breadcrumbs: Array<{
     title: React.ReactNode;

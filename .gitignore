@@ -1,2 +1,4 @@
 node_modules
 /lib
+*storybook.log
+config.bat
