@@ -59,9 +59,19 @@ const Input = (props: InputPropsTypes) => {
   let inputContent;
 
   if (type === "textarea") {
-    inputContent = <textarea {...inputProps} className={inputClassNames} value={value} onChange={onChange} />;
+    inputContent = (
+      <textarea {...inputProps} className={inputClassNames} value={value} onChange={onChange} />
+    );
   } else {
-    inputContent = <input {...inputProps} className={inputClassNames} type={type} value={value} onChange={onChange}/>;
+    inputContent = (
+      <input
+        {...inputProps}
+        className={inputClassNames}
+        type={type}
+        value={value}
+        onChange={onChange}
+      />
+    );
   }
 
   return (

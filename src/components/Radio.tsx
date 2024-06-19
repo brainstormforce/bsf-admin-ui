@@ -43,16 +43,17 @@ const RadioLabel: React.FC<RadioProps> = ({
     ...style,
   };
 
-  const radioStyleForRadio = radioType === "radio"
-  ? {
-      content: "''",
-      height: radioVars.radioInnerSize,
-      width: radioVars.radioInnerSize,
-      borderRadius: "50%",
-      display: "block",
-      backgroundColor: radioVars.backgroundColor,
-    }
-  : {};
+  const radioStyleForRadio =
+    radioType === "radio"
+      ? {
+          content: "''",
+          height: radioVars.radioInnerSize,
+          width: radioVars.radioInnerSize,
+          borderRadius: "50%",
+          display: "block",
+          backgroundColor: radioVars.backgroundColor,
+        }
+      : {};
 
   const radioStyle = css({
     input: {

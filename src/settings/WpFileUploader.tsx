@@ -112,7 +112,7 @@ const WpFileUploader: React.FC<WpFileUploaderProps> = (props) => {
       cursor: "pointer",
     },
   });
-  
+
   return (
     <div className={cx(containerClass, containerStyle)}>
       <input type="text" value={value} onChange={onInputChange} />

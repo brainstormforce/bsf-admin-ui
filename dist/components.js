@@ -871,7 +871,7 @@ const Notice = (props) => {
     let containerStyle = {
         backgroundColor: "#EFF6FF",
         borderRadius: "6px",
-        border: "1px solid var(--blue-300, #93C5FD)",
+        border: "1px solid #93C5FD",
         boxShadow: "0px 1px 2px 0px #1018280D",
         [svgKey]: {
             height: "20px",
@@ -880,12 +880,14 @@ const Notice = (props) => {
         },
         [spanKey]: {
             fontFamily: "Inter",
-            fontSize: "14px",
+            fontSize: "12px",
             fontWeight: 400,
-            lineHeight: "18px",
+            lineHeight: "1.4",
+            color: "#1D4ED8",
             [anchorKey]: {
                 textDecoration: "underline",
                 fontWeight: 500,
+                color: "#1D4ED8",
             },
         },
     };
