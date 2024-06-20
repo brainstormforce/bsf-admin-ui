@@ -1,3 +1,5 @@
+Contributing
+
 # Contributing
 
 Thanks for your interest in contributing to bsf-admin-ui. We're happy to have you here.
