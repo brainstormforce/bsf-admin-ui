@@ -113,6 +113,7 @@ export declare const radio: {
     padding: string;
     containerBorder: string;
     checkedBorder: string;
+    radioCheckedBorder: string;
     borderRadius: string;
     size: string;
     boxShadow: string;

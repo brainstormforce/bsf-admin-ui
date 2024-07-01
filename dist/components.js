@@ -119,6 +119,7 @@ const radio = {
     padding: "var(--bsf-admin-radio-box-padding, 12px 16px)",
     containerBorder: "var(--bsf-admin-radio-box-border, 1px solid #EAECF0)",
     checkedBorder: "var(--bsf-admin-radio-box-checked-border, 1px solid " + color.primary + ")",
+    radioCheckedBorder: "var(--bsf-admin-radio-box-checked-border, 5px solid " + color.primary + ")",
     borderRadius: "var(--bsf-admin-radio-box-border-radius, 6px)",
     size: "var(--bsf-admin-radio-box-size, 16px)",
     boxShadow: "var(--bsf-admin-radio-box-shadow, inset 0 1px 2px rgba(0, 0, 0, .1))",
@@ -650,16 +651,7 @@ const RadioLabel = ({ label, checked, onChange, disabled, radioBoxGap = radio.ga
         ...containerStyle,
         ...style,
     };
-    const radioStyleForRadio = radioType === "radio"
-        ? {
-            content: "''",
-            height: radio.radioInnerSize,
-            width: radio.radioInnerSize,
-            borderRadius: "50%",
-            display: "block",
-            backgroundColor: radio.backgroundColor,
-        }
-        : {};
+    const radioCheckboxChecked = radioType === "checkbox" ? { borderColor: radio.backgroundColor } : { border: radio.radioCheckedBorder };
     const radioStyle = css({
         input: {
             display: "none",
@@ -676,9 +668,8 @@ const RadioLabel = ({ label, checked, onChange, disabled, radioBoxGap = radio.ga
         },
         "&.radio-checked": {
             "&> div": {
-                borderColor: radioType === "checkbox" ? "transparent" : radio.backgroundColor,
                 backgroundColor: radioType === "checkbox" ? radio.backgroundColor : "transparent",
-                "&::before": radioStyleForRadio,
+                ...radioCheckboxChecked,
             },
             "& label": {
                 color: radio.backgroundColor,
@@ -741,10 +732,10 @@ const Input = (props) => {
     const inputClassNames = inputClassName + (!className ? "" : " " + className);
     let inputContent;
     if (type === "textarea") {
-        inputContent = React__default.createElement("textarea", { ...inputProps, className: inputClassNames, value: value, onChange: onChange });
+        inputContent = (React__default.createElement("textarea", { ...inputProps, className: inputClassNames, value: value, onChange: onChange }));
     }
     else {
-        inputContent = React__default.createElement("input", { ...inputProps, className: inputClassNames, type: type, value: value, onChange: onChange });
+        inputContent = (React__default.createElement("input", { ...inputProps, className: inputClassNames, type: type, value: value, onChange: onChange }));
     }
     return (React__default.createElement(WithDescription, { gap: descriptionGap,
         description },
@@ -868,7 +859,7 @@ const Notice = (props) => {
     const svgKey = "& > svg";
     const spanKey = "& > span";
     const anchorKey = "& > a";
-    let containerStyle = {
+    const containerStyle = {
         backgroundColor: "#EFF6FF",
         borderRadius: "6px",
         border: "1px solid #93C5FD",
@@ -901,4 +892,4 @@ const Notice = (props) => {
         React__default.createElement("span", null, children)));
 };
 
-export { Button, Checkbox, Container, InfoCard, InfoCardContent, Input, VariablePicker as InputPicker, Label, MultiButtonControl as MultiButton, Notice, Radio, Switch };
+export { Button, Checkbox, Container, InfoCard, InfoCardContent, Input, VariablePicker as InputPicker, Label, MultiButtonControl as MultiButton, Notice, Radio, Switch, WithDescription };

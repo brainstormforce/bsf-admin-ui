@@ -127,6 +127,8 @@ export const radio = {
   padding: "var(--bsf-admin-radio-box-padding, 12px 16px)",
   containerBorder: "var(--bsf-admin-radio-box-border, 1px solid #EAECF0)",
   checkedBorder: "var(--bsf-admin-radio-box-checked-border, 1px solid " + color.primary + ")",
+
+  radioCheckedBorder : "var(--bsf-admin-radio-box-checked-border, 5px solid " + color.primary + ")",
   borderRadius: "var(--bsf-admin-radio-box-border-radius, 6px)",
   size: "var(--bsf-admin-radio-box-size, 16px)",
   boxShadow: "var(--bsf-admin-radio-box-shadow, inset 0 1px 2px rgba(0, 0, 0, .1))",
