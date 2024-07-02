@@ -15,6 +15,9 @@ interface MultiButtonControlProps {
   color?: string;
   hoverColor?: string;
   className?: string;
+  containerStyle?: React.CSSProperties;
+  itemStyle?: React.CSSProperties;
+  itemActiveStyle?: React.CSSProperties;
 }
 
 const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
@@ -27,6 +30,9 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
   color = multiButtonVars.color,
   hoverColor = multiButtonVars.hoverColor,
   className = "",
+  containerStyle = {},
+  itemStyle = {},
+  itemActiveStyle = {},
 }) => {
   let containerClass = "bsf-multi-button-control";
 
@@ -57,11 +63,13 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
         color: color,
         borderRight: multiButtonVars.outlineBorder,
         ...buttonItemCss,
+        ...itemStyle,
         "&:last-child": {
           borderRight: "none",
         },
         "&.active": {
           backgroundColor: multiButtonVars.outlineActiveBackground,
+          ...itemActiveStyle,
         },
       },
     };
@@ -77,10 +85,11 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
         backgroundColor: "transparent",
         borderRadius: multiButtonVars.filledBorderRadiusInner,
         ...buttonItemCss,
-
+        ...itemStyle,
         "&.active": {
           color: hoverColor,
           backgroundColor: colorsVar.background,
+          ...itemActiveStyle,
         },
       },
     };
@@ -100,6 +109,11 @@ const MultiButtonControl: React.FC<MultiButtonControlProps> = ({
             width: "fit-content",
           },
         };
+
+    buttonCss = {
+      ...buttonCss,
+      ...containerStyle,
+    };
 
   const buttonItemClass = (id: string) =>
     "bsf-multi-button-control__item" + (activeItem === id ? " active" : "");

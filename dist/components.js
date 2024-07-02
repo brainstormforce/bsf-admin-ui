@@ -422,7 +422,7 @@ const InfoCardContent = (props) => {
             } }, children)));
 };
 
-const MultiButtonControl = ({ controlStyle = "filled", width = "fit-content", onClick, activeItem, items, backgroundColor = multiButton.background, color: color$1 = multiButton.color, hoverColor = multiButton.hoverColor, className = "", }) => {
+const MultiButtonControl = ({ controlStyle = "filled", width = "fit-content", onClick, activeItem, items, backgroundColor = multiButton.background, color: color$1 = multiButton.color, hoverColor = multiButton.hoverColor, className = "", containerStyle = {}, itemStyle = {}, itemActiveStyle = {}, }) => {
     let containerClass = "bsf-multi-button-control";
     // If the className prop is passed, add it to the containerClass
     if (className) {
@@ -447,11 +447,13 @@ const MultiButtonControl = ({ controlStyle = "filled", width = "fit-content", on
                 color: color$1,
                 borderRight: multiButton.outlineBorder,
                 ...buttonItemCss,
+                ...itemStyle,
                 "&:last-child": {
                     borderRight: "none",
                 },
                 "&.active": {
                     backgroundColor: multiButton.outlineActiveBackground,
+                    ...itemActiveStyle,
                 },
             },
         };
@@ -467,9 +469,11 @@ const MultiButtonControl = ({ controlStyle = "filled", width = "fit-content", on
                 backgroundColor: "transparent",
                 borderRadius: multiButton.filledBorderRadiusInner,
                 ...buttonItemCss,
+                ...itemStyle,
                 "&.active": {
                     color: hoverColor,
                     backgroundColor: color.background,
+                    ...itemActiveStyle,
                 },
             },
         };
@@ -488,6 +492,10 @@ const MultiButtonControl = ({ controlStyle = "filled", width = "fit-content", on
                     width: "fit-content",
                 },
             };
+    buttonCss = {
+        ...buttonCss,
+        ...containerStyle,
+    };
     const buttonItemClass = (id) => "bsf-multi-button-control__item" + (activeItem === id ? " active" : "");
     return (React__default.createElement(Container, { columns: items.length,
         className: containerClass,

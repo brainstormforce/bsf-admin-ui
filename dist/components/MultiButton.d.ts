@@ -12,6 +12,9 @@ interface MultiButtonControlProps {
     color?: string;
     hoverColor?: string;
     className?: string;
+    containerStyle?: React.CSSProperties;
+    itemStyle?: React.CSSProperties;
+    itemActiveStyle?: React.CSSProperties;
 }
 declare const MultiButtonControl: React.FC<MultiButtonControlProps>;
 export default MultiButtonControl;
