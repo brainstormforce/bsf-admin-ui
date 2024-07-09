@@ -49,10 +49,10 @@ const Header: React.FC<HeaderProps> = ({ logo, breadcrumbs, navRightContent, cla
   let breadCrumbsContent = null;
   if (breadcrumbs?.length > 0) {
     breadCrumbsContent = breadcrumbs.map((breadcrumb, index) => (
-      <>
+      <React.Fragment key={index}>
         {ICONS.breadCrumb}
         <span key={index}>{breadcrumb.title}</span>
-      </>
+      </React.Fragment>
     ));
 
     // Add css for the breadcrumbs.
