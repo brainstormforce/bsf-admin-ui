@@ -11,3 +11,4 @@ export { default as Input } from "./Input";
 export { default as InputPicker } from "./InputPicker";
 export { default as Notice } from "./Notice";
 export { default as WithDescription } from "./WithDescription";
+export { default as InputSelect } from "./InputSelect";
