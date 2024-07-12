@@ -848,6 +848,7 @@ const VariablePicker = (props) => {
             minHeight: "unset",
             color: inputPicker.color,
             margin: 0,
+            width: "100%",
             ...inputStyle,
         },
     });
