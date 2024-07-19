@@ -8,7 +8,7 @@ export default defineConfig([
       format: "es",
       name: "bsf-admin-ui",
     },
-    external: ["react", "react-dom"],
+    external: ["react", "react-dom", "@emotion/css"],
     plugins: [
       typescript({
         tsconfig: "tsconfig.json",
@@ -22,7 +22,7 @@ export default defineConfig([
       format: "es",
       name: "bsf-admin-ui",
     },
-    external: ["react", "react-dom"],
+    external: ["react", "react-dom", "@emotion/css"],
     plugins: [
       typescript({
         tsconfig: "tsconfig.json",
@@ -36,7 +36,7 @@ export default defineConfig([
       format: "es",
       name: "bsf-admin-ui",
     },
-    external: ["react", "react-dom"],
+    external: ["react", "react-dom", "@emotion/css"],
     plugins: [
       typescript({
         tsconfig: "tsconfig.json",

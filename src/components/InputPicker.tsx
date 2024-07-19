@@ -170,6 +170,9 @@ const VariablePicker = (props: VariablePickerProps) => {
       position: "relative",
       lineHeight: 1,
       minHeight: "unset",
+      color: inputPickerVars.color,
+      margin: 0,
+      width: "100%",
       ...inputStyle,
     },
   });

@@ -47,7 +47,7 @@ export const InfoCard = (props: propsType) => {
       color: colorsVar.foreground,
       fontWeight: 600,
       margin: 0,
-      lineHeight: 1,
+      lineHeight: 1.42,
     },
     "& h2": {
       fontSize: textSizes.h2,
@@ -67,11 +67,17 @@ export const InfoCard = (props: propsType) => {
       display: "flex",
       alignItems: "center",
       gap: cardVars.cardHeaderGap,
+      "& > span >svg": {
+        color: cardVars.cardHeaderInfoIconColor,
+        height: cardVars.cardHeaderInfoIconSize,
+        width: cardVars.cardHeaderInfoIconSize,
+      },
     });
+
     header = (
       <div className={headerStyle}>
         <h2>{title}</h2>
-        {!disableInfoIcon && <span>{infoIcon ? infoIcon : "?"}</span>}
+        {!disableInfoIcon && <span className="">{infoIcon ? infoIcon : "?"}</span>}
       </div>
     );
   }
@@ -101,6 +107,7 @@ export const InfoCardContent = (props: InfoCardProps) => {
   if (title) {
     const headingStyle = css`
       min-width: ${cardVars.width};
+      max-width: ${cardVars.width};
     `;
     heading = <h3 className={headingStyle}>{title}</h3>;
   }

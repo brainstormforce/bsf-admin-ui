@@ -1,7 +1,7 @@
 import React from "react";
 import Container from "./Container";
 import WithDescription from "./WithDescription";
-import { input as inputValues } from "../css-variables";
+import { color, input as inputValues } from "../css-variables";
 import { prefix } from "../utility/utils";
 
 interface InputPropsTypes {
@@ -15,6 +15,7 @@ interface InputPropsTypes {
   props?: any;
   style?: React.CSSProperties;
   inputContainerStyle?: React.CSSProperties;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   className?: string;
   inputProps?: any;
 }
@@ -30,6 +31,7 @@ const Input = (props: InputPropsTypes) => {
     style = {},
     className = "",
     inputProps,
+    onChange = () => {},
   } = props;
 
   const inputClassName: string = prefix() + "input";
@@ -44,8 +46,10 @@ const Input = (props: InputPropsTypes) => {
       position: "relative",
       borderRadius: inputValues.borderRadius,
       boxShadow: inputValues.boxShadow,
+      color: inputValues.color,
       lineHeight: 1,
       minHeight: "unset",
+      margin: 0,
       ...style,
     },
   };
@@ -55,9 +59,19 @@ const Input = (props: InputPropsTypes) => {
   let inputContent;
 
   if (type === "textarea") {
-    inputContent = <textarea {...inputProps} className={inputClassNames} value={value} />;
+    inputContent = (
+      <textarea {...inputProps} className={inputClassNames} value={value} onChange={onChange} />
+    );
   } else {
-    inputContent = <input {...inputProps} className={inputClassNames} type={type} value={value} />;
+    inputContent = (
+      <input
+        {...inputProps}
+        className={inputClassNames}
+        type={type}
+        value={value}
+        onChange={onChange}
+      />
+    );
   }
 
   return (
@@ -70,7 +84,6 @@ const Input = (props: InputPropsTypes) => {
       <Container
         {...{
           gap: labelGap,
-          padding: 10,
           style: containerWithInputStyle,
         }}
       >

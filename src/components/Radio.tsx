@@ -43,6 +43,8 @@ const RadioLabel: React.FC<RadioProps> = ({
     ...style,
   };
 
+  const radioCheckboxChecked = radioType === "checkbox" ? { borderColor: radioVars.backgroundColor } : { border : radioVars.radioCheckedBorder };
+
   const radioStyle = css({
     input: {
       display: "none",
@@ -59,23 +61,17 @@ const RadioLabel: React.FC<RadioProps> = ({
     },
     "&.radio-checked": {
       "&> div": {
-        borderColor: radioType === "checkbox" ? "transparent" : radioVars.backgroundColor,
         backgroundColor: radioType === "checkbox" ? radioVars.backgroundColor : "transparent",
-        "&::before":
-          radioType === "radio"
-            ? {
-                content: "''",
-                height: radioVars.radioInnerSize,
-                width: radioVars.radioInnerSize,
-                borderRadius: "50%",
-                display: "block",
-                backgroundColor: radioVars.backgroundColor,
-              }
-            : {},
+        ...radioCheckboxChecked,
       },
       "& label": {
         color: radioVars.backgroundColor,
       },
+    },
+    " svg": {
+      height: radioVars.checkBoxSize,
+      width: radioVars.checkBoxSize,
+      color: radioVars.checkMarkColor,
     },
     label: {
       lineHeight: 1,
@@ -103,7 +99,7 @@ const RadioLabel: React.FC<RadioProps> = ({
       }}
     >
       <input type="radio" checked={checked} disabled={disabled} />
-      <div>{radioType === "checkbox" ? ICONS.checkMark : null}</div>
+      <div>{radioType === "checkbox" && checked ? ICONS.checkMark : null}</div>
       <label>{label}</label>
     </Container>
   );
@@ -113,6 +109,7 @@ interface RadioGroupProps {
   group: {
     id: string;
     label: React.ReactNode;
+    checked?: boolean;
   }[];
   checked?: string; // Checked id
   onChange?: (checked: string) => void;
@@ -124,6 +121,7 @@ interface RadioGroupProps {
   className?: string;
   groupClassName?: string;
   radioType?: "radio" | "checkbox";
+  isMultiple?: boolean;
 }
 
 const Radio: React.FC<RadioGroupProps> = ({
@@ -137,6 +135,7 @@ const Radio: React.FC<RadioGroupProps> = ({
   radioBoxStyle,
   groupClassName = "",
   className = "",
+  isMultiple = false,
 }) => {
   return (
     <Container
@@ -152,7 +151,7 @@ const Radio: React.FC<RadioGroupProps> = ({
           key={item.id}
           radioType={radioType}
           label={item.label}
-          checked={checked === item.id}
+          checked={checked === item.id || (isMultiple && item?.checked)}
           style={radioBoxStyle}
           className={className}
           onChange={() => {
