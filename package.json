@@ -1,75 +1,15 @@
 {
-  "name": "bsf-admin-ui",
-  "version": "1.0.0",
-  "description": "Library of components for the BSF project",
-  "type": "module",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npx rollup -c",
-    "start": "rollup -c -w",
-    "pretty-fix": "prettier --write .",
-    "pretty-lint": "prettier --check .",
-    "ts-lint": "eslint .",
-    "ts-lint-fix": "eslint --fix ."
-  },
+  "name": "@brainstormforce/force-ui",
+  "version": "1.7.7",
+  "description": "UI Library for BrainstormForce projects",
+  "main": "./dist/force-ui.cjs.js",
+  "module": "./dist/force-ui.es.js",
+  "types": "./dist/force-ui.d.ts",
+  "files": [
+    "dist"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/rahulvarma722/bsf-admin-ui.git"
-  },
-  "volta": {
-    "node": "18.15.0"
-  },
-  "keywords": [
-    "bsf",
-    "components",
-    "library"
-  ],
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "@emotion/css": "^11.11.2",
-    "@rollup/plugin-babel": "^6.0.4",
-    "@rollup/plugin-typescript": "^11.1.6",
-    "@types/react": "^18.2.58",
-    "@types/react-select": "^5.0.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
-    "rollup": "^4.12.0",
-    "tslib": "^2.6.2"
-  },
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./index.js": {
-      "import": "./dist/index.js",
-      "types": "./dist/index.d.ts"
-    },
-    "./components": {
-      "types": "./dist/components.d.ts",
-      "default": "./dist/components.js"
-    },
-    "./components.js": {
-      "types": "./dist/components.d.ts",
-      "default": "./dist/components.js"
-    },
-    "./settings": {
-      "types": "./dist/settings.d.ts",
-      "default": "./dist/settings.js"
-    },
-    "./settings.js": {
-      "types": "./dist/settings.d.ts",
-      "default": "./dist/settings.js"
-    }
-  },
-  "devDependencies": {
-    "prettier": "^3.2.5",
-    "prettier-plugin-organize-imports": "^3.2.4",
-    "typescript": "^5.4.5",
-    "typescript-eslint": "^7.12.0"
+    "url": "git+https://github.com/brainstormforce/bsf-admin-ui.git"
   }
 }
