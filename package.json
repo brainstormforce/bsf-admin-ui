@@ -5,9 +5,25 @@
   "main": "./dist/force-ui.cjs.js",
   "module": "./dist/force-ui.es.js",
   "types": "./dist/force-ui.d.ts",
+  "type": "module",
+  "sideEffects": false,
   "files": [
     "dist"
   ],
+  "exports": {
+    "./package.json": "./package.json",
+    ".": {
+      "types": "./dist/force-ui.d.ts",
+      "import": "./dist/force-ui.es.js",
+      "require": "./dist/force-ui.cjs.js"
+    },
+    "./withTW": {
+      "types": "./dist/withTW.d.ts",
+      "import": "./dist/withTW.es.js",
+      "require": "./dist/withTW.cjs.js"
+    },
+    "./dist/*": "./dist/*"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/brainstormforce/bsf-admin-ui.git"
