@@ -1,9 +1,9 @@
-import { jsxs as k, jsx as i, Fragment as B } from "react/jsx-runtime";
-import G, { createContext as I, forwardRef as H, isValidElement as _, useContext as j, useCallback as J } from "react";
+import { jsxs as k, jsx as i, Fragment as A } from "react/jsx-runtime";
+import G, { createContext as I, forwardRef as B, isValidElement as _, useContext as j, useMemo as H, useCallback as J } from "react";
 import { cn as x } from "../../utilities/functions.es.js";
 import { motion as P, LayoutGroup as K } from "framer-motion";
-import { nanoid as M } from "nanoid";
-const E = I({}), R = () => j(E), V = I(null), O = () => j(V), z = ({
+import { nanoid as O } from "nanoid";
+const E = I({}), R = () => j(E), V = I(null), Q = () => j(V), z = ({
   children: t,
   activeItem: o = null,
   // The currently active item in the group.
@@ -22,7 +22,7 @@ const E = I({}), R = () => j(E), V = I(null), O = () => j(V), z = ({
   width: d = "full"
   // Width of the tabs ('auto' or 'full').
 }) => {
-  const c = M(), h = R()?.activeItem || o, l = J(
+  const c = H(() => O(), []), h = R()?.activeItem || o, l = J(
     (m, N) => {
       s && s({ event: m, value: N });
     },
@@ -56,7 +56,7 @@ const E = I({}), R = () => j(E), V = I(null), O = () => j(V), z = ({
   ) });
 };
 z.displayName = "Tabs.Group";
-const S = H(
+const S = B(
   ({
     slug: t,
     text: o,
@@ -66,7 +66,7 @@ const S = H(
     badge: n = null,
     ...a
   }, g) => {
-    const d = O();
+    const d = Q();
     if (!d)
       throw new Error("Tab should be used inside Tabs Group");
     const {
@@ -99,8 +99,8 @@ const S = H(
       c === t ? "bg-background-primary text-text-primary shadow-sm" : "",
       e ? "text-text-disabled cursor-not-allowed hover:text-text-disabled" : "",
       C
-    ), L = x("flex items-center gap-1"), q = (A) => {
-      y(A, { slug: t, text: o });
+    ), L = x("flex items-center gap-1"), M = (q) => {
+      y(q, { slug: t, text: o });
     };
     return /* @__PURE__ */ k(
       P.button,
@@ -108,7 +108,7 @@ const S = H(
         ref: g,
         className: F,
         disabled: e,
-        onClick: q,
+        onClick: M,
         ...a,
         layoutRoot: !0,
         children: [
@@ -136,7 +136,7 @@ const v = ({ activeItem: t, children: o }) => /* @__PURE__ */ i(E.Provider, { va
   const s = R();
   if (!s)
     throw new Error("TabPanel should be used inside Tabs");
-  return t === s.activeItem ? /* @__PURE__ */ i(B, { children: o }) : null;
+  return t === s.activeItem ? /* @__PURE__ */ i(A, { children: o }) : null;
 };
 W.displayName = "Tabs.Panel";
 v.Group = z;
