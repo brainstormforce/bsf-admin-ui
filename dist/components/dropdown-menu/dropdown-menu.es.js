@@ -1,26 +1,26 @@
 import { jsx as s, jsxs as V } from "react/jsx-runtime";
-import l, { createContext as h, useState as j, cloneElement as M, isValidElement as g, Fragment as U, useContext as q } from "react";
-import { useFloating as z, offset as B, flip as G, shift as H, autoUpdate as J, useClick as K, useDismiss as Q, useRole as X, useInteractions as Y, useTransitionStyles as Z, FloatingPortal as _ } from "@floating-ui/react";
+import l, { useState as h, cloneElement as M, createContext as j, isValidElement as g, Fragment as U, useContext as q } from "react";
+import { useFloating as z, autoUpdate as B, offset as G, flip as H, shift as J, useClick as K, useDismiss as Q, useRole as X, useInteractions as Y, useTransitionStyles as Z, FloatingPortal as _ } from "@floating-ui/react";
 import { cn as u, callAll as w } from "../../utilities/functions.es.js";
 import { Menu as c } from "../menu-item/menu-item.es.js";
-const y = h({}), C = () => q(y), a = ({
+const y = j({}), C = () => q(y), a = ({
   placement: e = "bottom",
   offset: o = 10,
   boundary: n = "clippingAncestors",
   children: t,
   className: m
 }) => {
-  const [f, i] = j(!1), { refs: p, floatingStyles: S, context: d } = z({
+  const [f, i] = h(!1), { refs: p, floatingStyles: S, context: d } = z({
     open: f,
     onOpenChange: i,
     placement: e,
     strategy: "fixed",
     middleware: [
-      B(o),
-      G({ boundary: n }),
-      H({ boundary: n })
+      G(o),
+      H({ boundary: n }),
+      J({ boundary: n })
     ],
-    whileElementsMounted: J
+    whileElementsMounted: B
   }), I = K(d), E = Q(d), F = X(d, { role: "menu" }), { getReferenceProps: R, getFloatingProps: L } = Y([
     I,
     E,

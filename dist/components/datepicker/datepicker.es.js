@@ -1,7 +1,7 @@
 import { jsx as e, jsxs as l } from "react/jsx-runtime";
 import { useState as W } from "react";
 import p from "./datepicker-component.es.js";
-import { startOfToday as v, startOfYesterday as y, startOfWeek as L, endOfWeek as Y, startOfDay as i, subDays as M, startOfMonth as z, endOfMonth as R } from "date-fns";
+import { startOfToday as v, startOfYesterday as y, endOfWeek as L, startOfWeek as Y, startOfDay as i, subDays as M, endOfMonth as z, startOfMonth as R } from "date-fns";
 import { getDefaultSelectedValue as N } from "./utils.es.js";
 import { cn as q } from "../../utilities/functions.es.js";
 import n from "../button/button.es.js";
@@ -39,8 +39,8 @@ const Q = ({
     {
       label: "This Week",
       range: {
-        from: L(/* @__PURE__ */ new Date(), { weekStartsOn: 1 }),
-        to: Y(/* @__PURE__ */ new Date(), { weekStartsOn: 1 })
+        from: Y(/* @__PURE__ */ new Date(), { weekStartsOn: 1 }),
+        to: L(/* @__PURE__ */ new Date(), { weekStartsOn: 1 })
       }
     },
     {
@@ -53,8 +53,8 @@ const Q = ({
     {
       label: "This Month",
       range: {
-        from: z(/* @__PURE__ */ new Date()),
-        to: R(/* @__PURE__ */ new Date())
+        from: R(/* @__PURE__ */ new Date()),
+        to: z(/* @__PURE__ */ new Date())
       }
     },
     {

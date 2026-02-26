@@ -1,12 +1,12 @@
 import { jsx as t, Fragment as M, jsxs as j } from "react/jsx-runtime";
-import _, { createContext as S, useMemo as g, useState as v, useCallback as K, Fragment as I, forwardRef as ee, isValidElement as O, useContext as te } from "react";
+import _, { forwardRef as S, useMemo as g, useState as v, useCallback as K, Fragment as I, isValidElement as O, useContext as ee, createContext as te } from "react";
 import { nanoid as q } from "nanoid";
 import { Info as re, Check as se } from "lucide-react";
 import { cn as d, columnClasses as oe } from "../../utilities/functions.es.js";
 import { textSizeClassNames as ne, sizeClassNames as V, disabledClassNames as H, colorClassNames as J, borderClasses as ie, sizes as ae, focusClasses as de, hoverClasses as le, baseClasses as ce } from "./styles.es.js";
 import { Tooltip as fe } from "../tooltip/tooltip.es.js";
 import ue from "../switch/switch.es.js";
-const Q = S({}), U = () => te(Q), X = ({
+const Q = te({}), U = () => ee(Q), X = ({
   children: b,
   name: r,
   style: e = "simple",
@@ -289,7 +289,7 @@ const pe = ({
       ]
     }
   );
-}, W = ee(pe);
+}, W = S(pe);
 W.displayName = "RadioButton.Button";
 const me = ({
   id: b,

@@ -1,4 +1,4 @@
-import { jsxs as k, jsx as i, Fragment as A } from "react/jsx-runtime";
+import { jsx as i, jsxs as k, Fragment as A } from "react/jsx-runtime";
 import G, { createContext as I, forwardRef as B, isValidElement as _, useContext as j, useMemo as H, useCallback as J } from "react";
 import { cn as x } from "../../utilities/functions.es.js";
 import { motion as P, LayoutGroup as K } from "framer-motion";
@@ -110,7 +110,6 @@ const S = B(
         disabled: e,
         onClick: M,
         ...a,
-        layoutRoot: !0,
         children: [
           c === t && l === "underline" && /* @__PURE__ */ i(
             P.span,

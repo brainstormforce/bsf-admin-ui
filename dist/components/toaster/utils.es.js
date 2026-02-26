@@ -1,6 +1,6 @@
 import { jsx as a } from "react/jsx-runtime";
 import { isValidElement as m, cloneElement as x } from "react";
-import { Info as c, Check as g, AlertTriangle as f, Trash2 as d } from "lucide-react";
+import { Trash2 as g, AlertTriangle as f, Check as d, Info as c } from "lucide-react";
 import { cn as n } from "../../utilities/functions.es.js";
 import u from "../button/button.es.js";
 const l = "light", p = "neutral", v = "button", h = ({
@@ -31,9 +31,9 @@ const l = "light", p = "neutral", v = "button", h = ({
   const i = {
     neutral: /* @__PURE__ */ a(c, { className: n(s, o) }),
     info: /* @__PURE__ */ a(c, { className: n(s, o) }),
-    success: /* @__PURE__ */ a(g, { className: n(s, o) }),
+    success: /* @__PURE__ */ a(d, { className: n(s, o) }),
     warning: /* @__PURE__ */ a(f, { className: n(s, o) }),
-    error: /* @__PURE__ */ a(d, { className: n(s, o) })
+    error: /* @__PURE__ */ a(g, { className: n(s, o) })
   };
   return i[e] || i.neutral;
 }, y = ({

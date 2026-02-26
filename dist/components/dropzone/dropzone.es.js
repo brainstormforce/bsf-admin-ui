@@ -1,10 +1,10 @@
 import { jsx as e, jsxs as c } from "react/jsx-runtime";
-import { createContext as O, useState as x, useRef as P, useMemo as R, useContext as U } from "react";
+import { useState as x, useRef as O, createContext as P, useMemo as R, useContext as U } from "react";
 import { CloudUpload as S, File as _, ImageOff as $, Trash as H } from "lucide-react";
 import { cn as l, formatFileSize as I } from "../../utilities/functions.es.js";
 import { nanoid as M } from "nanoid";
 import { Loader as W } from "../loader/loader.es.js";
-const b = O(null), q = () => U(b), A = () => {
+const b = P(null), q = () => U(b), A = () => {
   const { file: t, removeFile: o, isLoading: s, error: a, errorText: n } = q(), r = R(() => /* @__PURE__ */ e("span", { className: "inline-flex self-start p-0.5", children: /* @__PURE__ */ e(_, { className: "size-5 text-icon-primary" }) }), [t]);
   return t ? /* @__PURE__ */ e(
     "div",
@@ -111,7 +111,7 @@ const b = O(null), q = () => U(b), A = () => {
       padding: o ? "p-4" : "p-6",
       gap: "gap-3"
     }
-  }, h = P(`fui-file-upload-${M()}`);
+  }, h = O(`fui-file-upload-${M()}`);
   return /* @__PURE__ */ e(
     b.Provider,
     {

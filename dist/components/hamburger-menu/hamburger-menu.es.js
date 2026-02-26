@@ -1,12 +1,12 @@
 import { jsx as o, jsxs as f } from "react/jsx-runtime";
 import { cn as u } from "../../utilities/functions.es.js";
 import { useCycle as M, motion as d } from "framer-motion";
-import { createContext as O, useState as h, useRef as b, useEffect as R, isValidElement as T, cloneElement as C, useContext as H, startTransition as L } from "react";
+import { useState as h, useRef as b, useEffect as O, createContext as R, startTransition as T, isValidElement as C, cloneElement as H, useContext as L } from "react";
 import { getElementPositionRelativeToScreen as B } from "../topbar/utils.es.js";
 import E from "../button/button.es.js";
-const y = O({}), P = y.Provider, x = () => H(y), $ = (e) => {
+const y = R({}), P = y.Provider, x = () => L(y), $ = (e) => {
   const t = b({ width: 0, height: 0 });
-  return R(() => {
+  return O(() => {
     e.current && (t.current.width = e.current.offsetWidth, t.current.height = e.current.offsetHeight);
   }, []), t.current;
 }, z = (e, t, n) => {
@@ -136,7 +136,7 @@ const y = O({}), P = y.Provider, x = () => H(y), $ = (e) => {
   ...a
 }) => {
   let l = null, c = null;
-  const g = n && T(n) ? C(n, {
+  const g = n && C(n) ? H(n, {
     key: "left-icon",
     className: u(
       "size-5",
@@ -241,7 +241,7 @@ const y = O({}), P = y.Provider, x = () => H(y), $ = (e) => {
     isOpen: n,
     toggleOpen: r,
     setTriggerRef: (N) => {
-      L(() => {
+      T(() => {
         i(N);
       });
     },

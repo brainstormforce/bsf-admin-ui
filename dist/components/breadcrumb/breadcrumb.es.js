@@ -1,7 +1,7 @@
 import { jsx as r, Fragment as N } from "react/jsx-runtime";
 import { createContext as y, useContext as n } from "react";
 import { cn as m } from "../../utilities/functions.es.js";
-import { ChevronRight as z, Ellipsis as h } from "lucide-react";
+import { Ellipsis as z, ChevronRight as h } from "lucide-react";
 const o = {
   sm: {
     text: "text-sm",
@@ -50,7 +50,7 @@ d.displayName = "Breadcrumb.Link";
 const u = ({ type: e }) => {
   const { sizes: t } = n(i), s = {
     slash: /* @__PURE__ */ r("span", { className: m("mx-1", t.separator), children: "/" }),
-    arrow: /* @__PURE__ */ r(z, { size: t.separatorIconSize })
+    arrow: /* @__PURE__ */ r(h, { size: t.separatorIconSize })
   };
   return /* @__PURE__ */ r(
     "li",
@@ -66,7 +66,7 @@ u.displayName = "Breadcrumb.Separator";
 const p = () => {
   const { sizes: e } = n(i);
   return /* @__PURE__ */ r(
-    h,
+    z,
     {
       className: "mt-[2px] cursor-pointer text-text-tertiary hover:text-text-primary",
       size: e.separatorIconSize + 4

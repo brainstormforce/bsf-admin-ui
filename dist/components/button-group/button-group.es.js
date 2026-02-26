@@ -1,7 +1,7 @@
 import { jsx as a, jsxs as P } from "react/jsx-runtime";
-import l, { createContext as I, forwardRef as R, useCallback as V, isValidElement as F } from "react";
+import l, { forwardRef as I, useCallback as R, isValidElement as V, createContext as F } from "react";
 import { cn as C } from "../../utilities/functions.es.js";
-const f = I({
+const f = F({
   activeItem: null,
   onChange: () => {
   },
@@ -15,7 +15,7 @@ const f = I({
   size: n = "md",
   iconPosition: i = "left"
 }) => {
-  const c = V(
+  const c = R(
     (s) => {
       e && e(s);
     },
@@ -34,7 +34,7 @@ const f = I({
         iconPosition: i
       },
       children: l.Children.map(o, (s, t) => {
-        if (!F(s))
+        if (!V(s))
           return null;
         const b = t === 0, p = t === l.Children.count(o) - 1;
         return l.cloneElement(s, {
@@ -46,7 +46,7 @@ const f = I({
       })
     }
   ) });
-}, q = ({
+}, $ = ({
   slug: o,
   text: r,
   icon: e,
@@ -92,16 +92,16 @@ const f = I({
       ]
     }
   );
-}, h = R(q);
+}, h = I($);
 h.displayName = "Button";
-const K = {
+const J = {
   Group: L,
   Button: h
 };
 export {
-  q as ButtonComponent,
+  $ as ButtonComponent,
   L as ButtonGroup,
   f as ButtonGroupContext,
-  K as default
+  J as default
 };
 //# sourceMappingURL=button-group.es.js.map

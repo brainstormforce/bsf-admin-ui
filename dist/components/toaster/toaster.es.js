@@ -4,7 +4,7 @@ import { X as j } from "lucide-react";
 import { ToastState as P } from "./controller.es.js";
 import { cn as d } from "../../utilities/functions.es.js";
 import { getIcon as T, getTitle as S, getContent as w, getAction as F } from "./utils.es.js";
-import { positionClassNames as z, containerVariantClassNames as D, variantClassNames as m, closeIconClassNames as y } from "./component-style.es.js";
+import { positionClassNames as z, closeIconClassNames as m, containerVariantClassNames as D, variantClassNames as y } from "./component-style.es.js";
 import { flushSync as R } from "react-dom";
 import { AnimatePresence as V, motion as X } from "framer-motion";
 import $ from "../../hoc/withSingleton.es.js";
@@ -129,7 +129,7 @@ const q = ({
     {
       className: d(
         "flex items-center justify-start p-4 gap-2 relative border border-solid rounded-md shadow-lg",
-        e === "dark" ? m.dark : m.light?.[a],
+        e === "dark" ? y.dark : y.light?.[a],
         D.stack
       ),
       onMouseEnter: E,
@@ -152,7 +152,7 @@ const q = ({
           {
             className: d(
               "bg-transparent m-0 p-0 border-none focus:outline-none active:outline-none cursor-pointer",
-              y[e] ?? y.light
+              m[e] ?? m.light
             ),
             onClick: (u) => {
               u.preventDefault(), u.stopPropagation(), typeof i == "function" && i(n.id);
@@ -170,7 +170,7 @@ const q = ({
     {
       className: d(
         "flex items-center justify-start p-3 gap-2 relative border border-solid rounded-md shadow-lg",
-        e === "dark" ? m.dark : m.light?.[a],
+        e === "dark" ? y.dark : y.light?.[a],
         D.inline
       ),
       children: [
@@ -184,7 +184,7 @@ const q = ({
           {
             className: d(
               "bg-transparent m-0 p-0 border-none focus:outline-none active:outline-none cursor-pointer",
-              y[e] ?? y.light
+              m[e] ?? m.light
             ),
             onClick: () => i(n.id),
             children: /* @__PURE__ */ r(j, {})

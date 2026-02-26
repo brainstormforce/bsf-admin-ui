@@ -1,9 +1,9 @@
 import { jsx as e, jsxs as f, Fragment as u } from "react/jsx-runtime";
-import { createContext as I, useRef as z, useState as E, useEffect as b, useContext as L } from "react";
+import { useRef as I, useState as z, useEffect as b, useContext as E, createContext as L } from "react";
 import { safeLocalStorage as o, cn as n } from "../../utilities/functions.es.js";
 import { PanelLeftOpen as j, PanelLeftClose as B } from "lucide-react";
 import { Tooltip as F } from "../tooltip/tooltip.es.js";
-const S = I({
+const S = L({
   isCollapsed: !1,
   setIsCollapsed: () => {
   },
@@ -17,7 +17,7 @@ const S = I({
   collapsed: c = !1,
   ...C
 }) => {
-  const h = z(null), [d, l] = E(() => {
+  const h = I(null), [d, l] = z(() => {
     if (!t && c)
       return c;
     const a = o.get("sidebar-collapsed");
@@ -70,7 +70,7 @@ w.displayName = "Sidebar.Header";
 const x = ({ children: r }) => /* @__PURE__ */ e("div", { className: n("space-y-4 grow items-start"), children: r });
 x.displayName = "Sidebar.Body";
 const N = ({ children: r }) => {
-  const { isCollapsed: s, setIsCollapsed: i, collapsible: t } = L(S);
+  const { isCollapsed: s, setIsCollapsed: i, collapsible: t } = E(S);
   return /* @__PURE__ */ f("div", { className: "space-y-4", children: [
     r,
     t && /* @__PURE__ */ e(

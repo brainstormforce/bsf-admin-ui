@@ -32,11 +32,6 @@ const e = {
     sm: "mt-1 rounded-md",
     md: "mt-1.5 rounded-lg",
     lg: "mt-1.5 rounded-lg"
-  },
-  slashIcon: {
-    sm: "px-2 py-0.5",
-    md: "px-3 py-1",
-    lg: "px-3.5 py-1"
   }
 }, o = {
   primary: "bg-field-primary-background outline outline-1 outline-field-border hover:outline-border-strong focus-within:outline-focus-border focus-within:hover:outline-focus-border",

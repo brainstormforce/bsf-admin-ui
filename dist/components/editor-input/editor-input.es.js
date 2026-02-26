@@ -8,7 +8,7 @@ import { LexicalErrorBoundary as R } from "@lexical/react/LexicalErrorBoundary";
 import { OnChangePlugin as j } from "@lexical/react/LexicalOnChangePlugin";
 import { EditorRefPlugin as B } from "@lexical/react/LexicalEditorRefPlugin";
 import { cn as f } from "../../utilities/functions.es.js";
-import { editorDisabledClassNames as F, editorInputClassNames as L, editorCommonClassNames as U, editableContentAreaCommonClassNames as _ } from "./editor-input-style.es.js";
+import { editableContentAreaCommonClassNames as F, editorDisabledClassNames as L, editorInputClassNames as U, editorCommonClassNames as _ } from "./editor-input-style.es.js";
 import D from "./mention-plugin/mention-plugin.es.js";
 import H from "./mention-plugin/mention-node.es.js";
 import Y from "./editor-theme.es.js";
@@ -74,9 +74,9 @@ const Q = `{
       {
         className: f(
           "relative w-full",
-          U,
-          L[t],
-          m && F,
+          _,
+          U[t],
+          m && L,
           N
         ),
         children: /* @__PURE__ */ S(I, { initialConfig: y, children: [
@@ -88,7 +88,7 @@ const Q = `{
                 {
                   className: f(
                     "editor-content focus-visible:outline-none outline-none",
-                    _,
+                    F,
                     h
                   )
                 }

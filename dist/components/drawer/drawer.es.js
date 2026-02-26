@@ -1,5 +1,5 @@
 import { jsxs as N, Fragment as g, jsx as A } from "react/jsx-runtime";
-import { createContext as E, useState as O, useRef as b, useMemo as d, useCallback as j, isValidElement as H, cloneElement as K, useContext as M } from "react";
+import { useState as E, useRef as O, useMemo as d, useCallback as b, isValidElement as j, cloneElement as H, createContext as K, useContext as M } from "react";
 import { callAll as U } from "../../utilities/functions.es.js";
 import { useFloating as V, useDismiss as _, useRole as q, useClick as z, useInteractions as G } from "@floating-ui/react";
 import J from "./drawer-panel.es.js";
@@ -11,7 +11,7 @@ import Y from "./drawer-footer.es.js";
 import Z from "./drawer-close-button.es.js";
 import $ from "./drawer-backdrop.es.js";
 import { DrawerPortal as ee } from "./drawer-portal.es.js";
-const re = 0.2, D = E({}), Ce = () => M(D), e = ({
+const re = 0.2, D = K({}), Ce = () => M(D), e = ({
   open: a,
   setOpen: i,
   children: w,
@@ -24,7 +24,7 @@ const re = 0.2, D = E({}), Ce = () => M(D), e = ({
   transitionDuration: P = re,
   scrollLock: R = !0
 }) => {
-  const t = a !== void 0 && i !== void 0, [p, u] = O(!1), h = b(null), o = d(
+  const t = a !== void 0 && i !== void 0, [p, u] = E(!1), h = O(null), o = d(
     () => t ? a : p,
     [a, p, t]
   ), n = d(
@@ -42,7 +42,7 @@ const re = 0.2, D = E({}), Ce = () => M(D), e = ({
     enabled: f || m,
     escapeKey: f,
     outsidePress: (v) => m ? !v?.target?.closest("ul.fui-toast-container") : !1
-  }), y = q(s, { role: "dialog" }), F = z(s), { getFloatingProps: I } = G([B, y, F]), S = j(() => H(r) ? K(r, {
+  }), y = q(s, { role: "dialog" }), F = z(s), { getFloatingProps: I } = G([B, y, F]), S = b(() => j(r) ? H(r, {
     onClick: U(l, r.props.onClick),
     ref: c.setReference,
     "aria-haspopup": "dialog",

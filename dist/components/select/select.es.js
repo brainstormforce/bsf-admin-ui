@@ -1,18 +1,18 @@
 import { jsx as r, jsxs as $, Fragment as ce } from "react/jsx-runtime";
-import { createContext as we, forwardRef as Ne, useCallback as ee, isValidElement as k, useContext as Se, Fragment as Ie, Children as v, useMemo as Y, useLayoutEffect as ue, useEffect as fe, useState as Q, useRef as le, cloneElement as ne } from "react";
+import { useMemo as Y, useState as Q, useCallback as ee, useRef as le, Fragment as we, Children as v, isValidElement as k, useLayoutEffect as ue, useEffect as fe, forwardRef as Ne, createContext as Se, useContext as Ie, cloneElement as ne } from "react";
 import { cn as x } from "../../utilities/functions.es.js";
-import { ChevronsUpDown as ve, ChevronDown as Le, Search as Me, CheckIcon as Pe } from "lucide-react";
-import { FloatingFocusManager as ke, FloatingPortal as Oe, useFloating as De, autoUpdate as Re, offset as ze, flip as Fe, size as je, useClick as Te, useDismiss as Ve, useRole as Ae, useListNavigation as Be, useTypeahead as Ee, useInteractions as Ge } from "@floating-ui/react";
+import { CheckIcon as ve, Search as Le, ChevronsUpDown as Me, ChevronDown as Pe } from "lucide-react";
+import { useFloating as ke, autoUpdate as Oe, offset as De, flip as Re, size as ze, useClick as Fe, useDismiss as je, useRole as Te, useListNavigation as Ve, useTypeahead as Ae, useInteractions as Be, FloatingFocusManager as Ee, FloatingPortal as Ge } from "@floating-ui/react";
 import { nanoid as Ke } from "nanoid";
 import { mergeRefs as $e } from "../toaster/utils.es.js";
-import { disabledClassNames as re, sizeClassNames as L, optionGroupDividerSizeClassNames as He, optionGroupDividerClassNames as We, selectItemClassNames as de } from "./component-style.es.js";
+import { optionGroupDividerSizeClassNames as He, optionGroupDividerClassNames as We, selectItemClassNames as de, sizeClassNames as L, disabledClassNames as re } from "./component-style.es.js";
 import { getTextContent as se } from "./utils.es.js";
 import { useDebouncedCallback as _e } from "../../utilities/hooks.es.js";
-import Ue from "../badge/badge.es.js";
-import { Loader as qe } from "../loader/loader.es.js";
-const pe = we(
+import { Loader as Ue } from "../loader/loader.es.js";
+import qe from "../badge/badge.es.js";
+const pe = Se(
   {}
-), ie = () => Se(pe), me = Ne(({
+), ie = () => Ie(pe), me = Ne(({
   children: t,
   icon: a = null,
   // Icon to show in the select button.
@@ -48,7 +48,7 @@ const pe = we(
     if (a)
       return a;
     const l = "text-field-placeholder " + re.icon;
-    return M ? /* @__PURE__ */ r(ve, { className: l }) : /* @__PURE__ */ r(Le, { className: l });
+    return M ? /* @__PURE__ */ r(Me, { className: l }) : /* @__PURE__ */ r(Pe, { className: l });
   }, [a]), W = ee(() => {
     const l = S();
     if (!l)
@@ -56,7 +56,7 @@ const pe = we(
     if (e)
       return l.map(
         (g, o) => /* @__PURE__ */ r(
-          Ue,
+          qe,
           {
             className: "cursor-default",
             icon: F,
@@ -176,7 +176,7 @@ function X({
   ...F
 }) {
   const { index: c, totalGroups: u } = F, { sizeValue: O } = ie();
-  return /* @__PURE__ */ $(Ie, { children: [
+  return /* @__PURE__ */ $(we, { children: [
     /* @__PURE__ */ $("div", { className: "flex flex-col", role: "group", "aria-label": t, children: [
       /* @__PURE__ */ r(
         "div",
@@ -373,7 +373,7 @@ function xe({
   return fe(() => {
     typeof n == "function" && g();
   }, [g]), /* @__PURE__ */ r(ce, { children: s && /* @__PURE__ */ r(ce, { children: /* @__PURE__ */ r(
-    ke,
+    Ee,
     {
       context: F,
       modal: !1,
@@ -404,12 +404,12 @@ function xe({
                 ),
                 children: [
                   R ? /* @__PURE__ */ r(
-                    qe,
+                    Ue,
                     {
                       className: L[f].searchbarIcon
                     }
                   ) : /* @__PURE__ */ r(
-                    Me,
+                    Le,
                     {
                       className: x(
                         "text-icon-secondary shrink-0",
@@ -465,7 +465,7 @@ function xe({
   ) }) });
 }
 function he({ children: t, root: a, id: s }) {
-  return /* @__PURE__ */ r(Oe, { id: s, root: a, children: t });
+  return /* @__PURE__ */ r(Ge, { id: s, root: a, children: t });
 }
 function ge({
   value: t,
@@ -527,7 +527,7 @@ function ge({
       children: [
         /* @__PURE__ */ r("span", { className: "w-full truncate", children: s }),
         B && /* @__PURE__ */ r(
-          Pe,
+          ve,
           {
             className: x(
               "text-icon-on-color-disabled",
@@ -569,16 +569,16 @@ const ye = ({
     sm: f ? 256 : 172,
     md: f ? 256 : 216,
     lg: f ? 256 : 216
-  }, { refs: N, floatingStyles: g, context: o } = De({
+  }, { refs: N, floatingStyles: g, context: o } = ke({
     strategy: "fixed",
     placement: "bottom-start",
     open: n,
     onOpenChange: w,
-    whileElementsMounted: Re,
+    whileElementsMounted: Oe,
     middleware: [
-      ze(5),
-      Fe({ padding: 10 }),
-      je({
+      De(5),
+      Re({ padding: 10 }),
+      ze({
         apply({ rects: d, elements: p, availableHeight: K }) {
           Object.assign(p.floating.style, {
             maxHeight: `min(${K}px, ${l[a]}px)`,
@@ -588,14 +588,14 @@ const ye = ({
         padding: 10
       })
     ]
-  }), i = le([]), y = le([]), b = le(!1), _ = Te(o, { event: "mousedown" }), m = Ve(o), z = Ae(o, { role: "listbox" }), G = Be(o, {
+  }), i = le([]), y = le([]), b = le(!1), _ = Fe(o, { event: "mousedown" }), m = je(o), z = Te(o, { role: "listbox" }), G = Ve(o, {
     listRef: i,
     activeIndex: E,
     selectedIndex: W,
     onNavigate: H,
     // This is a large list, allow looping.
     loop: !0
-  }), te = Ee(o, {
+  }), te = Ae(o, {
     listRef: y,
     activeIndex: E,
     selectedIndex: W,
@@ -603,7 +603,7 @@ const ye = ({
     onTypingChange(d) {
       b.current = d;
     }
-  }), { getReferenceProps: Z, getFloatingProps: C, getItemProps: U } = Ge([
+  }), { getReferenceProps: Z, getFloatingProps: C, getItemProps: U } = Be([
     m,
     z,
     G,

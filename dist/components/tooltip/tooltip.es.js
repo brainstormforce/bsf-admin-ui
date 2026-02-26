@@ -1,6 +1,6 @@
 import { jsxs as i, jsx as t } from "react/jsx-runtime";
 import { useMemo as U, useState as V, useRef as q, Fragment as g, isValidElement as B, cloneElement as G } from "react";
-import { useFloating as J, offset as K, flip as L, shift as Q, arrow as W, autoUpdate as X, useClick as Y, useHover as Z, safePolygon as _, useFocus as $, useDismiss as ee, useRole as oe, useInteractions as te, useTransitionStyles as se, FloatingPortal as le, FloatingArrow as ne } from "@floating-ui/react";
+import { useFloating as J, autoUpdate as K, offset as L, flip as Q, shift as W, arrow as X, useClick as Y, useHover as Z, safePolygon as _, useFocus as $, useDismiss as ee, useRole as oe, useInteractions as te, useTransitionStyles as se, FloatingPortal as le, FloatingArrow as ne } from "@floating-ui/react";
 import { cn as r } from "../../utilities/functions.es.js";
 import { mergeRefs as ae } from "../toaster/utils.es.js";
 const ie = ({
@@ -37,14 +37,14 @@ const ie = ({
     placement: h,
     strategy: y,
     middleware: [
-      K(C),
-      L({ boundary: p }),
-      // Ensure this is correctly cast
+      L(C),
       Q({ boundary: p }),
       // Ensure this is correctly cast
-      W({ element: m })
+      W({ boundary: p }),
+      // Ensure this is correctly cast
+      X({ element: m })
     ],
-    whileElementsMounted: X
+    whileElementsMounted: K
   }), P = Y(e, {
     enabled: !o && a.includes("click")
   }), E = Z(e, {

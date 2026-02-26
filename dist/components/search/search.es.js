@@ -1,13 +1,13 @@
 import { jsx as n, jsxs as j } from "react/jsx-runtime";
-import I, { createContext as oe, forwardRef as R, useState as P, useMemo as se, useEffect as G, useContext as ie, Children as U, cloneElement as $ } from "react";
+import I, { forwardRef as R, useState as P, useMemo as oe, useEffect as G, createContext as se, useContext as ie, cloneElement as $, Children as U } from "react";
 import { omit as ae } from "lodash";
 import { cn as a, getOperatingSystem as q } from "../../utilities/functions.es.js";
 import { Search as ce } from "lucide-react";
-import { disabledClassNames as le, sizeClassNames as p, variantClassNames as fe, iconClasses as ue, textSizeClassNames as D } from "./styles.es.js";
-import { useFloating as de, autoUpdate as me, offset as pe, flip as he, size as ge, useListNavigation as ye, useDismiss as xe, useInteractions as we, useListItem as Se, FloatingFocusManager as be, FloatingPortal as Ne, FloatingList as H } from "@floating-ui/react";
+import { iconClasses as le, textSizeClassNames as D, disabledClassNames as fe, sizeClassNames as p, variantClassNames as ue } from "./styles.es.js";
+import { useFloating as de, autoUpdate as me, offset as pe, flip as he, size as ge, useListNavigation as ye, useDismiss as xe, useInteractions as we, useListItem as Se, FloatingFocusManager as be, FloatingList as H, FloatingPortal as Ne } from "@floating-ui/react";
 import Ce from "../badge/badge.es.js";
 import { Loader as ve } from "../loader/loader.es.js";
-const W = oe({}), N = () => ie(W), h = R(
+const W = se({}), N = () => ie(W), h = R(
   ({
     className: t,
     size: r = "sm",
@@ -21,7 +21,7 @@ const W = oe({}), N = () => ie(W), h = R(
     filter: g = !0,
     ...C
   }, L) => {
-    const [z, v] = P(""), [E, d] = P(c ?? !1), [y, S] = P(null), x = I.useRef([]), k = se(() => typeof s == "function" ? s : f, [s, f]), { refs: w, floatingStyles: m, context: i } = de({
+    const [z, v] = P(""), [E, d] = P(c ?? !1), [y, S] = P(null), x = I.useRef([]), k = oe(() => typeof s == "function" ? s : f, [s, f]), { refs: w, floatingStyles: m, context: i } = de({
       open: e,
       onOpenChange: k,
       placement: "bottom-start",
@@ -143,9 +143,9 @@ const J = R(
         ref: u.setReference,
         className: a(
           "w-full group relative flex justify-center items-center gap-1.5 focus-within:z-10 transition-all ease-in-out duration-200",
-          fe[y],
+          ue[y],
           p.input[o],
-          s ? le[y] : "focus-within:ring-2 focus-within:ring-focus focus-within:ring-offset-2 focus-within:border-focus-border focus-within:hover:border-focus-border",
+          s ? fe[y] : "focus-within:ring-2 focus-within:ring-focus focus-within:ring-offset-2 focus-within:border-focus-border focus-within:hover:border-focus-border",
           t
         ),
         ...g(),
@@ -155,7 +155,7 @@ const J = R(
             {
               className: a(
                 D[o],
-                s ? "text-icon-disabled" : ue,
+                s ? "text-icon-disabled" : le,
                 "flex justify-center items-center"
               ),
               children: /* @__PURE__ */ n(ce, {})

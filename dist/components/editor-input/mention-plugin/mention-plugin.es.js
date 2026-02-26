@@ -8,7 +8,7 @@ import te from "./mention-hooks.es.js";
 import T from "./mention-combobox.es.js";
 import { $getSelection as ne, $createTextNode as oe, KEY_DOWN_COMMAND as re, COMMAND_PRIORITY_LOW as C, KEY_BACKSPACE_COMMAND as se, FOCUS_COMMAND as ce } from "lexical";
 import { mergeRegister as ie } from "@lexical/utils";
-import { useFloating as le, offset as ae, autoPlacement as ue, shift as fe, flip as me, autoUpdate as de } from "@floating-ui/react";
+import { useFloating as le, autoUpdate as ae, offset as ue, autoPlacement as fe, shift as me, flip as de } from "@floating-ui/react";
 const Ne = ({
   optionsArray: k,
   by: p = "name",
@@ -22,8 +22,8 @@ const Ne = ({
   const { y: D, refs: l, strategy: F } = le({
     placement: "bottom",
     strategy: "absolute",
-    middleware: [ae(8), ue(), fe(), me()],
-    whileElementsMounted: de
+    middleware: [ue(8), fe(), me(), de()],
+    whileElementsMounted: ae
   }), a = x(!1), P = x(null), I = `\\.,\\+\\*\\?\\$\\@\\|#{}\\(\\)\\^\\-\\[\\]\\\\/!%'"~=<>_:;`, M = [O].join(""), N = "[^" + M + I + "\\s]", b = "(?:\\.[ |$]| |[" + I + "]|)", K = 75, G = new RegExp(
     `(^|\\s|\\()([${M}]((?:${N}${b}){0,${K}}))$`
   ), U = 50, W = new RegExp(
