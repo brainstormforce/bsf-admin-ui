@@ -1,7 +1,6 @@
 import { jsx as n, jsxs as j } from "react/jsx-runtime";
 import I, { forwardRef as R, useState as P, useMemo as oe, useEffect as G, createContext as se, useContext as ie, cloneElement as $, Children as U } from "react";
-import { omit as ae } from "lodash";
-import { cn as a, getOperatingSystem as q } from "../../utilities/functions.es.js";
+import { cn as a, getOperatingSystem as q, omit as ae } from "../../utilities/functions.es.js";
 import { Search as ce } from "lucide-react";
 import { iconClasses as le, textSizeClassNames as D, disabledClassNames as fe, sizeClassNames as p, variantClassNames as ue } from "./styles.es.js";
 import { useFloating as de, autoUpdate as me, offset as pe, flip as he, size as ge, useListNavigation as ye, useDismiss as xe, useInteractions as we, useListItem as Se, FloatingFocusManager as be, FloatingList as H, FloatingPortal as Ne } from "@floating-ui/react";

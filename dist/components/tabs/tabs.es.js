@@ -109,6 +109,7 @@ const S = B(
         className: F,
         disabled: e,
         onClick: M,
+        layoutRoot: !0,
         ...a,
         children: [
           c === t && l === "underline" && /* @__PURE__ */ i(

@@ -1,6 +1,6 @@
 import { twMerge as n } from "tailwind-merge";
 import { clsx as l } from "clsx";
-const c = (...r) => n(l(...r)), i = (...r) => (...o) => r.filter(Boolean).forEach((t) => t?.(...o)), g = (r) => {
+const a = (...r) => n(l(...r)), i = (...r) => (...o) => r.filter(Boolean).forEach((t) => t?.(...o)), g = (r) => {
   const o = {
     0: "gap-0",
     xxs: "gap-1",
@@ -35,7 +35,7 @@ const c = (...r) => n(l(...r)), i = (...r) => (...o) => r.filter(Boolean).forEac
   ], t = ["Win32", "Win64", "Windows", "WinCE"];
   let e = "null";
   return o.includes(r) ? e = "Mac OS" : t.includes(r) && (e = "Windows"), e;
-}, u = (r) => r < 1024 ? `${r} bytes` : r < 1024 * 1024 ? `${(r / 1024).toFixed(2)} KB` : r < 1024 * 1024 * 1024 ? `${(r / (1024 * 1024)).toFixed(2)} MB` : `${(r / (1024 * 1024 * 1024)).toFixed(2)} GB`, m = {
+}, m = (r) => r < 1024 ? `${r} bytes` : r < 1024 * 1024 ? `${(r / 1024).toFixed(2)} KB` : r < 1024 * 1024 * 1024 ? `${(r / (1024 * 1024)).toFixed(2)} MB` : `${(r / (1024 * 1024 * 1024)).toFixed(2)} GB`, u = {
   set: (r, o) => {
     if (!(typeof window > "u"))
       try {
@@ -62,14 +62,15 @@ const c = (...r) => n(l(...r)), i = (...r) => (...o) => r.filter(Boolean).forEac
         console.error(o);
       }
   }
-};
+}, p = (r, o) => Object.fromEntries(Object.entries(r).filter(([t]) => !o.includes(t)));
 export {
   i as callAll,
-  c as cn,
+  a as cn,
   d as columnClasses,
-  u as formatFileSize,
+  m as formatFileSize,
   g as getGapClass,
   f as getOperatingSystem,
-  m as safeLocalStorage
+  p as omit,
+  u as safeLocalStorage
 };
 //# sourceMappingURL=functions.es.js.map
