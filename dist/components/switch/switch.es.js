@@ -1,5 +1,5 @@
 import { jsx as a, jsxs as d } from "react/jsx-runtime";
-import { forwardRef as A, useMemo as C, useState as E, useCallback as F, isValidElement as H } from "react";
+import { forwardRef as A, useMemo as C, useState as E, useCallback as H, isValidElement as F } from "react";
 import { nanoid as I } from "nanoid";
 import { cn as t } from "../../utilities/functions.es.js";
 import N from "../label/label.es.js";
@@ -7,7 +7,7 @@ const M = ({
   label: e,
   switchId: g,
   disabled: r = !1,
-  children: c,
+  children: l,
   size: s
 }) => {
   const o = {
@@ -23,19 +23,19 @@ const M = ({
     sm: "space-y-0.5",
     md: "space-y-1"
   };
-  if (H(e))
+  if (F(e))
     return /* @__PURE__ */ d(
       "div",
       {
         className: t("inline-flex items-center gap-3", "items-start"),
         children: [
-          c,
+          l,
           e
         ]
       }
     );
   const u = () => {
-    const { heading: n = "", description: l = "" } = e || {};
+    const { heading: n = "", description: c = "" } = e || {};
     return /* @__PURE__ */ d("div", { className: t("space-y-0.5", f[s]), children: [
       n && /* @__PURE__ */ a(
         N,
@@ -46,7 +46,7 @@ const M = ({
           children: n
         }
       ),
-      l && /* @__PURE__ */ a(
+      c && /* @__PURE__ */ a(
         N,
         {
           tag: "p",
@@ -56,20 +56,20 @@ const M = ({
             h[s]
           ),
           ...r && { variant: "disabled" },
-          children: l
+          children: c
         }
       )
     ] });
   }, p = !e?.heading && !e?.description, i = !e?.heading || !e?.description ? "items-center" : "items-start";
-  return p ? c : /* @__PURE__ */ d("div", { className: t("inline-flex", i, "gap-3"), children: [
-    c,
+  return p ? l : /* @__PURE__ */ d("div", { className: t("inline-flex", i, "gap-3"), children: [
+    l,
     u()
   ] });
 }, R = ({
   id: e,
   onChange: g,
   value: r,
-  defaultValue: c = !1,
+  defaultValue: l = !1,
   size: s = "sm",
   disabled: o = !1,
   label: h = { heading: "", description: "" },
@@ -77,7 +77,7 @@ const M = ({
   className: b,
   ...u
 }, p) => {
-  const i = s === "lg" ? "md" : s, n = C(() => typeof r < "u", [r]), l = C(() => e || `switch-${I()}`, []), [w, D] = E(c), m = "primary", z = F(
+  const i = s === "lg" ? "md" : s, n = C(() => typeof r < "u", [r]), c = C(() => e || `switch-${I()}`, []), [w, D] = E(l), m = "primary", z = H(
     () => n ? r : w,
     [n, r, w]
   ), L = (j) => {
@@ -119,7 +119,7 @@ const M = ({
     M,
     {
       label: h,
-      switchId: l,
+      switchId: c,
       disabled: o,
       size: i,
       children: /* @__PURE__ */ d(
@@ -135,8 +135,9 @@ const M = ({
               "input",
               {
                 ref: p,
-                id: l,
+                id: c,
                 type: "checkbox",
+                role: "switch",
                 className: t(
                   "peer appearance-none absolute rounded-full cursor-pointer transition-colors duration-300 h-full w-full  before:content-[''] checked:before:content-[''] m-0 checked:[background-image:none]",
                   x[m].input,
@@ -151,9 +152,9 @@ const M = ({
               }
             ),
             /* @__PURE__ */ a(
-              "label",
+              "span",
               {
-                htmlFor: l,
+                "aria-hidden": "true",
                 className: t(
                   "peer/toggle-dial bg-white border rounded-full absolute cursor-pointer shadow-md before:content[''] before:transition-opacity before:opacity-0 hover:before:opacity-10 before:hidden border-none transition-all duration-300 top-2/4 not-rtl:left-1 rtl:right-1 -translate-y-2/4 before:w-10 before:h-10 before:rounded-full before:absolute before:top-2/4 not-rtl:before:left-2/4 rtl:before:right-2/4 before:-translate-y-2/4 before:-translate-x-2/4",
                   v[i].toggleDial,

@@ -6,7 +6,7 @@ const i = ({
   className: s,
   ...m
 }) => /* @__PURE__ */ r(
-  "div",
+  "header",
   {
     className: a(
       "w-full box-border flex items-center justify-between bg-background-primary p-5 min-h-16",

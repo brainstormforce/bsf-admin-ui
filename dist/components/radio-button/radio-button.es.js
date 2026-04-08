@@ -1,9 +1,9 @@
-import { jsx as t, Fragment as M, jsxs as j } from "react/jsx-runtime";
+import { jsx as t, Fragment as w, jsxs as j } from "react/jsx-runtime";
 import _, { forwardRef as S, useMemo as g, useState as v, useCallback as K, Fragment as I, isValidElement as O, useContext as ee, createContext as te } from "react";
-import { nanoid as q } from "nanoid";
+import { nanoid as W } from "nanoid";
 import { Info as re, Check as se } from "lucide-react";
 import { cn as d, columnClasses as oe } from "../../utilities/functions.es.js";
-import { textSizeClassNames as ne, sizeClassNames as V, disabledClassNames as H, colorClassNames as J, borderClasses as ie, sizes as ae, focusClasses as de, hoverClasses as le, baseClasses as ce } from "./styles.es.js";
+import { textSizeClassNames as ne, sizeClassNames as T, disabledClassNames as H, colorClassNames as J, borderClasses as ie, sizes as ae, focusClasses as de, hoverClasses as le, baseClasses as ce } from "./styles.es.js";
 import { Tooltip as fe } from "../tooltip/tooltip.es.js";
 import ue from "../switch/switch.es.js";
 const Q = te({}), U = () => ee(Q), X = ({
@@ -24,12 +24,12 @@ const Q = te({}), U = () => ee(Q), X = ({
   gapClassName: z = "gap-2"
 }) => {
   const h = g(() => typeof c < "u", [c]), G = g(
-    () => r || `radio-button-group-${q()}`,
+    () => r || `radio-button-group-${W()}`,
     [r]
   );
   let k;
   h ? k = c : m ? k = i ?? [] : k = i;
-  const [F, N] = v(k), P = K(
+  const [F, N] = v(k), M = K(
     (n) => {
       if (m)
         N((C) => {
@@ -68,7 +68,7 @@ const Q = te({}), U = () => ee(Q), X = ({
         name: G,
         value: h ? c : F,
         by: y,
-        onChange: P,
+        onChange: M,
         isControlled: h,
         disableAll: x,
         style: e,
@@ -79,7 +79,7 @@ const Q = te({}), U = () => ee(Q), X = ({
       children: _.Children.map(b, (n) => O(n) ? n : null)
     }
   );
-  return /* @__PURE__ */ t(M, { children: e === "tile" ? /* @__PURE__ */ t("div", { className: f, children: $() }) : /* @__PURE__ */ t(R, { ...R === I ? {} : { className: l }, children: $() }) });
+  return /* @__PURE__ */ t(w, { children: e === "tile" ? /* @__PURE__ */ t("div", { className: f, children: $() }) : /* @__PURE__ */ t(R, { ...R === I ? {} : { className: l }, children: $() }) });
 };
 X.displayName = "RadioButton.Group";
 const pe = ({
@@ -101,7 +101,7 @@ const pe = ({
   ...h
 }, G) => {
   const { buttonWrapperClasses: k, ...F } = h, N = U(), {
-    name: P,
+    name: M,
     value: f,
     by: $,
     onChange: n,
@@ -110,7 +110,7 @@ const pe = ({
     multiSelection: u,
     size: o = "md"
     // Default size to 'md' if not provided
-  } = N, w = "primary", T = g(() => b || `radio-button-${q()}`, [b]), B = g(
+  } = N, q = "primary", P = g(() => b || `radio-button-${W()}`, [b]), B = g(
     () => C || c,
     [C, c]
   ), L = g(() => u ? Array.isArray(f) && f.includes(e) : typeof D < "u" ? D : typeof f != typeof e ? !1 : typeof f == "string" ? f === e : Array.isArray(f) ? f.includes(e) : f[$] === e[$], [f, e, D]), Y = K(() => O(r) ? r : r?.heading ? /* @__PURE__ */ j(
@@ -126,7 +126,7 @@ const pe = ({
         y && !r.description && "items-center"
       ),
       children: [
-        i && /* @__PURE__ */ t(M, { children: i }),
+        i && /* @__PURE__ */ t(w, { children: i }),
         /* @__PURE__ */ j(
           "div",
           {
@@ -189,7 +189,7 @@ const pe = ({
         B && "cursor-not-allowed opacity-40",
         k
       ),
-      htmlFor: T,
+      htmlFor: P,
       onClick: E,
       children: [
         !!r && /* @__PURE__ */ t(
@@ -199,7 +199,7 @@ const pe = ({
               "cursor-pointer",
               B && "cursor-not-allowed"
             ),
-            htmlFor: T,
+            htmlFor: P,
             children: Y()
           }
         ),
@@ -208,7 +208,7 @@ const pe = ({
           {
             className: d(
               "text-text-primary",
-              V[o]?.info
+              T[o]?.info
             )
           }
         ) }) }),
@@ -224,7 +224,7 @@ const pe = ({
             onClick: E,
             children: [
               !!p && p,
-              !R && (a ? /* @__PURE__ */ t(M, { children: /* @__PURE__ */ t(
+              !R && (a ? /* @__PURE__ */ t(w, { children: /* @__PURE__ */ t(
                 ue,
                 {
                   defaultValue: !1,
@@ -241,16 +241,16 @@ const pe = ({
                   "input",
                   {
                     ref: G,
-                    id: T,
+                    id: P,
                     type: u ? "checkbox" : "radio",
                     className: d(
-                      "peer flex relative cursor-pointer appearance-none transition-all m-0 before:content-[''] checked:before:content-[''] checked:before:hidden before:hidden !border-1.5 border-solid",
+                      "peer flex relative cursor-pointer appearance-none transition-all m-0 before:content-[''] checked:before:content-[''] checked:before:hidden before:hidden !border-1.5 border-solid focus-within:outline-none",
                       !u && "rounded-full",
-                      J[w].checkbox,
-                      V[o].checkbox,
+                      J[q].checkbox,
+                      T[o].checkbox,
                       B && H.checkbox
                     ),
-                    name: P,
+                    name: M,
                     value: e,
                     onChange: (Z) => n(Z.target.value),
                     checked: L,
@@ -263,7 +263,7 @@ const pe = ({
                   {
                     className: d(
                       "inline-flex items-center absolute top-2/4 not-rtl:left-2/4 rtl:right-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100",
-                      J[w].icon,
+                      J[q].icon,
                       B && H.icon
                     ),
                     children: u ? /* @__PURE__ */ t(
@@ -276,7 +276,7 @@ const pe = ({
                       {
                         className: d(
                           "rounded-full bg-current",
-                          V[o]?.icon
+                          T[o]?.icon
                         )
                       }
                     )
@@ -289,8 +289,8 @@ const pe = ({
       ]
     }
   );
-}, W = S(pe);
-W.displayName = "RadioButton.Button";
+}, V = S(pe);
+V.displayName = "RadioButton.Button";
 const me = ({
   id: b,
   children: r,
@@ -306,7 +306,7 @@ const me = ({
     onChange: x,
     disableAll: p,
     checked: a
-  } = y || {}, m = g(() => b || `radio-button-${q()}`, [b]), z = g(
+  } = y || {}, m = g(() => b || `radio-button-${W()}`, [b]), z = g(
     () => p || A,
     [p, A]
   ), h = g(() => typeof a < "u" ? a : typeof s != typeof e ? !1 : typeof s == "string" ? s === e : Array.isArray(s) ? s.includes(e) : s && l ? s[l] === e[l] : !1, [s, e, a, l]), G = () => {
@@ -319,7 +319,7 @@ const me = ({
     ae[c],
     ie
   );
-  return /* @__PURE__ */ t(M, { children: /* @__PURE__ */ j(
+  return /* @__PURE__ */ t(w, { children: /* @__PURE__ */ j(
     "button",
     {
       type: "button",
@@ -348,13 +348,13 @@ const me = ({
       ]
     }
   ) });
-}, Ae = Object.assign(W, {
+}, Ae = Object.assign(V, {
   Group: X,
-  Button: W
+  Button: V
 });
 export {
   me as ButtonGroupItem,
-  W as RadioButton,
+  V as RadioButton,
   pe as RadioButtonComponent,
   X as RadioButtonGroup,
   Ae as default

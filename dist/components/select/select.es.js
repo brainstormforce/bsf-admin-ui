@@ -426,6 +426,7 @@ function xe({
                       ),
                       type: "search",
                       name: "keyword",
+                      "aria-label": "Search options",
                       placeholder: P,
                       onChange: (o) => h(o.target.value),
                       value: e,

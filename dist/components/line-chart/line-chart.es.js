@@ -1,5 +1,5 @@
 import { jsx as t, jsxs as y } from "react/jsx-runtime";
-import { ResponsiveContainer as N, LineChart as U, CartesianGrid as j, XAxis as G, YAxis as p, Tooltip as K, Line as b } from "recharts";
+import { ResponsiveContainer as N, LineChart as U, CartesianGrid as b, XAxis as j, YAxis as p, Tooltip as G, Line as K } from "recharts";
 import q from "./chart-tooltip-content.es.js";
 import P from "../label/label.es.js";
 const l = "#6B7280", V = "#E5E7EB", W = [{ stroke: "#2563EB" }, { stroke: "#38BDF8" }], H = ({
@@ -17,12 +17,12 @@ const l = "#6B7280", V = "#E5E7EB", W = [{ stroke: "#2563EB" }, { stroke: "#38BD
   yAxisTickFormatter: h,
   tickFormatter: O,
   xAxisDataKey: S,
-  yAxisDataKey: A,
-  xAxisFontSize: I = "sm",
+  yAxisDataKey: v,
+  xAxisFontSize: A = "sm",
   // sm, md, lg
-  xAxisFontColor: _ = l,
+  xAxisFontColor: I = l,
   yAxisFontColor: i = l,
-  chartWidth: v = 350,
+  chartWidth: _ = 350,
   chartHeight: D = 200,
   withDots: F = !1,
   lineChartWrapperProps: R,
@@ -35,10 +35,10 @@ const l = "#6B7280", V = "#E5E7EB", W = [{ stroke: "#2563EB" }, { stroke: "#38BD
     sm: "12px",
     md: "14px",
     lg: "16px"
-  }, o = L[I] || L.sm, k = (r = 0) => Array.isArray(i) ? i[r] || i[0] || l : i;
-  return !n || n.length === 0 ? M || /* @__PURE__ */ t(P, { size: "sm", variant: "help", children: "No data available" }) : /* @__PURE__ */ t(N, { width: v, height: D, children: /* @__PURE__ */ y(U, { ...R, data: n, children: [
+  }, o = L[A] || L.sm, m = (r = 0) => Array.isArray(i) ? i[r] || i[0] || l : i;
+  return !n || n.length === 0 ? M || /* @__PURE__ */ t(P, { size: "sm", variant: "help", children: "No data available" }) : /* @__PURE__ */ t("div", { role: "img", "aria-label": "Line chart", children: /* @__PURE__ */ t(N, { width: _, height: D, children: /* @__PURE__ */ y(U, { ...R, data: n, children: [
     x && /* @__PURE__ */ t(
-      j,
+      b,
       {
         strokeDasharray: T,
         horizontal: !1,
@@ -46,7 +46,7 @@ const l = "#6B7280", V = "#E5E7EB", W = [{ stroke: "#2563EB" }, { stroke: "#38BD
       }
     ),
     /* @__PURE__ */ t(
-      G,
+      j,
       {
         dataKey: S,
         tickLine: !1,
@@ -55,7 +55,7 @@ const l = "#6B7280", V = "#E5E7EB", W = [{ stroke: "#2563EB" }, { stroke: "#38BD
         tickFormatter: z || O,
         tick: {
           fontSize: o,
-          fill: _
+          fill: I
         },
         hide: !g,
         interval: "equidistantPreserveStart"
@@ -65,14 +65,14 @@ const l = "#6B7280", V = "#E5E7EB", W = [{ stroke: "#2563EB" }, { stroke: "#38BD
       p,
       {
         yAxisId: "left",
-        dataKey: a ? e[0] : A,
+        dataKey: a ? e[0] : v,
         tickLine: !1,
         axisLine: !1,
         tickMargin: 8,
         tickFormatter: h,
         tick: {
           fontSize: o,
-          fill: k(0)
+          fill: m(0)
         },
         hide: !c,
         orientation: "left"
@@ -89,14 +89,14 @@ const l = "#6B7280", V = "#E5E7EB", W = [{ stroke: "#2563EB" }, { stroke: "#38BD
         tickFormatter: h,
         tick: {
           fontSize: o,
-          fill: k(1)
+          fill: m(1)
         },
         orientation: "right",
         hide: !c
       }
     ),
     u && /* @__PURE__ */ t(
-      K,
+      G,
       {
         content: /* @__PURE__ */ t(
           q,
@@ -108,9 +108,9 @@ const l = "#6B7280", V = "#E5E7EB", W = [{ stroke: "#2563EB" }, { stroke: "#38BD
       }
     ),
     e.map((r, s) => {
-      let m = "left";
-      return a && s > 0 && (m = "right"), /* @__PURE__ */ t(
-        b,
+      let k = "left";
+      return a && s > 0 && (k = "right"), /* @__PURE__ */ t(
+        K,
         {
           type: "monotone",
           dataKey: r,
@@ -118,12 +118,12 @@ const l = "#6B7280", V = "#E5E7EB", W = [{ stroke: "#2563EB" }, { stroke: "#38BD
           fill: d[s].stroke,
           strokeWidth: 2,
           dot: F,
-          yAxisId: m
+          yAxisId: k
         },
         r
       );
     })
-  ] }) });
+  ] }) }) });
 };
 export {
   H as default

@@ -10,10 +10,10 @@ const j = C(
     className: c = "",
     type: u = "pill",
     // pill, rounded
-    variant: a = "neutral",
+    variant: b = "neutral",
     // neutral, red, yellow, green, blue, inverse
     icon: l = null,
-    disabled: b = !1,
+    disabled: o = !1,
     onClose: x = () => {
     },
     closable: p = !1,
@@ -47,7 +47,7 @@ const j = C(
       inverse: "bg-background-inverse text-text-inverse border-background-inverse",
       disabled: "bg-badge-background-disabled text-badge-color-disabled border-badge-border-disabled disabled cursor-not-allowed"
     };
-    let o = "", n = "group relative justify-center flex items-center cursor-pointer";
+    let a = "", n = "group relative justify-center flex items-center cursor-pointer";
     const g = {
       xxs: "[&>svg]:size-3",
       xs: "[&>svg]:size-3",
@@ -55,7 +55,7 @@ const j = C(
       md: "[&>svg]:size-4",
       lg: "[&>svg]:size-5"
     };
-    return b ? (o = t.disabled, n += " cursor-not-allowed disabled") : o = t[a], r ? /* @__PURE__ */ i(
+    return o ? (a = t.disabled, n += " cursor-not-allowed disabled") : a = t[b], r ? /* @__PURE__ */ i(
       "span",
       {
         className: d(
@@ -63,8 +63,8 @@ const j = C(
           f[s],
           k[u],
           "gap-0.5",
-          o,
-          !v && w[a],
+          a,
+          !v && w[b],
           c
         ),
         ref: y,
@@ -81,18 +81,18 @@ const j = C(
           ) : null,
           /* @__PURE__ */ e("span", { className: "px-1 truncate inline-block", children: r }),
           p && /* @__PURE__ */ i(
-            "span",
+            "button",
             {
-              className: d(n, g[s]),
+              type: "button",
+              className: d(n, g[s], "bg-transparent border-none p-0 m-0"),
               onMouseDown: m,
-              role: "button",
-              tabIndex: 0,
-              ...!b && {
+              "aria-label": `Remove ${r}`,
+              disabled: o,
+              ...!o && {
                 onClick: x
               },
               children: [
-                /* @__PURE__ */ e("span", { className: "sr-only", children: `Remove ${r}` }),
-                /* @__PURE__ */ e(N, {}),
+                /* @__PURE__ */ e(N, { "aria-hidden": "true" }),
                 /* @__PURE__ */ e("span", { className: "absolute -inset-1" })
               ]
             }

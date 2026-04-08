@@ -1,25 +1,25 @@
-import { jsxs as d, jsx as c } from "react/jsx-runtime";
-import { forwardRef as M, useMemo as g, useState as E, useCallback as u, isValidElement as R } from "react";
+import { jsxs as a, jsx as c } from "react/jsx-runtime";
+import { forwardRef as E, useMemo as h, useState as F, useCallback as y, isValidElement as R } from "react";
 import { nanoid as S } from "nanoid";
 import { cn as r } from "../../utilities/functions.es.js";
-import { Minus as $, Check as q } from "lucide-react";
-import k from "../label/label.es.js";
-const A = ({
+import { Minus as q, Check as A } from "lucide-react";
+import v from "../label/label.es.js";
+const B = ({
   id: l,
   label: e,
-  defaultChecked: v = !1,
+  defaultChecked: C = !1,
   checked: i,
-  onChange: h,
-  indeterminate: y,
+  onChange: p,
+  indeterminate: m,
   disabled: t,
   size: o = "md",
-  className: C,
-  ...N
-}, w) => {
-  const s = g(() => l || `checkbox-${S()}`, [l]), a = g(
+  className: N,
+  ...w
+}, j) => {
+  const s = h(() => l || `checkbox-${S()}`, [l]), f = h(() => `${s}-description`, [s]), d = h(
     () => typeof i < "u",
     [i]
-  ), [m, j] = E(v || !1), p = "primary", n = {
+  ), [u, I] = F(C || !1), x = "primary", n = {
     sm: {
       checkbox: "size-4 rounded gap-1",
       icon: "size-3",
@@ -36,25 +36,25 @@ const A = ({
       description: "text-sm",
       gap: "gap-1"
     }
-  }, f = {
+  }, b = {
     primary: {
       checkbox: "border-border-strong hover:border-border-interactive checked:border-border-interactive bg-white checked:bg-toggle-on checked:hover:bg-toggle-on-hover checked:hover:border-toggle-on-hover focus:ring-2 focus:ring-offset-2 focus:ring-focus",
       icon: "text-white"
     }
-  }, x = {
+  }, g = {
     checkbox: "cursor-not-allowed disabled:bg-white checked:disabled:bg-white disabled:border-border-disabled checked:disabled:border-border-disabled",
     icon: "cursor-not-allowed peer-disabled:text-border-disabled"
-  }, V = u(
-    () => a ? i : m,
-    [a, i, m]
-  ), F = (L) => {
+  }, V = y(
+    () => d ? i : u,
+    [d, i, u]
+  ), L = ($) => {
     if (t)
       return;
-    const b = L.target.checked;
-    a || j(b), typeof h == "function" && h(b);
-  }, I = u(() => R(e) ? e : !e?.heading && !e?.description ? null : /* @__PURE__ */ d("div", { className: n[o].gap, children: [
+    const k = $.target.checked;
+    d || I(k), typeof p == "function" && p(k);
+  }, M = y(() => R(e) ? e : !e?.heading && !e?.description ? null : /* @__PURE__ */ a("div", { className: n[o].gap, children: [
     e?.heading && /* @__PURE__ */ c(
-      k,
+      v,
       {
         className: r(
           "text-text-primary font-medium leading-4 m-0",
@@ -67,9 +67,10 @@ const A = ({
       }
     ),
     e?.description && /* @__PURE__ */ c(
-      k,
+      v,
       {
         tag: "p",
+        id: f,
         className: r(
           "font-normal leading-5 m-0",
           n[o].description,
@@ -80,7 +81,7 @@ const A = ({
       }
     )
   ] }), [e, o, t]);
-  return /* @__PURE__ */ d(
+  return /* @__PURE__ */ a(
     "div",
     {
       className: r(
@@ -89,56 +90,58 @@ const A = ({
         t && "cursor-not-allowed"
       ),
       children: [
-        /* @__PURE__ */ d(
-          "label",
+        /* @__PURE__ */ a(
+          "span",
           {
             className: r(
               "relative flex items-center justify-center rounded-full p-0.5",
               !t && "cursor-pointer"
             ),
-            htmlFor: s,
             children: [
               /* @__PURE__ */ c(
                 "input",
                 {
-                  ref: w,
+                  ref: j,
                   id: s,
                   type: "checkbox",
+                  ...m && { "aria-checked": "mixed" },
+                  ...e?.description && { "aria-describedby": f },
                   className: r(
-                    "peer relative cursor-pointer appearance-none transition-all m-0 before:content-[''] checked:before:content-[''] checked:before:hidden before:hidden !border-1.5 border-solid",
-                    f[p].checkbox,
+                    "peer relative cursor-pointer appearance-none transition-all m-0 before:content-[''] checked:before:content-[''] checked:before:hidden before:hidden !border-1.5 border-solid focus:outline-none",
+                    b[x].checkbox,
                     n[o].checkbox,
-                    t && x.checkbox,
-                    C
+                    t && g.checkbox,
+                    N
                   ),
                   checked: V(),
-                  onChange: F,
+                  onChange: L,
                   disabled: t,
-                  ...N
+                  ...w
                 }
               ),
               /* @__PURE__ */ c(
                 "span",
                 {
+                  "aria-hidden": "true",
                   className: r(
                     "pointer-events-none inline-flex items-center absolute top-2/4 not-rtl:left-2/4 rtl:right-2/4 -translate-y-2/4 -translate-x-2/4 text-white opacity-0 transition-opacity peer-checked:opacity-100",
-                    f[p].icon,
-                    t && x.icon
+                    b[x].icon,
+                    t && g.icon
                   ),
-                  children: y ? /* @__PURE__ */ c($, { className: r(n[o]?.icon) }) : /* @__PURE__ */ c(q, { className: r(n[o]?.icon) })
+                  children: m ? /* @__PURE__ */ c(q, { className: r(n[o]?.icon) }) : /* @__PURE__ */ c(A, { className: r(n[o]?.icon) })
                 }
               )
             ]
           }
         ),
-        !!e && I()
+        !!e && M()
       ]
     }
   );
-}, B = M(A);
-B.displayName = "Checkbox";
+}, D = E(B);
+D.displayName = "Checkbox";
 export {
-  A as CheckboxComponent,
-  B as default
+  B as CheckboxComponent,
+  D as default
 };
 //# sourceMappingURL=checkbox.es.js.map

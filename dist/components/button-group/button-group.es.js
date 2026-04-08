@@ -15,21 +15,21 @@ const f = F({
   size: n = "md",
   iconPosition: i = "left"
 }) => {
-  const c = R(
+  const u = R(
     (s) => {
       e && e(s);
     },
     [e]
-  ), u = C(
+  ), c = C(
     "box-border flex border border-border-subtle border-solid rounded",
     d
   );
-  return /* @__PURE__ */ a("div", { className: u, children: /* @__PURE__ */ a(
+  return /* @__PURE__ */ a("div", { role: "group", className: c, children: /* @__PURE__ */ a(
     f.Provider,
     {
       value: {
         activeItem: r,
-        onChange: c,
+        onChange: u,
         size: n,
         iconPosition: i
       },
@@ -53,22 +53,22 @@ const f = F({
   className: d,
   disabled: n = !1,
   isFirstChild: i,
-  isLastChild: c,
-  ...u
+  isLastChild: u,
+  ...c
 }, s) => {
   const t = l.useContext(f);
   if (!t)
     throw new Error("Button should be used inside Button Group");
-  const { activeItem: b, onChange: p, size: x, iconPosition: m } = t, v = {
+  const { activeItem: b, onChange: p, size: x, iconPosition: m } = t, g = {
     xs: "py-1 px-1 text-sm gap-0.5 [&>svg]:size-4",
     sm: "py-2 px-2 text-base gap-1 [&>svg]:size-4",
     md: "py-2.5 px-2.5 text-base gap-1 [&>svg]:size-5"
-  }, g = "bg-background-primary text-primary cursor-pointer flex items-center justify-center", y = "hover:bg-button-tertiary-hover", B = "focus:outline-none", N = n ? "text-text-disabled cursor-not-allowed" : "", z = i ? "rounded-tl rounded-bl border-0 border-r border-border-subtle" : "", k = c ? "rounded-tr rounded-br border-0" : "", w = "border-0 border-r border-border-subtle border-solid", G = b === o ? "bg-button-disabled" : "", j = C(
-    g,
+  }, v = "bg-background-primary text-primary cursor-pointer flex items-center justify-center", y = "hover:bg-button-tertiary-hover", B = "focus:outline-none", N = n ? "text-text-disabled cursor-not-allowed" : "", z = i ? "rounded-tl rounded-bl border-0 border-r border-border-subtle" : "", k = u ? "rounded-tr rounded-br border-0" : "", w = "border-0 border-r border-border-subtle border-solid", G = b === o ? "bg-button-disabled" : "", j = C(
+    v,
     y,
     B,
     N,
-    v[x],
+    g[x],
     w,
     G,
     z,
@@ -84,7 +84,7 @@ const f = F({
       onClick: (E) => {
         p({ event: E, value: { slug: o, text: r } });
       },
-      ...u,
+      ...c,
       children: [
         m === "left" && e && /* @__PURE__ */ a("span", { className: "mr-1", children: e }),
         r,

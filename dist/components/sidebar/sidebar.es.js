@@ -1,5 +1,5 @@
-import { jsx as e, jsxs as f, Fragment as u } from "react/jsx-runtime";
-import { useRef as I, useState as z, useEffect as b, useContext as E, createContext as L } from "react";
+import { jsx as e, jsxs as f, Fragment as b } from "react/jsx-runtime";
+import { useRef as I, useState as z, useEffect as u, useContext as E, createContext as L } from "react";
 import { safeLocalStorage as o, cn as n } from "../../utilities/functions.es.js";
 import { PanelLeftOpen as j, PanelLeftClose as B } from "lucide-react";
 import { Tooltip as F } from "../tooltip/tooltip.es.js";
@@ -12,25 +12,25 @@ const S = L({
   children: r,
   className: s,
   onCollapseChange: i,
-  collapsible: t = !0,
+  collapsible: a = !0,
   borderOn: g = !0,
   collapsed: c = !1,
   ...C
 }) => {
   const h = I(null), [d, l] = z(() => {
-    if (!t && c)
+    if (!a && c)
       return c;
-    const a = o.get("sidebar-collapsed");
-    return a || window.innerWidth < 1280;
+    const t = o.get("sidebar-collapsed");
+    return t || window.innerWidth < 1280;
   });
-  return b(() => {
+  return u(() => {
     typeof i == "function" && i(d);
-  }, [d, i]), b(() => {
-    if (!t && c)
+  }, [d, i]), u(() => {
+    if (!a && c)
       return;
-    const a = () => {
+    const t = () => {
       const m = window.innerWidth < 1280;
-      if (!t)
+      if (!a)
         l(!1), o.remove("sidebar-collapsed");
       else if (m)
         l(!0), o.set("sidebar-collapsed", !0);
@@ -39,17 +39,18 @@ const S = L({
         l(p || !1);
       }
     };
-    return window.addEventListener("resize", a), a(), () => {
-      window.removeEventListener("resize", a);
+    return window.addEventListener("resize", t), t(), () => {
+      window.removeEventListener("resize", t);
     };
-  }, [t]), /* @__PURE__ */ e(
+  }, [a]), /* @__PURE__ */ e(
     S.Provider,
     {
-      value: { isCollapsed: d, setIsCollapsed: l, collapsible: t },
+      value: { isCollapsed: d, setIsCollapsed: l, collapsible: a },
       children: /* @__PURE__ */ e(
-        "div",
+        "nav",
         {
           ref: h,
+          "aria-label": "Sidebar",
           className: n(
             "h-full overflow-auto w-72 px-4 py-4 gap-4 flex flex-col bg-background-primary",
             g && "border-0 border-r border-solid border-border-subtle",
@@ -70,10 +71,10 @@ w.displayName = "Sidebar.Header";
 const x = ({ children: r }) => /* @__PURE__ */ e("div", { className: n("space-y-4 grow items-start"), children: r });
 x.displayName = "Sidebar.Body";
 const N = ({ children: r }) => {
-  const { isCollapsed: s, setIsCollapsed: i, collapsible: t } = E(S);
+  const { isCollapsed: s, setIsCollapsed: i, collapsible: a } = E(S);
   return /* @__PURE__ */ f("div", { className: "space-y-4", children: [
     r,
-    t && /* @__PURE__ */ e(
+    a && /* @__PURE__ */ e(
       "button",
       {
         className: n(
@@ -84,7 +85,7 @@ const N = ({ children: r }) => {
           i(!s), o.set("sidebar-collapsed", !s);
         },
         "aria-label": s ? "Expand sidebar" : "Collapse sidebar",
-        children: s ? /* @__PURE__ */ e(u, { children: /* @__PURE__ */ e(F, { title: "Expand", children: /* @__PURE__ */ e(j, { className: "size-5" }) }) }) : /* @__PURE__ */ f(u, { children: [
+        children: s ? /* @__PURE__ */ e(b, { children: /* @__PURE__ */ e(F, { title: "Expand", children: /* @__PURE__ */ e(j, { className: "size-5" }) }) }) : /* @__PURE__ */ f(b, { children: [
           /* @__PURE__ */ e(B, { className: "size-5" }),
           " Collapse"
         ] })

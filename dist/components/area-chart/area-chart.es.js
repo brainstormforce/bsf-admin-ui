@@ -17,20 +17,20 @@ const q = "#6B7280", J = [
   showTooltip: k = !0,
   tooltipIndicator: u = "dot",
   // dot, line, dashed
-  tooltipLabelKey: L,
-  showLegend: A = !0,
+  tooltipLabelKey: A,
+  showLegend: L = !0,
   showCartesianGrid: y = !0,
   xAxisTickFormatter: E,
   tickFormatter: F,
   yAxisTickFormatter: x,
   xAxisDataKey: O,
   yAxisDataKey: S,
-  xAxisFontSize: B = "sm",
+  xAxisFontSize: v = "sm",
   // sm, md, lg
   xAxisFontColor: p = q,
-  chartWidth: n = 350,
-  chartHeight: a = 200,
-  areaChartWrapperProps: v = {
+  chartWidth: a = 350,
+  chartHeight: l = 200,
+  areaChartWrapperProps: B = {
     margin: {
       left: 14,
       right: 14,
@@ -38,17 +38,17 @@ const q = "#6B7280", J = [
       bottom: 6
     }
   },
-  noDataComponent: z
+  noDataComponent: b
 }) => {
-  const [D, T] = m(n), [b, K] = m(a), i = s.length > 0 ? s : J;
+  const [z, D] = m(a), [T, K] = m(l), i = s.length > 0 ? s : J;
   _(() => {
-    T(n), K(a);
-  }, [n, a]);
+    D(a), K(l);
+  }, [a, l]);
   const d = {
     sm: "12px",
     md: "14px",
     lg: "16px"
-  }, l = d[B] || d.sm, R = () => /* @__PURE__ */ t("defs", { children: i.map((r, e) => /* @__PURE__ */ c(
+  }, n = d[v] || d.sm, R = () => /* @__PURE__ */ t("defs", { children: i.map((r, e) => /* @__PURE__ */ c(
     "linearGradient",
     {
       id: `fill${e}`,
@@ -77,7 +77,7 @@ const q = "#6B7280", J = [
     },
     `gradient${e}`
   )) });
-  return !o || o.length === 0 ? z || /* @__PURE__ */ t(Y, { size: "sm", variant: "help", children: "No data available" }) : /* @__PURE__ */ t($, { width: D, height: b, children: /* @__PURE__ */ c(G, { ...v, data: o, children: [
+  return !o || o.length === 0 ? b || /* @__PURE__ */ t(Y, { size: "sm", variant: "help", children: "No data available" }) : /* @__PURE__ */ t("div", { role: "img", "aria-label": "Area chart", children: /* @__PURE__ */ t($, { width: z, height: T, children: /* @__PURE__ */ c(G, { ...B, data: o, children: [
     y && /* @__PURE__ */ t(M, { vertical: !1 }),
     /* @__PURE__ */ t(
       j,
@@ -88,7 +88,7 @@ const q = "#6B7280", J = [
         tickMargin: 8,
         tickFormatter: E || F,
         tick: {
-          fontSize: l,
+          fontSize: n,
           fill: p
         },
         hide: !g,
@@ -104,7 +104,7 @@ const q = "#6B7280", J = [
         tickMargin: 8,
         tickFormatter: x,
         tick: {
-          fontSize: l,
+          fontSize: n,
           fill: p
         },
         hide: !C
@@ -117,18 +117,18 @@ const q = "#6B7280", J = [
           X,
           {
             indicator: u,
-            labelKey: L
+            labelKey: A
           }
         )
       }
     ),
-    A && /* @__PURE__ */ t(
+    L && /* @__PURE__ */ t(
       w,
       {
         content: /* @__PURE__ */ t(
           V,
           {
-            fontSizeVariant: l
+            fontSizeVariant: n
           }
         )
       }
@@ -145,7 +145,7 @@ const q = "#6B7280", J = [
       },
       r
     ))
-  ] }) });
+  ] }) }) });
 };
 export {
   et as default

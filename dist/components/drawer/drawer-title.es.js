@@ -1,23 +1,31 @@
 import { jsx as m } from "react/jsx-runtime";
-import { cn as s } from "../../utilities/functions.es.js";
-const o = ({
-  children: t,
-  as: e = "h3",
-  className: r,
-  ...a
-}) => /* @__PURE__ */ m(
-  e,
-  {
-    className: s(
-      "text-base font-semibold text-text-primary m-0 p-0",
-      r
-    ),
-    ...a,
-    children: t
-  }
-);
-o.displayName = "Drawer.Title";
+import { useEffect as o } from "react";
+import { cn as f } from "../../utilities/functions.es.js";
+import { useDrawerState as l } from "./drawer.es.js";
+const n = ({
+  children: e,
+  as: r = "h3",
+  className: a,
+  ...i
+}) => {
+  const { titleId: s, hasTitleRef: t } = l();
+  return o(() => (t && (t.current = !0), () => {
+    t && (t.current = !1);
+  }), [t]), /* @__PURE__ */ m(
+    r,
+    {
+      id: s,
+      className: f(
+        "text-base font-semibold text-text-primary m-0 p-0",
+        a
+      ),
+      ...i,
+      children: e
+    }
+  );
+};
+n.displayName = "Drawer.Title";
 export {
-  o as default
+  n as default
 };
 //# sourceMappingURL=drawer-title.es.js.map

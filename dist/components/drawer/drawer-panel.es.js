@@ -1,9 +1,9 @@
 import { jsx as e } from "react/jsx-runtime";
-import { AnimatePresence as p, motion as h } from "framer-motion";
-import { useDrawerState as g } from "./drawer.es.js";
+import { AnimatePresence as y, motion as N } from "framer-motion";
+import { useDrawerState as b } from "./drawer.es.js";
 import { cn as a } from "../../utilities/functions.es.js";
-import { FloatingOverlay as w, FloatingFocusManager as v } from "@floating-ui/react";
-const N = {
+import { FloatingOverlay as F, FloatingFocusManager as D } from "@floating-ui/react";
+const j = {
   left: {
     open: {
       x: 0
@@ -20,31 +20,35 @@ const N = {
       x: "100%"
     }
   }
-}, y = ({ children: r, className: s }) => {
+}, P = ({ children: r, className: c, ariaLabel: d }) => {
   const {
-    open: c,
-    position: t,
-    handleClose: f,
+    open: f,
+    position: i,
+    handleClose: m,
     transitionDuration: o,
     getFloatingProps: l,
-    drawerContainerRef: m,
-    scrollLock: d,
+    drawerContainerRef: u,
+    scrollLock: x,
     context: n,
-    className: u,
-    refs: i
-  } = g();
-  return !n || !l ? null : /* @__PURE__ */ e(p, { children: c && /* @__PURE__ */ e(
-    w,
+    className: p,
+    refs: t,
+    titleId: h,
+    descriptionId: v,
+    hasTitleRef: s,
+    hasDescriptionRef: g
+  } = b();
+  return !n || !l ? null : /* @__PURE__ */ e(y, { children: f && /* @__PURE__ */ e(
+    F,
     {
-      ref: m,
-      lockScroll: d,
-      className: a("z-50", u),
+      ref: u,
+      lockScroll: x,
+      className: a("z-50", p),
       children: /* @__PURE__ */ e(
-        v,
+        D,
         {
           context: n,
           modal: !0,
-          ...i?.reference && { returnFocus: i.reference },
+          ...t?.reference && { returnFocus: t.reference },
           children: /* @__PURE__ */ e(
             "div",
             {
@@ -55,32 +59,34 @@ const N = {
                   className: a(
                     "flex items-center justify-center h-full w-full",
                     {
-                      "justify-start": t === "left",
-                      "justify-end": t === "right"
+                      "justify-start": i === "left",
+                      "justify-end": i === "right"
                     }
                   ),
                   children: /* @__PURE__ */ e(
-                    h.div,
+                    N.div,
                     {
                       className: a(
                         "flex flex-col w-120 h-full bg-background-primary shadow-2xl overflow-hidden z-20",
-                        s
+                        c
                       ),
                       initial: "exit",
                       animate: "open",
                       exit: "exit",
-                      variants: N[t],
+                      variants: j[i],
                       transition: o,
-                      ref: (x) => {
+                      ref: (w) => {
                         setTimeout(() => {
-                          i?.setFloating(x);
+                          t?.setFloating(w);
                         }, ((o?.duration || 0.3) + 0.1) * 1e3);
                       },
-                      "aria-label": "drawer",
+                      "aria-label": s?.current ? void 0 : d,
+                      "aria-labelledby": s?.current ? h : void 0,
+                      "aria-describedby": g?.current ? v : void 0,
                       role: "dialog",
                       "aria-modal": "true",
                       ...l?.(),
-                      children: typeof r == "function" ? r({ close: f }) : r
+                      children: typeof r == "function" ? r({ close: m }) : r
                     }
                   )
                 }
@@ -92,8 +98,8 @@ const N = {
     }
   ) });
 };
-y.displayName = "Drawer.Panel";
+P.displayName = "Drawer.Panel";
 export {
-  y as default
+  P as default
 };
 //# sourceMappingURL=drawer-panel.es.js.map

@@ -6,19 +6,19 @@ import Y from "../label/label.es.js";
 const P = ({
   data: a,
   dataKeys: f = [],
-  colors: s = [],
+  colors: c = [],
   layout: i = "horizontal",
   // horizontal, vertical
-  stacked: c = !1,
+  stacked: s = !1,
   showXAxis: B = !0,
-  showYAxis: m = !0,
+  showYAxis: h = !0,
   showTooltip: v = !0,
-  tooltipIndicator: S = "dot",
+  tooltipIndicator: b = "dot",
   // dot, line, dashed
-  tooltipLabelKey: b,
+  tooltipLabelKey: S,
   showLegend: M = !1,
   showCartesianGrid: F = !0,
-  xTickFormatter: h,
+  xTickFormatter: m,
   yTickFormatter: K,
   xAxisDataKey: d,
   yAxisDataKey: l,
@@ -34,12 +34,12 @@ const P = ({
   tooltipProps: R,
   activeBar: T
 }) => {
-  const V = [{ fill: "#7DD3FC" }, { fill: "#2563EB" }], X = s.length > 0 ? s : V, k = {
+  const V = [{ fill: "#7DD3FC" }, { fill: "#2563EB" }], X = c.length > 0 ? c : V, k = {
     sm: "12px",
     md: "14px",
     lg: "16px"
   }, r = k[j] || k.sm;
-  return !a || a.length === 0 ? /* @__PURE__ */ t(Y, { size: "sm", variant: "help", children: "No data available" }) : /* @__PURE__ */ t(q, { width: G, height: I, children: /* @__PURE__ */ z(
+  return !a || a.length === 0 ? /* @__PURE__ */ t(Y, { size: "sm", variant: "help", children: "No data available" }) : /* @__PURE__ */ t("div", { role: "img", "aria-label": "Bar chart", children: /* @__PURE__ */ t(q, { width: G, height: I, children: /* @__PURE__ */ z(
     w,
     {
       data: a,
@@ -55,14 +55,14 @@ const P = ({
             tickLine: !1,
             axisLine: !1,
             tickMargin: 8,
-            tickFormatter: h,
+            tickFormatter: m,
             tick: {
               fontSize: r,
               fill: E
             }
           }
         ),
-        i === "horizontal" && m && /* @__PURE__ */ t(
+        i === "horizontal" && h && /* @__PURE__ */ t(
           o,
           {
             ...C,
@@ -96,7 +96,7 @@ const P = ({
               tickLine: !1,
               tickMargin: 10,
               axisLine: !1,
-              tickFormatter: h,
+              tickFormatter: m,
               tick: {
                 fontSize: r,
                 fill: p
@@ -104,7 +104,7 @@ const P = ({
             }
           )
         ] }),
-        m && /* @__PURE__ */ t(o, { dataKey: l }),
+        h && /* @__PURE__ */ t(o, { dataKey: l }),
         v && /* @__PURE__ */ t(
           J,
           {
@@ -112,8 +112,8 @@ const P = ({
             content: /* @__PURE__ */ t(
               W,
               {
-                indicator: S,
-                labelKey: b
+                indicator: b,
+                labelKey: S
               }
             )
           }
@@ -131,13 +131,13 @@ const P = ({
         ),
         f.map((u, n) => {
           let e;
-          return c ? n === 0 ? e = [0, 0, 4, 4] : n === f.length - 1 ? e = [4, 4, 0, 0] : e = 0 : e = N, /* @__PURE__ */ t(
+          return s ? n === 0 ? e = [0, 0, 4, 4] : n === f.length - 1 ? e = [4, 4, 0, 0] : e = 0 : e = N, /* @__PURE__ */ t(
             Q,
             {
               dataKey: u,
               fill: X[n]?.fill,
               radius: e,
-              stackId: c ? "a" : void 0,
+              stackId: s ? "a" : void 0,
               activeBar: T
             },
             u
@@ -145,7 +145,7 @@ const P = ({
         })
       ]
     }
-  ) });
+  ) }) });
 };
 export {
   P as default

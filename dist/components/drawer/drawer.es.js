@@ -1,89 +1,97 @@
-import { jsxs as N, Fragment as g, jsx as A } from "react/jsx-runtime";
-import { useState as E, useRef as O, useMemo as d, useCallback as b, isValidElement as j, cloneElement as H, createContext as K, useContext as M } from "react";
-import { callAll as U } from "../../utilities/functions.es.js";
-import { useFloating as V, useDismiss as _, useRole as q, useClick as z, useInteractions as G } from "@floating-ui/react";
-import J from "./drawer-panel.es.js";
-import L from "./drawer-header.es.js";
-import Q from "./drawer-title.es.js";
-import W from "./drawer-description.es.js";
-import X from "./drawer-body.es.js";
-import Y from "./drawer-footer.es.js";
-import Z from "./drawer-close-button.es.js";
-import $ from "./drawer-backdrop.es.js";
-import { DrawerPortal as ee } from "./drawer-portal.es.js";
-const re = 0.2, D = K({}), Ce = () => M(D), e = ({
+import { jsxs as j, Fragment as H, jsx as $ } from "react/jsx-runtime";
+import { useState as K, useRef as p, useId as M, useMemo as w, useCallback as U, isValidElement as V, cloneElement as _, createContext as q, useContext as z } from "react";
+import { callAll as G } from "../../utilities/functions.es.js";
+import { useFloating as J, useDismiss as L, useRole as Q, useClick as W, useInteractions as X } from "@floating-ui/react";
+import Y from "./drawer-panel.es.js";
+import Z from "./drawer-header.es.js";
+import ee from "./drawer-title.es.js";
+import te from "./drawer-description.es.js";
+import oe from "./drawer-body.es.js";
+import re from "./drawer-footer.es.js";
+import se from "./drawer-close-button.es.js";
+import ne from "./drawer-backdrop.es.js";
+import { DrawerPortal as ae } from "./drawer-portal.es.js";
+const ie = 0.2, C = q({}), xe = () => z(C), e = ({
   open: a,
   setOpen: i,
-  children: w,
-  trigger: r,
-  className: C,
-  exitOnClickOutside: m = !1,
-  exitOnEsc: f = !0,
-  design: T = "simple",
-  position: k = "right",
-  transitionDuration: P = re,
-  scrollLock: R = !0
+  children: h,
+  trigger: t,
+  className: I,
+  exitOnClickOutside: f = !1,
+  exitOnEsc: m = !0,
+  design: R = "simple",
+  position: T = "right",
+  transitionDuration: k = ie,
+  scrollLock: x = !0
 }) => {
-  const t = a !== void 0 && i !== void 0, [p, u] = E(!1), h = O(null), o = d(
-    () => t ? a : p,
-    [a, p, t]
-  ), n = d(
-    () => t ? i : u,
-    [i, u, t]
+  const r = a !== void 0 && i !== void 0, [u, d] = K(!1), P = p(null), D = M(), B = `${D}-title`, y = `${D}-description`, F = p(!1), S = p(!1), o = w(
+    () => r ? a : u,
+    [a, u, r]
+  ), s = w(
+    () => r ? i : d,
+    [i, d, r]
   ), l = () => {
-    o || n(!0);
-  }, x = () => {
-    o && n(!1);
-  }, { refs: c, context: s } = V({
+    o || s(!0);
+  }, g = () => {
+    o && s(!1);
+  }, { refs: c, context: n } = J({
     open: o,
-    onOpenChange: n,
+    onOpenChange: s,
     transform: !1
-  }), B = _(s, {
-    enabled: f || m,
-    escapeKey: f,
-    outsidePress: (v) => m ? !v?.target?.closest("ul.fui-toast-container") : !1
-  }), y = q(s, { role: "dialog" }), F = z(s), { getFloatingProps: I } = G([B, y, F]), S = b(() => j(r) ? H(r, {
-    onClick: U(l, r.props.onClick),
+  }), v = L(n, {
+    enabled: m || f,
+    escapeKey: m,
+    outsidePress: (O) => f ? !O?.target?.closest("ul.fui-toast-container") : !1
+  }), N = Q(n, { role: "dialog" }), b = W(n), { getFloatingProps: A } = X([v, N, b]), E = U(() => V(t) ? _(t, {
+    onClick: G(l, t.props.onClick),
     ref: c.setReference,
     "aria-haspopup": "dialog",
     "aria-expanded": o
-  }) : typeof r == "function" ? r({ onClick: l }) : null, [r, l, c.setReference]);
-  return /* @__PURE__ */ N(g, { children: [
-    S(),
-    /* @__PURE__ */ A(
-      D.Provider,
+  }) : typeof t == "function" ? t({
+    onClick: l,
+    "aria-haspopup": "dialog",
+    "aria-expanded": o
+  }) : null, [t, l, c.setReference]);
+  return /* @__PURE__ */ j(H, { children: [
+    E(),
+    /* @__PURE__ */ $(
+      C.Provider,
       {
         value: {
           open: o,
-          setOpen: n,
-          handleClose: x,
-          design: T,
-          position: k,
-          drawerContainerRef: h,
-          transitionDuration: { duration: P },
-          getFloatingProps: I,
-          scrollLock: R,
-          context: s,
-          className: C,
-          refs: c
+          setOpen: s,
+          handleClose: g,
+          design: R,
+          position: T,
+          drawerContainerRef: P,
+          transitionDuration: { duration: k },
+          getFloatingProps: A,
+          scrollLock: x,
+          context: n,
+          className: I,
+          refs: c,
+          titleId: B,
+          descriptionId: y,
+          hasTitleRef: F,
+          hasDescriptionRef: S
         },
-        children: w
+        children: h
       }
     )
   ] });
 };
 e.displayName = "Drawer";
-e.Panel = J;
-e.Header = L;
-e.Title = Q;
-e.Description = W;
-e.Body = X;
-e.CloseButton = Z;
-e.Footer = Y;
-e.Backdrop = $;
-e.Portal = ee;
+e.Panel = Y;
+e.Header = Z;
+e.Title = ee;
+e.Description = te;
+e.Body = oe;
+e.CloseButton = se;
+e.Footer = re;
+e.Backdrop = ne;
+e.Portal = ae;
 export {
   e as default,
-  Ce as useDrawerState
+  xe as useDrawerState
 };
 //# sourceMappingURL=drawer.es.js.map

@@ -1,15 +1,15 @@
 import { jsx as t, jsxs as i } from "react/jsx-runtime";
-import { PieChart as g, Tooltip as L, Legend as N, Pie as P, Label as j } from "recharts";
+import { PieChart as P, Tooltip as $, Legend as N, Pie as j, Label as D } from "recharts";
 import R from "./chart-tooltip-content.es.js";
 import T from "./chart-legend-content.es.js";
-import $ from "../label/label.es.js";
-const q = ({
-  data: n,
-  dataKey: a,
-  type: o = "simple",
+import z from "../label/label.es.js";
+const F = ({
+  data: a,
+  dataKey: n,
+  type: s = "simple",
   // simple, donut
-  showTooltip: s = !0,
-  tooltipIndicator: c = "dot",
+  showTooltip: c = !0,
+  tooltipIndicator: o = "dot",
   // dot, line, dashed
   tooltipLabelKey: d,
   label: m = !1,
@@ -17,78 +17,92 @@ const q = ({
   labelNameColor: f = "#6B7280",
   labelValue: p,
   showLegend: u = !1,
-  chartWidth: r = 300,
-  pieOuterRadius: x = 90,
-  pieInnerRadius: y = 60
+  chartWidth: l = 300,
+  pieOuterRadius: b = 90,
+  pieInnerRadius: x = 60
 }) => {
-  const l = o === "donut", C = x, b = l ? y : 0;
-  return !n || n.length === 0 ? /* @__PURE__ */ t($, { size: "sm", variant: "help", children: "No data available" }) : /* @__PURE__ */ i(g, { width: r, height: r, children: [
-    s && /* @__PURE__ */ t(
-      L,
-      {
-        content: /* @__PURE__ */ t(
-          R,
+  const r = s === "donut", y = b, g = r ? x : 0;
+  if (!a || a.length === 0)
+    return /* @__PURE__ */ t(z, { size: "sm", variant: "help", children: "No data available" });
+  const C = a.map((e, L) => ({
+    ...e,
+    "aria-label": `${e.name ?? `Segment ${L + 1}`}: ${e[n]}`
+  }));
+  return /* @__PURE__ */ t("div", { role: "img", "aria-label": "Pie chart", children: /* @__PURE__ */ i(
+    P,
+    {
+      width: l,
+      height: l,
+      accessibilityLayer: !1,
+      children: [
+        c && /* @__PURE__ */ t(
+          $,
           {
-            indicator: c,
-            labelKey: d
+            content: /* @__PURE__ */ t(
+              R,
+              {
+                indicator: o,
+                labelKey: d
+              }
+            )
           }
-        )
-      }
-    ),
-    u && /* @__PURE__ */ t(N, { content: /* @__PURE__ */ t(T, {}) }),
-    /* @__PURE__ */ t(
-      P,
-      {
-        data: n,
-        cx: "50%",
-        cy: "50%",
-        innerRadius: b,
-        outerRadius: C,
-        dataKey: a,
-        children: l && m && /* @__PURE__ */ t(
+        ),
+        u && /* @__PURE__ */ t(N, { content: /* @__PURE__ */ t(T, {}) }),
+        /* @__PURE__ */ t(
           j,
           {
-            content: ({ viewBox: e }) => {
-              if (e && "cx" in e && "cy" in e)
-                return /* @__PURE__ */ i(
-                  "text",
-                  {
-                    x: e.cx,
-                    y: e.cy,
-                    textAnchor: "middle",
-                    dominantBaseline: "middle",
-                    className: "space-y-3",
-                    children: [
-                      /* @__PURE__ */ t(
-                        "tspan",
-                        {
-                          x: e.cx,
-                          dy: "-4",
-                          className: "fill-foreground text-xl font-bold",
-                          children: p
-                        }
-                      ),
-                      /* @__PURE__ */ t(
-                        "tspan",
-                        {
-                          x: e.cx,
-                          dy: "24",
-                          className: "text-sm",
-                          style: { fill: f },
-                          children: h
-                        }
-                      )
-                    ]
-                  }
-                );
-            }
+            data: C,
+            cx: "50%",
+            cy: "50%",
+            innerRadius: g,
+            outerRadius: y,
+            dataKey: n,
+            children: r && m && /* @__PURE__ */ t(
+              D,
+              {
+                content: ({ viewBox: e }) => {
+                  if (e && "cx" in e && "cy" in e)
+                    return /* @__PURE__ */ i(
+                      "text",
+                      {
+                        x: e.cx,
+                        y: e.cy,
+                        textAnchor: "middle",
+                        dominantBaseline: "middle",
+                        className: "space-y-3",
+                        children: [
+                          /* @__PURE__ */ t(
+                            "tspan",
+                            {
+                              x: e.cx,
+                              dy: "-4",
+                              className: "fill-foreground text-xl font-bold",
+                              children: p
+                            }
+                          ),
+                          /* @__PURE__ */ t(
+                            "tspan",
+                            {
+                              x: e.cx,
+                              dy: "24",
+                              className: "text-sm",
+                              style: { fill: f },
+                              children: h
+                            }
+                          )
+                        ]
+                      }
+                    );
+                }
+              }
+            )
           }
         )
-      }
-    )
-  ] });
+      ]
+    }
+  ) });
 };
 export {
-  q as default
+  F as default
 };
 //# sourceMappingURL=pie-chart.es.js.map

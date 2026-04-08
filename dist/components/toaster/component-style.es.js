@@ -1,8 +1,8 @@
 const r = {
-  "top-left": "top-0 bottom-0 left-0 justify-start items-start",
-  "top-right": "top-0 bottom-0 right-0 justify-start items-end",
-  "bottom-left": "top-0 bottom-0 left-0 justify-end items-start",
-  "bottom-right": "top-0 bottom-0 right-0 justify-end items-end"
+  "top-left": "top-0 bottom-0 start-0 justify-start items-start",
+  "top-right": "top-0 bottom-0 end-0 justify-start items-end",
+  "bottom-left": "top-0 bottom-0 start-0 justify-end items-start",
+  "bottom-right": "top-0 bottom-0 end-0 justify-end items-end"
 }, t = {
   stack: "w-[22.5rem]",
   inline: "lg:w-[47.5rem] w-full"

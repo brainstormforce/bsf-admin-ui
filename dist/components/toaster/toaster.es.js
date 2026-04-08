@@ -1,10 +1,10 @@
-import { jsx as r, jsxs as h, Fragment as L } from "react/jsx-runtime";
-import { useState as M, useEffect as N, useRef as k } from "react";
+import { jsx as e, jsxs as b, Fragment as L } from "react/jsx-runtime";
+import { useState as M, useEffect as N, useRef as v } from "react";
 import { X as j } from "lucide-react";
 import { ToastState as P } from "./controller.es.js";
 import { cn as d } from "../../utilities/functions.es.js";
-import { getIcon as T, getTitle as S, getContent as w, getAction as F } from "./utils.es.js";
-import { positionClassNames as z, closeIconClassNames as m, containerVariantClassNames as D, variantClassNames as y } from "./component-style.es.js";
+import { getIcon as T, getTitle as D, getContent as S, getAction as F } from "./utils.es.js";
+import { positionClassNames as w, closeIconClassNames as m, containerVariantClassNames as z, variantClassNames as h } from "./component-style.es.js";
 import { flushSync as R } from "react-dom";
 import { AnimatePresence as V, motion as X } from "framer-motion";
 import $ from "../../hoc/withSingleton.es.js";
@@ -15,26 +15,26 @@ const q = ({
   // stack/inline
   theme: p = "light",
   // light/dark
-  className: b = "",
+  className: y = "",
   autoDismiss: l = !0,
   // Auto dismiss the toast after a certain time.
-  dismissAfter: e = 5e3
+  dismissAfter: r = 5e3
   // Time in milliseconds after which the toast will be dismissed.
 }) => {
-  const [g, o] = M([]);
+  const [g, c] = M([]);
   N(() => {
     P.subscribe((i) => {
       if (i?.dismiss) {
-        o(
+        c(
           (s) => s.map(
-            (c) => c.id === i.id ? { ...c, dismiss: !0 } : c
+            (o) => o.id === i.id ? { ...o, dismiss: !0 } : o
           )
         );
         return;
       }
       setTimeout(() => {
         R(
-          () => o((s) => s.findIndex(
+          () => c((s) => s.findIndex(
             (t) => t.id === i.id
           ) !== -1 ? s.map((t) => t.id === i.id ? { ...t, ...i } : t) : [...s, i])
         );
@@ -42,17 +42,19 @@ const q = ({
     });
   }, []);
   const a = (i) => {
-    o((s) => s.filter((c) => c.id !== i));
+    c((s) => s.filter((o) => o.id !== i));
   };
-  return /* @__PURE__ */ r(
+  return /* @__PURE__ */ e(
     "ul",
     {
+      "aria-live": "polite",
+      "aria-label": "Notifications",
       className: d(
         "fui-toast-container fixed flex flex-col list-none z-20 p-10 pointer-events-none [&>li]:pointer-events-auto gap-3",
-        z[n] ?? z["top-right"],
-        b
+        w[n] ?? w["top-right"],
+        y
       ),
-      children: /* @__PURE__ */ r(V, { initial: !1, children: g.map((i) => /* @__PURE__ */ r(
+      children: /* @__PURE__ */ e(V, { initial: !1, children: g.map((i) => /* @__PURE__ */ e(
         X.li,
         {
           initial: { opacity: 0, y: 50, scale: 0.7 },
@@ -63,7 +65,7 @@ const q = ({
             transition: { duration: 0.15 }
           },
           layoutId: `toast-${i.id}`,
-          children: /* @__PURE__ */ r(
+          children: /* @__PURE__ */ e(
             B,
             {
               toastItem: i,
@@ -72,7 +74,7 @@ const q = ({
               icon: i?.icon ?? void 0,
               design: i?.design ?? f,
               autoDismiss: i?.autoDismiss ?? l,
-              dismissAfter: i?.dismissAfter ?? e,
+              dismissAfter: i?.dismissAfter ?? r,
               removeToast: a,
               variant: i.type,
               theme: i?.theme ?? p
@@ -87,107 +89,109 @@ const q = ({
   toastItem: n,
   title: f = "",
   content: p = "",
-  autoDismiss: b = !0,
+  autoDismiss: y = !0,
   dismissAfter: l = 5e3,
-  theme: e = "light",
+  theme: r = "light",
   // light/dark
   design: g = "stack",
   // inline/stack
-  icon: o,
+  icon: c,
   variant: a = "neutral",
   // neutral/info/success/warning/danger
   removeToast: i
   // Function to remove the toast.
 }) => {
-  const s = k(0), c = k(0), t = k(), C = (u, A = l) => {
-    if (!(!b || l < 0))
+  const s = v(0), o = v(0), t = v(), k = (u, A = l) => {
+    if (!(!y || l < 0))
       return s.current = (/* @__PURE__ */ new Date()).getTime(), setTimeout(() => {
         typeof i == "function" && i(u.id);
       }, A);
   }, E = () => {
-    clearTimeout(t.current), c.current = (/* @__PURE__ */ new Date()).getTime();
+    clearTimeout(t.current), o.current = (/* @__PURE__ */ new Date()).getTime();
   }, _ = () => {
-    t.current = C(
+    t.current = k(
       n,
-      l - (c.current - s.current)
+      l - (o.current - s.current)
     );
   };
   N(() => {
     const u = l;
-    return t.current = C(n, u), () => {
+    return t.current = k(n, u), () => {
       clearTimeout(t.current);
     };
   }, []), N(() => {
     !n?.dismiss || typeof i != "function" || i(n.id);
   }, [n]);
-  const v = () => {
+  const C = () => {
     typeof i == "function" && n?.action?.onClick?.(() => i(n.id));
   };
   let x = null;
-  return g === "stack" && (x = /* @__PURE__ */ r(
+  return g === "stack" && (x = /* @__PURE__ */ e(
     "div",
     {
       className: d(
         "flex items-center justify-start p-4 gap-2 relative border border-solid rounded-md shadow-lg",
-        e === "dark" ? y.dark : y.light?.[a],
-        D.stack
+        r === "dark" ? h.dark : h.light?.[a],
+        z.stack
       ),
       onMouseEnter: E,
       onMouseLeave: _,
-      children: n.type !== "custom" ? /* @__PURE__ */ h(L, { children: [
-        /* @__PURE__ */ r("div", { className: "self-start flex items-center justify-center [&_svg]:size-5 shrink-0", children: T({ variant: a, icon: o, theme: e }) }),
-        /* @__PURE__ */ h("div", { className: "flex flex-col items-start justify-start gap-0.5 mr-6", children: [
-          S({ title: f, theme: e }),
-          w({ content: p, theme: e }),
+      children: n.type !== "custom" ? /* @__PURE__ */ b(L, { children: [
+        /* @__PURE__ */ e("div", { className: "self-start flex items-center justify-center [&_svg]:size-5 shrink-0", children: T({ variant: a, icon: c, theme: r }) }),
+        /* @__PURE__ */ b("div", { className: "flex flex-col items-start justify-start gap-0.5 me-6", children: [
+          D({ title: f, theme: r }),
+          S({ content: p, theme: r }),
           n?.action?.label && typeof n?.action?.onClick == "function" && /* eslint-disable */
-          /* @__PURE__ */ r("div", { className: "mt-2.5", children: F({
+          /* @__PURE__ */ e("div", { className: "mt-2.5", children: F({
             actionLabel: n?.action?.label,
             actionType: n?.action?.type ?? "button",
-            onAction: v,
-            theme: e
+            onAction: C,
+            theme: r
           }) })
         ] }),
-        /* @__PURE__ */ r("div", { className: "absolute right-4 top-4 [&_svg]:size-5", children: /* @__PURE__ */ r(
+        /* @__PURE__ */ e("div", { className: "absolute end-4 top-4 [&_svg]:size-5", children: /* @__PURE__ */ e(
           "button",
           {
             className: d(
-              "bg-transparent m-0 p-0 border-none focus:outline-none active:outline-none cursor-pointer",
-              m[e] ?? m.light
+              "inline-flex bg-transparent m-0 p-0 border-none focus:outline-none focus-visible:ring-2 focus-visible:ring-toggle-on focus-visible:ring-offset-2 active:outline-none cursor-pointer rounded",
+              m[r] ?? m.light
             ),
+            "aria-label": "Dismiss notification",
             onClick: (u) => {
               u.preventDefault(), u.stopPropagation(), typeof i == "function" && i(n.id);
             },
-            children: /* @__PURE__ */ r(j, {})
+            children: /* @__PURE__ */ e(j, { "aria-hidden": "true" })
           }
         ) })
       ] }) : n?.jsx?.({
         close: () => i(n.id),
-        action: n?.action ? { ...n?.action, onClick: v } : null
+        action: n?.action ? { ...n?.action, onClick: C } : null
       })
     }
-  )), g === "inline" && (x = /* @__PURE__ */ h(
+  )), g === "inline" && (x = /* @__PURE__ */ b(
     "div",
     {
       className: d(
         "flex items-center justify-start p-3 gap-2 relative border border-solid rounded-md shadow-lg",
-        e === "dark" ? y.dark : y.light?.[a],
-        D.inline
+        r === "dark" ? h.dark : h.light?.[a],
+        z.inline
       ),
       children: [
-        /* @__PURE__ */ r("div", { className: "self-start flex items-center justify-center [&_svg]:size-5 shrink-0", children: T({ variant: a, icon: o, theme: e }) }),
-        /* @__PURE__ */ h("div", { className: "flex items-start justify-start gap-1 mr-10 [&>span:first-child]:shrink-0", children: [
-          S({ title: f, theme: e }),
-          w({ content: p, theme: e })
+        /* @__PURE__ */ e("div", { className: "self-start flex items-center justify-center [&_svg]:size-5 shrink-0", children: T({ variant: a, icon: c, theme: r }) }),
+        /* @__PURE__ */ b("div", { className: "flex items-start justify-start gap-1 me-10 [&>span:first-child]:shrink-0", children: [
+          D({ title: f, theme: r }),
+          S({ content: p, theme: r })
         ] }),
-        /* @__PURE__ */ r("div", { className: "absolute right-3 top-3 [&_svg]:size-5", children: /* @__PURE__ */ r(
+        /* @__PURE__ */ e("div", { className: "absolute end-3 top-3 [&_svg]:size-5", children: /* @__PURE__ */ e(
           "button",
           {
             className: d(
-              "bg-transparent m-0 p-0 border-none focus:outline-none active:outline-none cursor-pointer",
-              m[e] ?? m.light
+              "bg-transparent m-0 p-0 border-none focus:outline-none focus-visible:ring-2 focus-visible:ring-toggle-on focus-visible:ring-offset-2 active:outline-none cursor-pointer rounded",
+              m[r] ?? m.light
             ),
+            "aria-label": "Dismiss notification",
             onClick: () => i(n.id),
-            children: /* @__PURE__ */ r(j, {})
+            children: /* @__PURE__ */ e(j, { "aria-hidden": "true" })
           }
         ) })
       ]

@@ -28,11 +28,11 @@ export declare const Accordion: {
         displayName: string;
     };
     Trigger: {
-        ({ onClick, onToggle, isOpen, iconType, collapsible, disabled, tag, type, children, className, ...props }: AccordionTriggerProps): JSX_2.Element;
+        ({ onClick, onToggle, isOpen, iconType, collapsible, disabled, tag, type, children, className, contentId, triggerId, ...props }: AccordionTriggerProps): JSX_2.Element;
         displayName: string;
     };
     Content: {
-        ({ isOpen, disabled, type, children, className, }: AccordionContentProps): JSX_2.Element;
+        ({ isOpen, disabled, type, children, className, contentId, triggerId, }: AccordionContentProps): JSX_2.Element;
         displayName: string;
     };
 };
@@ -42,6 +42,10 @@ declare interface AccordionContentProps extends CommonProps_4 {
     isOpen?: boolean;
     /** Accordion type (same as parent) */
     type?: 'simple' | 'separator' | 'boxed';
+    /** Internal ID for this content region (linked from AccordionTrigger aria-controls) */
+    contentId?: string;
+    /** Internal ID of the trigger button, used for aria-labelledby on this region */
+    triggerId?: string;
 }
 
 /**
@@ -56,6 +60,10 @@ declare interface AccordionItemProps extends CommonProps_4 {
     type?: 'simple' | 'separator' | 'boxed';
     /** The value associated with the accordion item */
     value?: string;
+    /** Internal ID linking trigger to content for aria-controls */
+    contentId?: string;
+    /** Internal ID for the trigger button, used by content region's aria-labelledby */
+    triggerId?: string;
 }
 
 declare interface AccordionProps extends CommonProps_4 {
@@ -82,6 +90,10 @@ declare interface AccordionTriggerProps extends CommonProps_4 {
     type?: 'simple' | 'separator' | 'boxed';
     /** Specifies whether the accordion item can be collapsed. */
     collapsible?: boolean;
+    /** Internal ID for aria-controls linking to content panel */
+    contentId?: string;
+    /** Internal ID for this trigger button, used by content region's aria-labelledby */
+    triggerId?: string;
 }
 
 declare interface AdditionalProps {
@@ -743,7 +755,7 @@ export declare const Dialog: {
     ({ open, setOpen, children, trigger, className, exitOnClickOutside, exitOnEsc, design, scrollLock, }: DialogProps): JSX.Element;
     displayName: string;
     Panel: {
-        ({ children, className, }: DialogPanelProps): JSX.Element;
+        ({ children, className, ariaLabel, }: DialogPanelProps): JSX.Element;
         displayName: string;
     };
     Portal: {
@@ -820,6 +832,8 @@ declare interface DialogPanelProps extends CommonProps_2 {
     children: ReactNode | ((param: {
         close: () => void;
     }) => ReactNode);
+    /** Accessible label for the dialog when Dialog.Title is not used. */
+    ariaLabel?: string;
 }
 
 declare interface DialogPortalProps {
@@ -841,6 +855,8 @@ declare interface DialogProps extends CommonProps_2 {
     /** Trigger element for the dialog. */
     trigger?: ReactNode | ((props: {
         onClick: () => void;
+        'aria-haspopup'?: 'dialog';
+        'aria-expanded'?: boolean;
     }) => React.ReactElement);
     /** Close the dialog on clicking outside the dialog. */
     exitOnClickOutside?: boolean;
@@ -863,7 +879,7 @@ export declare const Drawer: {
     ({ open, setOpen, children, trigger, className, exitOnClickOutside, exitOnEsc, design, position, transitionDuration, scrollLock, }: DrawerProps): JSX_2.Element;
     displayName: string;
     Panel: {
-        ({ children, className }: DrawerPanelProps): JSX_2.Element | null;
+        ({ children, className, ariaLabel }: DrawerPanelProps): JSX_2.Element | null;
         displayName: string;
     };
     Header: {
@@ -958,6 +974,8 @@ declare interface DrawerPanelProps {
     }) => ReactNode);
     /** Additional class names. */
     className?: string;
+    /** Accessible label for the drawer when Drawer.Title is not used. */
+    ariaLabel?: string;
 }
 
 declare interface DrawerPortalProps {
@@ -979,6 +997,8 @@ declare interface DrawerProps {
     /** Trigger element to open the drawer. Required for uncontrolled component. */
     trigger?: ReactNode | ((props: {
         onClick: () => void;
+        'aria-haspopup'?: 'dialog';
+        'aria-expanded'?: boolean;
     }) => ReactNode);
     /** Additional class names. */
     className?: string;
@@ -1037,7 +1057,7 @@ export declare const DropdownMenu: {
         displayName: string;
     };
     ContentWrapper: {
-        ({ children, className, }: DropdownMenuContentWrapperProps): false | JSX_2.Element;
+        ({ children, className, }: DropdownMenuContentWrapperProps): JSX_2.Element | null;
         displayName: string;
     };
 };
@@ -1677,7 +1697,7 @@ declare type OnChangeValue = {
 };
 
 export declare const Pagination: {
-    ({ size, disabled, children, className, ...props }: PaginationProps): JSX_2.Element;
+    ({ size, disabled, ariaLabel, children, className, ...props }: PaginationProps): JSX_2.Element;
     displayName: string;
     Content: default_2.ForwardRefExoticComponent<PaginationCommonProps & default_2.RefAttributes<HTMLUListElement>>;
     Item: default_2.ForwardRefExoticComponent<PaginationItemProps & default_2.RefAttributes<HTMLLIElement>>;
@@ -1704,6 +1724,8 @@ declare interface PaginationButtonProps extends PaginationCommonProps {
     onClick?: default_2.MouseEventHandler;
     /** The HTML tag to be rendered for the pagination button. */
     tag?: 'a' | 'button';
+    /** Accessible label for the button. */
+    'aria-label'?: string;
 }
 
 declare interface PaginationCommonProps {
@@ -1716,6 +1738,8 @@ declare interface PaginationCommonProps {
 declare interface PaginationItemProps extends PaginationCommonProps {
     /** Marks the pagination item as active. */
     isActive?: boolean;
+    /** Accessible label for the pagination item (e.g., "Page 3", "Go to page 3"). */
+    ariaLabel?: string;
 }
 
 declare interface PaginationProps extends PaginationCommonProps {
@@ -1723,6 +1747,8 @@ declare interface PaginationProps extends PaginationCommonProps {
     size?: PaginationSize;
     /** Disables all pagination controls. */
     disabled?: boolean;
+    /** Accessible label for the navigation landmark. */
+    ariaLabel?: string;
 }
 
 declare type PaginationSize = 'xs' | 'sm' | 'md' | 'lg';
@@ -2451,7 +2477,7 @@ declare interface TabProps {
 export declare const Tabs: {
     ({ activeItem, children }: TabsProps): JSX_2.Element;
     Group: {
-        ({ children, activeItem: activeTabSlug, onChange, className, size, orientation, variant, iconPosition, width, }: TabsGroupProps): JSX_2.Element;
+        ({ children, activeItem: activeTabSlug, onChange, className, size, orientation, variant, iconPosition, width, "aria-label": ariaLabel, }: TabsGroupProps): JSX_2.Element;
         displayName: string;
     };
     Tab: default_2.ForwardRefExoticComponent<TabProps & default_2.RefAttributes<HTMLButtonElement>>;
@@ -2481,6 +2507,8 @@ declare interface TabsGroupProps {
     iconPosition?: 'left' | 'right';
     /** Defines the width of the tabs. */
     width?: 'auto' | 'full';
+    /** Accessible label for the tab list. */
+    'aria-label'?: string;
     /** Tabs to display in the group. */
     children: ReactNode;
 }

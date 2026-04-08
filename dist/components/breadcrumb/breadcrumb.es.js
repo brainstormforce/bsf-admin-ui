@@ -1,7 +1,7 @@
 import { jsx as r, Fragment as N } from "react/jsx-runtime";
-import { createContext as y, useContext as n } from "react";
+import { createContext as z, useContext as n } from "react";
 import { cn as m } from "../../utilities/functions.es.js";
-import { Ellipsis as z, ChevronRight as h } from "lucide-react";
+import { Ellipsis as h, ChevronRight as y } from "lucide-react";
 const o = {
   sm: {
     text: "text-sm",
@@ -13,7 +13,7 @@ const o = {
     separator: "text-base",
     separatorIconSize: 18
   }
-}, i = y({ sizes: o.sm }), a = ({ children: e, size: t = "sm" }) => {
+}, i = z({ sizes: o.sm }), a = ({ children: e, size: t = "sm" }) => {
   const s = o[t] || o.sm;
   return /* @__PURE__ */ r(i.Provider, { value: { sizes: s }, children: /* @__PURE__ */ r("nav", { className: "flex m-0", "aria-label": "Breadcrumb", children: /* @__PURE__ */ r("ul", { className: "m-0 inline-flex items-center space-x-1 md:space-x-1", children: e }) }) });
 };
@@ -50,7 +50,7 @@ d.displayName = "Breadcrumb.Link";
 const u = ({ type: e }) => {
   const { sizes: t } = n(i), s = {
     slash: /* @__PURE__ */ r("span", { className: m("mx-1", t.separator), children: "/" }),
-    arrow: /* @__PURE__ */ r(h, { size: t.separatorIconSize })
+    arrow: /* @__PURE__ */ r(y, { size: t.separatorIconSize })
   };
   return /* @__PURE__ */ r(
     "li",
@@ -65,13 +65,14 @@ const u = ({ type: e }) => {
 u.displayName = "Breadcrumb.Separator";
 const p = () => {
   const { sizes: e } = n(i);
-  return /* @__PURE__ */ r(
-    z,
+  return /* @__PURE__ */ r("span", { role: "img", "aria-label": "More pages", children: /* @__PURE__ */ r(
+    h,
     {
-      className: "mt-[2px] cursor-pointer text-text-tertiary hover:text-text-primary",
+      "aria-hidden": "true",
+      className: "mt-[2px] text-text-tertiary",
       size: e.separatorIconSize + 4
     }
-  );
+  ) });
 };
 p.displayName = "Breadcrumb.Ellipsis";
 const x = ({ children: e }) => {

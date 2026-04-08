@@ -1,70 +1,78 @@
-import { jsxs as J, Fragment as F, jsx as n } from "react/jsx-runtime";
-import { useState as Q, useRef as h, useMemo as v, useCallback as W, isValidElement as Y, cloneElement as P, createContext as Z, Fragment as k, useContext as ee } from "react";
-import { AnimatePresence as R, motion as B } from "framer-motion";
-import { callAll as oe, cn as s } from "../../utilities/functions.es.js";
-import { X as te } from "lucide-react";
-import { createPortal as ne } from "react-dom";
-import { useFloating as ae, useClick as re, useDismiss as se, useRole as le, useInteractions as ie, FloatingOverlay as ce, FloatingFocusManager as de, FloatingPortal as ue } from "@floating-ui/react";
-const T = Z({}), x = () => ee(T), w = {
+import { jsxs as te, Fragment as B, jsx as n } from "react/jsx-runtime";
+import { useState as oe, useRef as D, useId as ne, useMemo as P, useCallback as ae, isValidElement as ie, cloneElement as w, createContext as re, useEffect as S, Fragment as T, useContext as se } from "react";
+import { AnimatePresence as j, motion as A } from "framer-motion";
+import { callAll as le, cn as l } from "../../utilities/functions.es.js";
+import { X as ce } from "lucide-react";
+import { createPortal as de } from "react-dom";
+import { useFloating as ue, useClick as fe, useDismiss as pe, useRole as me, useInteractions as ge, FloatingOverlay as ye, FloatingFocusManager as xe, FloatingPortal as be } from "@floating-ui/react";
+const E = re({}), d = () => se(E), O = {
   open: {
     opacity: 1
   },
   exit: {
     opacity: 0
   }
-}, S = { duration: 0.2 }, r = ({
+}, z = { duration: 0.2 }, r = ({
   open: e,
-  setOpen: o,
+  setOpen: t,
   children: a,
-  trigger: t = null,
-  className: l,
-  exitOnClickOutside: u = !1,
+  trigger: o = null,
+  className: s,
+  exitOnClickOutside: i = !1,
   exitOnEsc: m = !0,
-  design: y = "simple",
-  scrollLock: C = !0
+  design: C = "simple",
+  scrollLock: N = !0
 }) => {
-  const f = e !== void 0 && o !== void 0, [c, D] = Q(!1), d = h(null), K = h(null), i = v(
-    () => f ? e : c,
-    [e, c]
-  ), p = v(
-    () => f ? o : D,
-    [D, o]
-  ), { refs: N, context: g } = ae({
-    open: i,
-    onOpenChange: p
-  }), L = re(g), U = se(g, {
-    enabled: u || m,
+  const g = e !== void 0 && t !== void 0, [y, u] = oe(!1), h = D(null), v = D(null), f = ne(), k = `${f}-title`, I = `${f}-description`, p = D(!1), q = D(!1), c = P(
+    () => g ? e : y,
+    [e, y]
+  ), x = P(
+    () => g ? t : u,
+    [u, t]
+  ), { refs: R, context: b } = ue({
+    open: c,
+    onOpenChange: x
+  }), G = fe(b), J = pe(b, {
+    enabled: i || m,
     escapeKey: m,
-    outsidePress: (G) => u ? !G?.target?.closest("ul.fui-toast-container") : !1
-  }), X = le(g, { role: "dialog" }), { getFloatingProps: _ } = ie([L, U, X]), b = () => {
-    i || p(!0);
-  }, $ = () => {
-    i && p(!1);
-  }, q = W(() => Y(t) ? P(t, {
-    onClick: oe(b, t?.props?.onClick),
-    ref: N.setReference,
+    outsidePress: (ee) => i ? !ee?.target?.closest("ul.fui-toast-container") : !1
+  }), Q = me(b, { role: "dialog" }), { getFloatingProps: W } = ge([G, J, Q]), F = () => {
+    c || x(!0);
+  }, Y = () => {
+    c && x(!1);
+  }, Z = ae(() => ie(o) ? w(o, {
+    onClick: le(F, o?.props?.onClick),
+    ref: R.setReference,
     "aria-haspopup": "dialog",
     // Added for accessibility
-    "aria-expanded": i
+    "aria-expanded": c
     // Added for accessibility
-  }) : typeof t == "function" ? t({ onClick: b }) : null, [t, b, N.setReference, i]);
-  return /* @__PURE__ */ J(F, { children: [
-    q(),
+  }) : typeof o == "function" ? o({
+    onClick: F,
+    "aria-haspopup": "dialog",
+    "aria-expanded": c
+  }) : null, [o, F, R.setReference, c]);
+  return /* @__PURE__ */ te(B, { children: [
+    Z(),
     /* @__PURE__ */ n(
-      T.Provider,
+      E.Provider,
       {
         value: {
-          open: i,
-          setOpen: p,
-          handleClose: $,
-          design: y,
-          context: g,
-          getFloatingProps: _,
-          refs: N,
-          dialogContainerRef: K,
-          dialogRef: d,
-          scrollLock: C,
-          className: l
+          open: c,
+          setOpen: x,
+          handleClose: Y,
+          design: C,
+          context: b,
+          getFloatingProps: W,
+          refs: R,
+          dialogContainerRef: v,
+          dialogRef: h,
+          scrollLock: N,
+          className: s,
+          titleId: k,
+          descriptionId: I,
+          hasTitleRef: p,
+          hasDescriptionRef: q
         },
         children: a
       }
@@ -72,56 +80,64 @@ const T = Z({}), x = () => ee(T), w = {
   ] });
 };
 r.displayName = "Dialog";
-const j = ({
+const H = ({
   children: e,
-  className: o
+  className: t,
+  ariaLabel: a
 }) => {
   const {
-    open: a,
-    handleClose: t,
-    context: l,
-    getFloatingProps: u,
-    dialogRef: m,
-    scrollLock: y,
-    dialogContainerRef: C,
-    className: f,
-    refs: c
-  } = x();
-  return /* @__PURE__ */ n(R, { children: a && /* @__PURE__ */ n(
-    ce,
+    open: o,
+    handleClose: s,
+    context: i,
+    getFloatingProps: m,
+    dialogRef: C,
+    scrollLock: N,
+    dialogContainerRef: g,
+    className: y,
+    refs: u,
+    titleId: h,
+    descriptionId: v,
+    hasTitleRef: f,
+    hasDescriptionRef: k
+  } = d();
+  return /* @__PURE__ */ n(j, { children: o && /* @__PURE__ */ n(
+    ye,
     {
-      ref: C,
-      lockScroll: y,
-      className: s("z-999999", f),
+      ref: g,
+      lockScroll: N,
+      className: l("z-999999", y),
       "aria-modal": "true",
       children: /* @__PURE__ */ n(
-        de,
+        xe,
         {
-          context: l,
-          ...c?.reference && { returnFocus: c.reference },
+          context: i,
+          ...u?.reference && { returnFocus: u.reference },
           children: /* @__PURE__ */ n(
-            B.div,
+            A.div,
             {
               className: "fixed inset-0 overflow-y-auto",
               initial: "exit",
               animate: "open",
               exit: "exit",
-              variants: w,
+              variants: O,
               role: "dialog",
               "aria-modal": "true",
-              transition: S,
+              "aria-label": f?.current ? void 0 : a,
+              "aria-labelledby": f?.current ? h : void 0,
+              "aria-describedby": k?.current ? v : void 0,
+              transition: z,
               children: /* @__PURE__ */ n("div", { className: "flex items-center justify-center min-h-full", children: /* @__PURE__ */ n(
                 "div",
                 {
-                  ref: (d) => {
-                    d && (m.current = d, l && l.refs.setFloating(d));
+                  ref: (p) => {
+                    p && (C.current = p, i && i.refs.setFloating(p));
                   },
-                  ...u?.(),
-                  className: s(
+                  ...m?.(),
+                  className: l(
                     "flex flex-col gap-5 w-120 h-fit bg-background-primary border border-solid border-border-subtle rounded-xl shadow-soft-shadow-2xl my-5 overflow-hidden",
-                    o
+                    t
                   ),
-                  children: typeof e == "function" ? e({ close: t }) : e
+                  children: typeof e == "function" ? e({ close: s }) : e
                 }
               ) })
             }
@@ -131,150 +147,162 @@ const j = ({
     }
   ) });
 };
-j.displayName = "Dialog.Panel";
-const I = ({
+H.displayName = "Dialog.Panel";
+const $ = ({
   children: e,
-  ...o
-}) => /* @__PURE__ */ n(ue, { ...o, children: e });
-I.displayName = "Dialog.Portal";
-const A = ({
+  ...t
+}) => /* @__PURE__ */ n(be, { ...t, children: e });
+$.displayName = "Dialog.Portal";
+const M = ({
   className: e,
-  ...o
+  ...t
 }) => {
-  const { open: a, dialogContainerRef: t } = x();
-  return t?.current ? /* @__PURE__ */ n(F, { children: ne(
-    /* @__PURE__ */ n(R, { children: a && /* @__PURE__ */ n(
-      B.div,
+  const { open: a, dialogContainerRef: o } = d();
+  return o?.current ? /* @__PURE__ */ n(B, { children: de(
+    /* @__PURE__ */ n(j, { children: a && /* @__PURE__ */ n(
+      A.div,
       {
-        className: s(
+        className: l(
           "fixed inset-0 -z-10 bg-background-inverse/90",
           e
         ),
-        ...o,
+        ...t,
         initial: "exit",
         animate: "open",
         exit: "exit",
-        variants: w,
-        transition: S
+        variants: O,
+        transition: z
       }
     ) }),
-    t.current
+    o.current
   ) }) : null;
 };
-A.displayName = "Dialog.Backdrop";
-const O = ({
+M.displayName = "Dialog.Backdrop";
+const V = ({
   children: e,
-  className: o,
+  className: t,
   ...a
-}) => /* @__PURE__ */ n("div", { className: s("space-y-2 px-5 pt-5 pb-1", o), ...a, children: e });
-O.displayName = "Dialog.Header";
-const z = ({
+}) => /* @__PURE__ */ n("div", { className: l("space-y-2 px-5 pt-5 pb-1", t), ...a, children: e });
+V.displayName = "Dialog.Header";
+const K = ({
   children: e,
-  as: o = "h3",
+  as: t = "h3",
   className: a,
-  ...t
-}) => /* @__PURE__ */ n(
-  o,
-  {
-    className: s(
-      "text-base font-semibold text-text-primary m-0 p-0",
-      a
-    ),
-    ...t,
-    children: e
-  }
-);
-z.displayName = "Dialog.Title";
-const E = ({
-  children: e,
-  as: o = "p",
-  className: a,
-  ...t
-}) => /* @__PURE__ */ n(
-  o,
-  {
-    className: s(
-      "text-sm font-normal text-text-secondary my-0 ml-0 mr-1 p-0",
-      a
-    ),
-    ...t,
-    children: e
-  }
-);
-E.displayName = "Dialog.Description";
-const me = ({
-  className: e,
   ...o
+}) => {
+  const { titleId: s, hasTitleRef: i } = d();
+  return S(() => (i && (i.current = !0), () => {
+    i && (i.current = !1);
+  }), [i]), /* @__PURE__ */ n(
+    t,
+    {
+      id: s,
+      className: l(
+        "text-base font-semibold text-text-primary m-0 p-0",
+        a
+      ),
+      ...o,
+      children: e
+    }
+  );
+};
+K.displayName = "Dialog.Title";
+const L = ({
+  children: e,
+  as: t = "p",
+  className: a,
+  ...o
+}) => {
+  const { descriptionId: s, hasDescriptionRef: i } = d();
+  return S(() => (i && (i.current = !0), () => {
+    i && (i.current = !1);
+  }), [i]), /* @__PURE__ */ n(
+    t,
+    {
+      id: s,
+      className: l(
+        "text-sm font-normal text-text-secondary my-0 ml-0 mr-1 p-0",
+        a
+      ),
+      ...o,
+      children: e
+    }
+  );
+};
+L.displayName = "Dialog.Description";
+const De = ({
+  className: e,
+  ...t
 }) => /* @__PURE__ */ n(
   "button",
   {
-    className: s(
-      "bg-transparent inline-flex justify-center items-center border-0 p-1 m-0 cursor-pointer focus:outline-none outline-none shadow-none",
+    className: l(
+      "bg-transparent inline-flex justify-center items-center border-0 p-1 m-0 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-1 focus-visible:ring-border-strong outline-none shadow-none",
       e
     ),
     "aria-label": "Close dialog",
-    ...o,
-    children: /* @__PURE__ */ n(te, { className: "size-4 text-text-primary shrink-0" })
+    ...t,
+    children: /* @__PURE__ */ n(ce, { className: "size-4 text-text-primary shrink-0" })
   }
-), H = ({
+), U = ({
   children: e,
-  as: o = k,
+  as: t = T,
   ...a
 }) => {
-  const { handleClose: t } = x();
-  return e ? o === k ? typeof e == "function" ? e({
-    close: t
-  }) : P(e, {
-    onClick: t
-  }) : /* @__PURE__ */ n(o, { ...a, onClick: t, "aria-label": "Close dialog", children: e }) : /* @__PURE__ */ n(me, { onClick: t, ...a });
+  const { handleClose: o } = d();
+  return e ? t === T ? typeof e == "function" ? e({
+    close: o
+  }) : w(e, {
+    onClick: o
+  }) : /* @__PURE__ */ n(t, { ...a, onClick: o, "aria-label": "Close dialog", children: e }) : /* @__PURE__ */ n(De, { onClick: o, ...a });
 };
-H.displayName = "Dialog.CloseButton";
-const M = ({
+U.displayName = "Dialog.CloseButton";
+const X = ({
   children: e,
-  className: o,
+  className: t,
   ...a
-}) => /* @__PURE__ */ n("div", { className: s("px-5", o), ...a, children: e });
-M.displayName = "Dialog.Body";
-const V = ({
+}) => /* @__PURE__ */ n("div", { className: l("px-5", t), ...a, children: e });
+X.displayName = "Dialog.Body";
+const _ = ({
   children: e,
-  className: o
+  className: t
 }) => {
-  const { design: a, handleClose: t } = x(), l = () => e ? typeof e == "function" ? e({ close: t }) : e : null;
+  const { design: a, handleClose: o } = d(), s = () => e ? typeof e == "function" ? e({ close: o }) : e : null;
   return /* @__PURE__ */ n(
     "div",
     {
-      className: s(
+      className: l(
         "p-4 flex justify-end gap-3",
         {
           "bg-background-secondary": a === "footer-divided"
         },
-        o
+        t
       ),
-      children: l()
+      children: s()
     }
   );
 };
-V.displayName = "Dialog.Footer";
-r.Panel = j;
-r.Portal = I;
-r.Title = z;
-r.Description = E;
-r.CloseButton = H;
-r.Header = O;
-r.Body = M;
-r.Footer = V;
-r.Backdrop = A;
+_.displayName = "Dialog.Footer";
+r.Panel = H;
+r.Portal = $;
+r.Title = K;
+r.Description = L;
+r.CloseButton = U;
+r.Header = V;
+r.Body = X;
+r.Footer = _;
+r.Backdrop = M;
 export {
-  me as DefaultCloseButton,
-  A as DialogBackdrop,
-  M as DialogBody,
-  H as DialogCloseButton,
-  E as DialogDescription,
-  V as DialogFooter,
-  O as DialogHeader,
-  j as DialogPanel,
-  I as DialogPortal,
-  z as DialogTitle,
+  De as DefaultCloseButton,
+  M as DialogBackdrop,
+  X as DialogBody,
+  U as DialogCloseButton,
+  L as DialogDescription,
+  _ as DialogFooter,
+  V as DialogHeader,
+  H as DialogPanel,
+  $ as DialogPortal,
+  K as DialogTitle,
   r as default
 };
 //# sourceMappingURL=dialog.es.js.map

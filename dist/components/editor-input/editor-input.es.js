@@ -7,13 +7,13 @@ import { HistoryPlugin as A } from "@lexical/react/LexicalHistoryPlugin";
 import { LexicalErrorBoundary as R } from "@lexical/react/LexicalErrorBoundary";
 import { OnChangePlugin as j } from "@lexical/react/LexicalOnChangePlugin";
 import { EditorRefPlugin as B } from "@lexical/react/LexicalEditorRefPlugin";
-import { cn as f } from "../../utilities/functions.es.js";
+import { cn as p } from "../../utilities/functions.es.js";
 import { editableContentAreaCommonClassNames as F, editorDisabledClassNames as L, editorInputClassNames as U, editorCommonClassNames as _ } from "./editor-input-style.es.js";
 import D from "./mention-plugin/mention-plugin.es.js";
 import H from "./mention-plugin/mention-node.es.js";
 import Y from "./editor-theme.es.js";
 import k from "./editor-placeholder.es.js";
-import { forwardRef as q, isValidElement as p } from "react";
+import { forwardRef as q, isValidElement as u } from "react";
 import G from "./override-editor-style-plugin/override-editor-style.es.js";
 import { MaxLengthPlugin as J } from "./character-limit-plugin/character-limit.es.js";
 function K(e) {
@@ -42,41 +42,41 @@ const Q = `{
 }`, V = q(
   ({
     defaultValue: e = "",
-    placeholder: c = "Press @ to view variable suggestions",
-    onChange: r,
-    size: t = "md",
-    autoFocus: u = !1,
+    placeholder: r = "Press @ to view variable suggestions",
+    onChange: t,
+    size: i = "md",
+    autoFocus: c = !1,
     options: C,
     by: g = "name",
     trigger: E = "@",
-    menuComponent: i,
-    menuItemComponent: n,
+    menuComponent: n,
+    menuItemComponent: m,
     className: h,
     wrapperClassName: N,
-    disabled: m = !1,
+    disabled: a = !1,
     autoSpaceAfterMention: P = !1,
     style: v,
     maxLength: l
-  }, a) => {
+  }, s) => {
     const y = {
       namespace: "Editor",
       editorTheme: Y,
       onError: K,
       nodes: [H],
       editorState: e || Q,
-      editable: !m
+      editable: !a
     }, x = (T, b) => {
-      typeof r == "function" && r(T, b);
+      typeof t == "function" && t(T, b);
     };
-    let s, d;
-    return p(i) && (s = i), p(n) && (d = n), /* @__PURE__ */ o(
+    let d, f;
+    return u(n) && (d = n), u(m) && (f = m), /* @__PURE__ */ o(
       "div",
       {
-        className: f(
+        className: p(
           "relative w-full",
           _,
-          U[t],
-          m && L,
+          U[i],
+          a && L,
           N
         ),
         children: /* @__PURE__ */ S(I, { initialConfig: y, children: [
@@ -86,14 +86,15 @@ const Q = `{
               contentEditable: /* @__PURE__ */ o(
                 O,
                 {
-                  className: f(
+                  "aria-label": r || "Text editor",
+                  className: p(
                     "editor-content focus-visible:outline-none outline-none",
                     F,
                     h
                   )
                 }
               ),
-              placeholder: /* @__PURE__ */ o(k, { content: c }),
+              placeholder: /* @__PURE__ */ o(k, { content: r }),
               ErrorBoundary: R
             }
           ) }),
@@ -101,9 +102,9 @@ const Q = `{
           /* @__PURE__ */ o(
             D,
             {
-              menuComponent: s,
-              menuItemComponent: d,
-              size: t,
+              menuComponent: d,
+              menuItemComponent: f,
+              size: i,
               by: g,
               optionsArray: C,
               trigger: E,
@@ -117,8 +118,8 @@ const Q = `{
               ignoreSelectionChange: !0
             }
           ),
-          a && /* @__PURE__ */ o(B, { editorRef: a }),
-          u && /* @__PURE__ */ o(w, {}),
+          s && /* @__PURE__ */ o(B, { editorRef: s }),
+          c && /* @__PURE__ */ o(w, {}),
           /* @__PURE__ */ o(G, { style: v }),
           l && /* @__PURE__ */ o(J, { maxLength: l })
         ] })

@@ -4,18 +4,18 @@ import { useCycle as M, motion as d } from "framer-motion";
 import { useState as h, useRef as b, useEffect as O, createContext as R, startTransition as T, isValidElement as C, cloneElement as H, useContext as L } from "react";
 import { getElementPositionRelativeToScreen as B } from "../topbar/utils.es.js";
 import E from "../button/button.es.js";
-const y = R({}), P = y.Provider, x = () => L(y), $ = (e) => {
+const x = R({}), P = x.Provider, y = () => L(x), $ = (e) => {
   const t = b({ width: 0, height: 0 });
   return O(() => {
     e.current && (t.current.width = e.current.offsetWidth, t.current.height = e.current.offsetHeight);
   }, []), t.current;
-}, z = (e, t, n) => {
+}, z = (e, t, r) => {
   if (!e || !t)
     return {
       open: () => ({}),
       closed: () => ({})
     };
-  const r = e?.getBoundingClientRect(), s = t?.getBoundingClientRect(), i = n ? r?.x - s?.x + r?.width / 2 : s?.width - (s?.right - r?.x) + r?.width / 2, a = r?.y - s?.y + r?.height / 2, l = r?.width / 2;
+  const n = e?.getBoundingClientRect(), s = t?.getBoundingClientRect(), i = r ? n?.x - s?.x + n?.width / 2 : s?.width - (s?.right - n?.x) + n?.width / 2, a = n?.y - s?.y + n?.height / 2, l = n?.width / 2;
   return {
     open: (c = 1e3) => ({
       clipPath: `circle(${c * 2 + 200}px at ${i}px ${a}px)`,
@@ -57,11 +57,11 @@ const y = R({}), P = y.Provider, x = () => L(y), $ = (e) => {
     }
   )
 ), v = ({ className: e }) => {
-  const { toggleOpen: t, setTriggerRef: n } = x();
+  const { toggleOpen: t, setTriggerRef: r, isOpen: n } = y();
   return /* @__PURE__ */ o(
     E,
     {
-      ref: n,
+      ref: r,
       className: u(
         "relative z-[1] rounded-full hover:shadow-sm focus:[box-shadow:none] pointer-events-auto bg-background-primary",
         e
@@ -70,6 +70,7 @@ const y = R({}), P = y.Provider, x = () => L(y), $ = (e) => {
       size: "xs",
       onClick: t,
       "aria-label": "Toggle menu",
+      "aria-expanded": n,
       icon: /* @__PURE__ */ f(
         d.svg,
         {
@@ -129,22 +130,22 @@ const y = R({}), P = y.Provider, x = () => L(y), $ = (e) => {
 }, w = ({
   tag: e = "a",
   active: t,
-  icon: n,
-  iconPosition: r = "left",
+  icon: r,
+  iconPosition: n = "left",
   className: s,
   children: i,
   ...a
 }) => {
   let l = null, c = null;
-  const g = n && C(n) ? H(n, {
+  const g = r && C(r) ? H(r, {
     key: "left-icon",
     className: u(
       "size-5",
       t ? "text-brand-800" : "text-icon-secondary",
-      n.props?.className ?? ""
+      r.props?.className ?? ""
     )
   }) : null;
-  switch (r) {
+  switch (n) {
     case "left":
       l = g;
       break;
@@ -196,14 +197,14 @@ const y = R({}), P = y.Provider, x = () => L(y), $ = (e) => {
     children: e
   }
 ), k = ({ children: e, className: t }) => {
-  const { triggerRef: n, triggerOnRight: r, triggerOnLeft: s } = x(), [i, a] = h(null);
-  return n ? /* @__PURE__ */ f(
+  const { triggerRef: r, triggerOnRight: n, triggerOnLeft: s } = y(), [i, a] = h(null);
+  return r ? /* @__PURE__ */ f(
     d.div,
     {
       ref: a,
       className: u(
         "absolute top-0 bottom-0 w-80 h-screen",
-        r ? "right-0" : "left-0",
+        n ? "right-0" : "left-0",
         t
       ),
       children: [
@@ -212,10 +213,10 @@ const y = R({}), P = y.Provider, x = () => L(y), $ = (e) => {
           {
             className: u(
               "bg-background-primary shadow-lg absolute top-0 bottom-0 w-80 border-y-0 border-l-0 border-r border-solid border-border-subtle",
-              r ? "right-0" : "left-0"
+              n ? "right-0" : "left-0"
             ),
             variants: z(
-              n,
+              r,
               i,
               s ?? !1
             )
@@ -236,10 +237,10 @@ const y = R({}), P = y.Provider, x = () => L(y), $ = (e) => {
     }
   ) : null;
 }, p = ({ className: e, children: t }) => {
-  const [n, r] = M(!1, !0), [s, i] = h(null), a = b(null), { height: l } = $(a), { isRight: c = !1, isLeft: g = !0 } = B(s);
+  const [r, n] = M(!1, !0), [s, i] = h(null), a = b(null), { height: l } = $(a), { isRight: c = !1, isLeft: g = !0 } = B(s);
   return /* @__PURE__ */ o(P, { value: {
-    isOpen: n,
-    toggleOpen: r,
+    isOpen: r,
+    toggleOpen: n,
     setTriggerRef: (N) => {
       T(() => {
         i(N);
@@ -253,7 +254,7 @@ const y = R({}), P = y.Provider, x = () => L(y), $ = (e) => {
     {
       className: "h-full",
       initial: !1,
-      animate: n ? "open" : "closed",
+      animate: r ? "open" : "closed",
       custom: l,
       variants: {
         open: {

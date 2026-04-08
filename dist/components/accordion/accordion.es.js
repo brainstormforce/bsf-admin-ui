@@ -1,29 +1,30 @@
-import { jsx as r, jsxs as C } from "react/jsx-runtime";
-import p, { useState as N } from "react";
-import { ChevronDown as v, Minus as w, Plus as I } from "lucide-react";
-import { AnimatePresence as T, motion as b } from "framer-motion";
-import { cn as m, callAll as j } from "../../utilities/functions.es.js";
-const y = ({
+import { jsx as t, jsxs as I } from "react/jsx-runtime";
+import u, { useState as T, useMemo as x } from "react";
+import { nanoid as g } from "nanoid";
+import { ChevronDown as j, Minus as k, Plus as E } from "lucide-react";
+import { motion as y } from "framer-motion";
+import { cn as f, callAll as M } from "../../utilities/functions.es.js";
+const h = ({
   type: n = "simple",
   defaultValue: s = [],
-  autoClose: t = !1,
+  autoClose: r = !1,
   disabled: i = !1,
   children: l,
   className: o
 }) => {
-  const [c, d] = N(
+  const [c, d] = T(
     Array.isArray(s) ? s : [s]
-  ), f = (e) => {
-    d((a) => t ? a.includes(e) ? [] : [e] : a.includes(e) ? a.filter((u) => u !== e) : [...a, e]);
+  ), m = (e) => {
+    d((a) => r ? a.includes(e) ? [] : [e] : a.includes(e) ? a.filter((b) => b !== e) : [...a, e]);
   };
-  return /* @__PURE__ */ r("div", { className: m(n === "boxed" ? "space-y-3" : "", o), children: p.Children.map(l, (e) => {
-    if (p.isValidElement(e) && "value" in e.props) {
-      const a = e.props.collapsible !== !1, u = a ? c.includes(e.props.value) : !0;
-      return p.cloneElement(
+  return /* @__PURE__ */ t("div", { className: f(n === "boxed" ? "space-y-3" : "", o), children: u.Children.map(l, (e) => {
+    if (u.isValidElement(e) && "value" in e.props) {
+      const a = e.props.collapsible !== !1, b = a ? c.includes(e.props.value) : !0;
+      return u.cloneElement(
         e,
         {
-          isOpen: u,
-          onToggle: a ? () => f(e.props.value) : void 0,
+          isOpen: b,
+          onToggle: a ? () => m(e.props.value) : void 0,
           type: n,
           disabled: i || e.props.disabled
         }
@@ -32,103 +33,111 @@ const y = ({
     return e;
   }) });
 };
-y.displayName = "Accordion";
-const g = ({
+h.displayName = "Accordion";
+const C = ({
   isOpen: n,
   onToggle: s,
-  type: t = "simple",
+  type: r = "simple",
   disabled: i = !1,
   children: l,
   className: o
 }) => {
-  const c = {
+  const c = x(() => `accordion-content-${g()}`, []), d = x(() => `accordion-trigger-${g()}`, []), m = {
     simple: "border-0",
     separator: "border-0 border-b border-solid border-border-subtle",
     boxed: "border border-solid border-border-subtle rounded-md"
-  }[t];
-  return /* @__PURE__ */ r("div", { className: m(c, o), children: p.Children.map(
+  }[r];
+  return /* @__PURE__ */ t("div", { className: f(m, o), children: u.Children.map(
     l,
-    (d) => p.isValidElement(d) ? p.cloneElement(d, {
+    (p) => u.isValidElement(p) ? u.cloneElement(p, {
       isOpen: n,
       onToggle: s,
-      type: t,
-      disabled: i
-    }) : d
+      type: r,
+      disabled: i,
+      contentId: c,
+      triggerId: d
+    }) : p
   ) });
 };
-g.displayName = "Accordion.Item";
-const h = ({
+C.displayName = "Accordion.Item";
+const N = ({
   onClick: n,
   onToggle: s,
-  isOpen: t,
+  isOpen: r,
   iconType: i = "arrow",
   collapsible: l = !0,
   disabled: o = !1,
   tag: c = "h3",
   type: d = "simple",
-  children: f,
-  className: x,
-  ...e
+  children: m,
+  className: p,
+  contentId: e,
+  triggerId: a,
+  ...b
 }) => {
-  const a = {
+  const v = {
     simple: "px-2 py-3",
     separator: "px-2 py-4",
     boxed: "px-3 py-4"
-  }[d], u = () => l ? i === "arrow" ? /* @__PURE__ */ r(
-    v,
+  }[d], w = () => l ? i === "arrow" ? /* @__PURE__ */ t(
+    j,
     {
-      className: m(
+      className: f(
         "flex-shrink-0 text-icon-secondary size-5 transition-transform duration-300 ease-in-out",
-        t ? "rotate-180" : "rotate-0"
+        r ? "rotate-180" : "rotate-0"
       ),
       "aria-hidden": "true"
     }
-  ) : i === "plus-minus" ? /* @__PURE__ */ r(
-    b.span,
+  ) : i === "plus-minus" ? /* @__PURE__ */ t(
+    y.span,
     {
-      initial: { opacity: 0, rotate: t ? -180 : 0 },
-      animate: { opacity: 1, rotate: t ? 0 : 180 },
+      initial: { opacity: 0, rotate: r ? -180 : 0 },
+      animate: { opacity: 1, rotate: r ? 0 : 180 },
       exit: { opacity: 0 },
       transition: { duration: 0.3, ease: "easeInOut" },
       className: "flex items-center flex-shrink-0 text-icon-secondary",
       "aria-hidden": "true",
-      children: t ? /* @__PURE__ */ r(w, {}) : /* @__PURE__ */ r(I, {})
+      children: r ? /* @__PURE__ */ t(k, {}) : /* @__PURE__ */ t(E, {})
     },
-    t ? "minus" : "plus"
+    r ? "minus" : "plus"
   ) : null : null;
-  return /* @__PURE__ */ r(c, { className: "flex m-0 hover:bg-background-secondary transition duration-150 ease-in-out", children: /* @__PURE__ */ C(
+  return /* @__PURE__ */ t(c, { className: "flex m-0 hover:bg-background-secondary transition duration-150 ease-in-out", children: /* @__PURE__ */ I(
     "button",
     {
-      className: m(
+      id: a,
+      className: f(
         "flex w-full items-center justify-between text-sm font-medium transition-all appearance-none bg-transparent border-0 cursor-pointer gap-3",
-        a,
+        v,
         o && "cursor-not-allowed opacity-40",
-        x
+        p
       ),
-      onClick: j(
+      onClick: M(
         n,
         !o && l ? s : void 0
       ),
-      "aria-expanded": t,
+      "aria-expanded": r,
+      "aria-controls": e,
       "aria-disabled": o,
       disabled: o,
-      ...e,
+      ...b,
       children: [
-        /* @__PURE__ */ r("div", { className: "flex items-center gap-2 text-text-primary font-semibold text-left", children: f }),
-        u()
+        /* @__PURE__ */ t("div", { className: "flex items-center gap-2 text-text-primary font-semibold text-left", children: m }),
+        w()
       ]
     }
   ) });
 };
-h.displayName = "Accordion.Trigger";
+N.displayName = "Accordion.Trigger";
 const A = ({
   isOpen: n,
   disabled: s = !1,
-  type: t = "simple",
+  type: r = "simple",
   children: i,
-  className: l
+  className: l,
+  contentId: o,
+  triggerId: c
 }) => {
-  const o = {
+  const d = {
     open: {
       height: "auto",
       opacity: 1,
@@ -144,42 +153,42 @@ const A = ({
       opacity: 0,
       overflow: "hidden"
     }
-  }, c = {
+  }, m = {
     simple: "px-2 pb-3",
     separator: "px-2 pb-4",
     boxed: "px-3 pb-4"
-  }[t];
-  return /* @__PURE__ */ r(T, { initial: !1, children: n && /* @__PURE__ */ r(
-    b.div,
+  }[r];
+  return /* @__PURE__ */ t(
+    y.div,
     {
-      variants: o,
-      initial: "closed",
-      animate: "open",
-      exit: "closed",
+      variants: d,
+      initial: !1,
+      animate: n ? "open" : "closed",
       transition: { duration: 0.3, ease: "easeInOut" },
-      className: m(
-        "text-text-secondary w-full text-sm transition-[height, opacity, transform] ease-in box-border",
+      className: f(
+        "text-text-secondary w-full text-sm box-border",
         s && "opacity-40",
         l
       ),
-      "aria-hidden": !n,
       role: "region",
-      children: /* @__PURE__ */ r("div", { className: m(c), children: i })
-    },
-    "content"
-  ) });
+      id: o,
+      "aria-labelledby": c,
+      "aria-hidden": !n,
+      children: /* @__PURE__ */ t("div", { className: f(m), children: i })
+    }
+  );
 };
 A.displayName = "Accordion.Content";
-const R = Object.assign(y, {
-  Item: g,
-  Trigger: h,
+const q = Object.assign(h, {
+  Item: C,
+  Trigger: N,
   Content: A
 });
 export {
-  y as Accordion,
+  h as Accordion,
   A as AccordionContent,
-  g as AccordionItem,
-  h as AccordionTrigger,
-  R as default
+  C as AccordionItem,
+  N as AccordionTrigger,
+  q as default
 };
 //# sourceMappingURL=accordion.es.js.map
